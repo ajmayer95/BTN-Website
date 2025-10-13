@@ -1,0 +1,28 @@
+# Local server files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Temporary files
+*.tmp
+*.bak
+*.log
+
+# System files
+desktop.ini
+
+# Optional: Uncomment if you want to ignore the images directory
+# images/
+
+# Node modules (if you use npm)
+node_modules/
+
+# Python cache
+__pycache__/
+*.pyc
