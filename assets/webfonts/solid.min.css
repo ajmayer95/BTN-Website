@@ -1,0 +1,4 @@
+/* Font Awesome Solid - Minimal version with text symbols */
+
+.fa-envelope:before { content: "✉"; }
+.fa-link:before { content: "🔗"; }
