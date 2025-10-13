@@ -1,0 +1,116 @@
+/* 
+ * CCB (Center for Computational Biology) Color Scheme
+ * Flatiron Institute
+ */
+
+:root {
+  /* CCB primary colors - using a teal/cyan palette */
+  --primary-color: #009688;
+  --primary-dark: #00796B;
+  --primary-light: #4DB6AC;
+  --accent-color: #00BCD4;
+  
+  /* Neutral colors */
+  --text-primary: #212121;
+  --text-secondary: #757575;
+  --background: #FAFAFA;
+  --surface: #FFFFFF;
+  --border: rgba(0, 0, 0, 0.12);
+}
+
+body {
+  color: var(--text-primary);
+  background-color: var(--background);
+}
+
+/* Link styles */
+a {
+  color: var(--primary-color);
+  transition: color 0.2s ease;
+}
+
+a:hover {
+  color: var(--primary-dark);
+}
+
+/* Navigation styles */
+nav a {
+  color: var(--text-primary);
+}
+
+nav a:hover {
+  color: var(--primary-color);
+}
+
+/* Header branding */
+header.site {
+  background-color: var(--surface);
+}
+
+/* Hero section */
+.hero h1 {
+  color: var(--text-primary);
+}
+
+.hero p.lead {
+  color: var(--text-primary);
+}
+
+/* Cards */
+.card {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+}
+
+.card:hover {
+  box-shadow: 0 4px 20px rgba(0, 150, 136, 0.15);
+  transition: box-shadow 0.3s ease;
+}
+
+/* Section headers */
+h2.section {
+  color: var(--text-primary);
+  border-bottom: 2px solid var(--primary-color);
+  padding-bottom: 0.5rem;
+}
+
+/* Labels/badges */
+.label {
+  background-color: rgba(0, 150, 136, 0.1);
+  color: var(--primary-dark);
+  transition: background-color 0.2s ease;
+}
+
+.label:hover {
+  background-color: rgba(0, 150, 136, 0.2);
+  text-decoration: none;
+}
+
+/* Icons */
+.icon {
+  color: var(--text-secondary);
+  margin-right: 0.5rem;
+  transition: color 0.2s ease;
+}
+
+.icon:hover {
+  color: var(--primary-color);
+}
+
+/* Footer */
+footer {
+  background-color: var(--surface);
+  color: var(--text-secondary);
+}
+
+/* Publications list */
+.pub .title {
+  color: var(--text-primary);
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  :root {
+    font-size: 14px;
+  }
+}

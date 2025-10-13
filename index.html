@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Biological Transport Networks — Flatiron Institute</title>
+
+  <!-- TODO: If you use a different center color scheme, swap ccb.css for e.g., cca.css, ccq.css, etc. -->
+  <link rel="stylesheet" href="assets/css/ccb.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome for icons -->
+  <link rel="stylesheet" href="assets/webfonts/fontawesome.min.css" />
+  <link rel="stylesheet" href="assets/webfonts/brands.min.css" />
+  <link rel="stylesheet" href="assets/webfonts/solid.min.css" />
+
+  <!-- MathJax (optional) -->
+  <script>
+    // Remove MathJax if unused
+    window.MathJax = { tex: { inlineMath: [['$','$'],['\\(','\\)']] } };
+  </script>
+  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+
+  <style>
+    /* Light utility overrides to pair with the FI template CSS */
+    :root { --maxw: 1100px; }
+    body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; }
+    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 2rem 1rem; }
+    header.site { padding: 1.5rem 0; border-bottom: 1px solid rgba(0,0,0,0.07); }
+    header .brand { display:flex; gap: 1rem; align-items:center; }
+    header .brand img { height: 52px; width:auto; border-radius: 6px; }
+    nav a { margin-right: 1rem; font-weight: 600; text-decoration: none; }
+    .hero { padding: 3rem 0 2rem; display:grid; grid-template-columns: 1.1fr 0.9fr; gap: 2rem; align-items:center; }
+    .hero h1 { font-size: clamp(1.8rem, 3.2vw, 2.6rem); margin: 0 0 0.5rem; }
+    .hero p.lead { font-size: 1.1rem; line-height: 1.5; opacity: 0.9; }
+    .hero figure img { width: 100%; border-radius: 10px; }
+    .grid { display:grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
+    .card { background: #fff; border-radius: 12px; padding: 1rem; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+    h2.section { margin: 2.5rem 0 1rem; font-size: 1.6rem; }
+    .people .person { display:flex; gap: 1rem; align-items:flex-start; }
+    .people .person img { width: 96px; height: 96px; object-fit: cover; border-radius: 10px; }
+    .people .meta { font-size: 0.95rem; }
+    .pub { margin: 0 0 0.75rem; }
+    .pub .title { font-weight: 600; }
+    .label { display:inline-block; font-size: 0.75rem; padding: 0.15rem 0.45rem; border-radius: 999px; background: rgba(0,0,0,0.06); margin-left: 0.35rem; }
+    .news li { margin: 0.4rem 0; }
+    footer { margin-top: 3rem; padding: 2rem 0; border-top: 1px solid rgba(0,0,0,0.07); font-size: 0.95rem; }
+    @media (max-width: 900px){ .hero{ grid-template-columns: 1fr; } .grid{ grid-template-columns: 1fr 1fr; } }
+    @media (max-width: 600px){ .grid{ grid-template-columns: 1fr; } }
+  </style>
+</head>
+
+<body>
+  <!-- ===== Header / Nav ===== -->
+  <header class="site">
+    <div class="wrap">
+      <div class="brand">
+        <!-- TODO: Replace with your group mark/logo (120x120-ish); keep accessible alt text -->
+        <img src="images/avatar.jpg" alt="Biological Transport Networks logo" />
+        <div>
+          <div style="font-size:1rem; font-weight:800; letter-spacing:0.02em;">Biological Transport Networks</div>
+          <div style="opacity:0.8;">Center for Computational Biology · Flatiron Institute</div>
+        </div>
+      </div>
+      <nav style="margin-top: 0.75rem;">
+        <a href="#research">Research</a>
+        <a href="#people">People</a>
+        <a href="#publications">Publications</a>
+        <a href="#software">Software & Data</a>
+        <a href="#news">News</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <!-- ===== Hero ===== -->
+  <section class="hero wrap">
+    <div>
+      <h1>Flows, networks, and adaptation across biology</h1>
+      <p class="lead">
+        We study how living transport networks — from embryonic vasculature to fungal hyphae — form, adapt,
+        and function under dynamic conditions. Our group develops physics-based theory, algorithms, and
+        open-source tools to extract, analyze, and model network flows from images and time-series data.
+      </p>
+      <p>
+        <!-- TODO: Add 1–3 quick links -->
+        <a class="label" href="#software">Code</a>
+        <a class="label" href="#publications">Papers</a>
+        <a class="label" href="#datasets">Datasets</a>
+      </p>
+    </div>
+    <figure>
+      <!-- TODO: Replace with a real group image or a figure from your work -->
+      <img src="images/fulls/02.jpg" alt="Network flows visualization" />
+      <figcaption style="opacity:0.7; font-size:0.9rem; margin-top:0.25rem;">Sample visualization of vascular flow network structure.</figcaption>
+    </figure>
+  </section>
+
+  <main class="wrap">
+    <!-- ===== Research / Projects ===== -->
+    <h2 id="research" class="section">Research</h2>
+    <div class="grid">
+      <!-- Card 1 -->
+      <article class="card">
+        <h3>Image-based network extraction</h3>
+        <p>From raw microscopy to graphs: skeletonization, vectorization, and error-aware editing for large vascular networks.</p>
+        <p><a href="pdfs/fakepaper.jpg">Method overview (poster)</a></p>
+      </article>
+      <!-- Card 2 -->
+      <article class="card">
+        <h3>Flow inference & pulsatility</h3>
+        <p>Time-series analysis of velocity fields using robust harmonic regression and spectral criteria to quantify pulsatile flow.</p>
+        <p><a href="#publications">Related publications</a></p>
+      </article>
+      <!-- Card 3 -->
+      <article class="card">
+        <h3>Adaptive conductance models</h3>
+        <p>Physics-based models for material-constrained adaptation, loop penalties, and multiscale optimization on graphs.</p>
+        <p><a href="#software">Simulation code</a></p>
+      </article>
+    </div>
+
+    <!-- ===== People ===== -->
+    <h2 id="people" class="section">People</h2>
+    <div class="people grid">
+      <!-- TODO: Duplicate .card blocks below for each group member -->
+      <div class="card person">
+        <img src="images/avatar.jpg" alt="Alex Mayer" />
+        <div class="meta">
+          <div style="font-weight:700;">Alex Mayer</div>
+          <div>Flatiron Research Fellow</div>
+          <div style="margin-top:0.35rem;">
+            <a href="mailto:amayer@flatironinstitute.org" title="Email" class="icon"><i class="fa-solid fa-envelope"></i></a>
+            <a href="https://scholar.google.com/" title="Google Scholar" class="icon" target="_blank" rel="noopener"><i class="fa-brands fa-google"></i></a>
+            <a href="https://github.com/" title="GitHub" class="icon" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <div class="card person">
+        <img src="images/avatar-placeholder.jpg" alt="Member Name" />
+        <div class="meta">
+          <div style="font-weight:700;">Member Name</div>
+          <div>Role / Title</div>
+          <div style="margin-top:0.35rem;">
+            <a href="#" title="Website" class="icon"><i class="fa-solid fa-link"></i></a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Add more people as needed -->
+    </div>
+
+    <!-- ===== Publications ===== -->
+    <h2 id="publications" class="section">Selected Publications</h2>
+    <div class="card">
+      <ol style="margin:0; padding-left:1.1rem;">
+        <!-- TODO: Replace with real entries; keep a consistent citation style -->
+        <li class="pub">
+          <span class="title">Title of the paper</span> — Author A, Author B, <em>Journal</em>, (Year). 
+          <a href="pdfs/fakecv.pdf" class="label">PDF</a>
+          <a href="#" class="label">Code</a>
+          <a href="#" class="label">DOI</a>
+        </li>
+        <li class="pub">
+          <span class="title">Another relevant work</span> — Team, <em>Venue</em>, (Year). 
+          <a href="#" class="label">Preprint</a>
+        </li>
+      </ol>
+    </div>
+
+    <!-- ===== Software & Data ===== -->
+    <h2 id="software" class="section">Software & Data</h2>
+    <div class="grid" id="datasets">
+      <article class="card">
+        <h3>vaskymo</h3>
+        <p>Python tools for vascular network extraction, editing (Napari), and pulsatility analysis.</p>
+        <p>
+          <a href="#" class="label">GitHub</a>
+          <a href="#" class="label">Docs</a>
+          <a href="#" class="label">Example data</a>
+        </p>
+      </article>
+      <article class="card">
+        <h3>Quail yolk-sac dataset</h3>
+        <p>Registered image stacks, derived graphs, and per-vessel time series for 21–27 somites.</p>
+        <p>
+          <a href="#" class="label">Metadata</a>
+          <a href="#" class="label">Download</a>
+        </p>
+      </article>
+    </div>
+
+    <!-- ===== News ===== -->
+    <h2 id="news" class="section">News</h2>
+    <div class="card">
+      <ul class="news">
+        <!-- TODO: Use newest first; 1–2 lines each -->
+        <li><strong>Oct 2025:</strong> Preprint on robust harmonic regression for flow pulsatility posted to arXiv.</li>
+        <li><strong>Sep 2025:</strong> Released v0.3 of <em>vaskymo</em> with Napari 3D editor updates.</li>
+      </ul>
+    </div>
+
+    <!-- ===== Contact ===== -->
+    <h2 id="contact" class="section">Contact</h2>
+    <div class="card">
+      <p>
+        Center for Computational Biology, Flatiron Institute<br/>
+        162 5th Ave, New York, NY 10010
+      </p>
+      <p>
+        Email: <a href="mailto:ccb-webmaster@flatironinstitute.org">ccb-webmaster@flatironinstitute.org</a>
+        <!-- TODO: Replace with a group email or PI contact -->
+      </p>
+      <p>
+        <a href="https://users.flatironinstitute.org/~bpm/" target="_blank" rel="noopener">See also: Biophysical Modeling (BPM)</a>
+      </p>
+    </div>
+  </main>
+
+  <footer>
+    <div class="wrap" style="display:flex; justify-content:space-between; align-items:center; gap:1rem; flex-wrap:wrap;">
+      <div>&copy; <span id="year"></span> Biological Transport Networks · Flatiron Institute</div>
+      <div>
+        <a href="#" class="icon" title="GitHub"><i class="fa-brands fa-github"></i></a>
+        <a href="#" class="icon" title="Twitter/X"><i class="fa-brands fa-x-twitter"></i></a>
+        <a href="#" class="icon" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+      </div>
+    </div>
+  </footer>
+
+  <script>
+    // Update footer year
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>

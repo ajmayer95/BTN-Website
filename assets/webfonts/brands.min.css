@@ -1,0 +1,6 @@
+/* Font Awesome Brands - Minimal version with text symbols */
+
+.fa-github:before { content: "🔗"; }
+.fa-x-twitter:before { content: "✕"; }
+.fa-youtube:before { content: "▶"; }
+.fa-google:before { content: "G"; }

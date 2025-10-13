@@ -1,0 +1,29 @@
+/* Font Awesome Core - Minimal version for BTN website */
+/* Using system fonts as fallback for icons */
+
+.fa,
+.fas,
+.far,
+.fal,
+.fat,
+.fad,
+.fab {
+  -moz-osx-font-smoothing: grayscale;
+  -webkit-font-smoothing: antialiased;
+  display: inline-block;
+  font-style: normal;
+  font-variant: normal;
+  line-height: 1;
+  text-rendering: auto;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.fa-solid,
+.fas {
+  font-weight: 600;
+}
+
+.fa-brands,
+.fab {
+  font-weight: 400;
+}
