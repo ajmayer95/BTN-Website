@@ -65,6 +65,7 @@
         </div>
       </div>
       <nav style="margin-top: 0.75rem;">
+        <a href="#mission">Mission</a>
         <a href="#research">Research</a>
         <a href="#people">People</a>
         <a href="#publications">Publications</a>
@@ -99,6 +100,10 @@
   </section>
 
   <main class="wrap">
+    <!-- ===== Mission ===== -->
+    <h2 id="mission" class="section">Mission</h2>
+    <div class="card">
+      <p><em>Placeholder mission statement:</em> We investigate the principles of biological transport networks across scales, integrating theor
     <!-- ===== Research / Projects ===== -->
     <h2 id="research" class="section">Research</h2>
     <div class="grid">
@@ -119,16 +124,7 @@
     <div class="people grid">
       <!-- TODO: Duplicate .card blocks below for each group member -->
       <div class="card person">
-        <img src="images/people/Eleni.avif" alt="Eleni Katifori" />
-        <div class="meta">
-          <div style="font-weight:700;">Eleni Katifori</div>
-          <div>Senior Research Scientist</div>
-        </div>
-      </div>
-      </div>
-      
-      <div class="card person">
-        <img src="images/people/AJM-Pic.avif" alt="Alex Mayer" />
+        <img src="images/avatar.jpg" alt="Alex Mayer" />
         <div class="meta">
           <div style="font-weight:700;">Alex Mayer</div>
           <div>Flatiron Research Fellow</div>
@@ -141,7 +137,7 @@
       </div>
 
       <div class="card person">
-        <img src="images/people/Sid.avif" alt="Sidney Holden" />
+        <img src="images/avatar-placeholder.jpg" alt="Sidney Holden" />
         <div class="meta">
           <div style="font-weight:700;">Sidney Holden</div>
           <div>Flatiron Research Fellow</div>
@@ -154,6 +150,15 @@
           <div style="font-weight:700;">Mia Morrell</div>
           <div>Guest Researcher</div>
         </div>
+      </div>
+
+      <div class="card person">
+        <img src="images/avatar-placeholder.jpg" alt="Eleni Katifori" />
+        <div class="meta">
+          <div style="font-weight:700;">Eleni Katifori</div>
+          <div>Senior Research Scientist</div>
+        </div>
+      </div>
       </div>
 
       <!-- Add more people as needed -->
@@ -181,10 +186,21 @@
     <h2 id="software" class="section">Software & Data</h2>
     <div class="grid" id="datasets">
       <article class="card">
-        <h3>Blank 1</h3>
+        <h3>vaskymo</h3>
+        <p>Python tools for vascular network extraction, editing (Napari), and pulsatility analysis.</p>
+        <p>
+          <a href="#" class="label">GitHub</a>
+          <a href="#" class="label">Docs</a>
+          <a href="#" class="label">Example data</a>
+        </p>
       </article>
       <article class="card">
-        <h3>Blank 2</h3>
+        <h3>Quail yolk-sac dataset</h3>
+        <p>Registered image stacks, derived graphs, and per-vessel time series for 21–27 somites.</p>
+        <p>
+          <a href="#" class="label">Metadata</a>
+          <a href="#" class="label">Download</a>
+        </p>
       </article>
     </div>
 
@@ -193,7 +209,8 @@
     <div class="card">
       <ul class="news">
         <!-- TODO: Use newest first; 1–2 lines each -->
-        <li><strong>Oct 2025:</strong> Preprint on blank to arXiv.</li>
+        <li><strong>Oct 2025:</strong> Preprint on robust harmonic regression for flow pulsatility posted to arXiv.</li>
+        <li><strong>Sep 2025:</strong> Released v0.3 of <em>vaskymo</em> with Napari 3D editor updates.</li>
       </ul>
     </div>
 
@@ -231,4 +248,5 @@
   </script>
 </body>
 </html>
+
 
