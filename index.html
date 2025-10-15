@@ -42,12 +42,21 @@
     .topnav a:hover { text-decoration: underline; }
 
     /* ===== Hero banner with name overlay (mission is below) ===== */
-    .hero-banner { position: relative; }
+    .hero-banner {
+  position: relative;
+  height: clamp(320px, 48vw, 520px); /* adjust the middle value to taste */
+  overflow: hidden;                  /* hide the cropped parts */
+  border-radius: 12px;               /* remove this line if you want square corners */
+}
     .hero-banner img {
-      width: 100%; display: block;
-      opacity: 0; animation: heroFade 1.2s ease-out forwards;
-      border-radius: 12px;                 /* remove for full-bleed edges */
-    }
+  width: 100%;
+  height: 100%;
+  object-fit: cover;                  /* crops to fill */
+  object-position: 50% 45%;           /* tweak vertical focus (0%=top, 100%=bottom) */
+  opacity: 0;
+  animation: heroFade 1.2s ease-out forwards;
+  /* border-radius not needed since container already has it */
+}
     .hero-banner .overlay {
       position: absolute; inset: 0;
       background: linear-gradient(180deg, rgba(0,0,0,.30), rgba(0,0,0,.30));
@@ -235,9 +244,6 @@
       </p>
       <p>
         Email: <a href="mailto:ccb-webmaster@flatironinstitute.org">ccb-webmaster@flatironinstitute.org</a>
-      </p>
-      <p>
-        <a href="https://users.flatironinstitute.org/~bpm/" target="_blank" rel="noopener">See also: Biophysical Modeling (BPM)</a>
       </p>
     </div>
   </main>
