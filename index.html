@@ -49,6 +49,7 @@
     footer { margin-top: 3rem; padding: 2rem 0; border-top: 1px solid rgba(0,0,0,0.07); font-size: 0.95rem; }
     @media (max-width: 900px){ .hero{ grid-template-columns: 1fr; } .grid{ grid-template-columns: 1fr 1fr; } }
     @media (max-width: 600px){ .grid{ grid-template-columns: 1fr; } }
+      @media (min-width: 1000px){ .hero-intro h1{ font-size: 2.2rem; } }
   </style>
 </head>
 
@@ -76,27 +77,28 @@
     </div>
   </header>
 
-  <!-- ===== Hero ===== -->
-  <section class="hero wrap">
+  <!-- ===== Hero (image first, like BPM) ===== -->
+  <section class="hero-banner">
+    <div class="wrap">
+      <figure style="margin:0;">
+        <img src="images/simulation.png" alt="Network flow simulation preview" style="width:100%; display:block; border-radius:12px;" />
+      </figure>
+    </div>
+  </section>
+
+  <!-- Intro text below banner -->
+  <section class="hero-intro wrap" style="padding-top:1.25rem;">
     <div>
       <h1>Flows, networks, and adaptation across biology</h1>
       <p class="lead">
-        We study how living transport networks — from embryonic vasculature to fungal hyphae — form, adapt,
-        and function under dynamic conditions. Our group develops physics-based theory, algorithms, and
-        open-source tools to extract, analyze, and model network flows from images and time-series data.
+        We study how living transport networks — from embryonic vasculature to fungal hyphae — form, adapt, and function under dynamic conditions. Our group develops physics-based theory, algorithms, and open-source tools to extract, analyze, and model network flows from images and time-series data.
       </p>
       <p>
-        <!-- TODO: Add 1–3 quick links -->
         <a class="label" href="#software">Code</a>
         <a class="label" href="#publications">Papers</a>
         <a class="label" href="#datasets">Datasets</a>
       </p>
     </div>
-    <figure>
-      <!-- TODO: Replace with a real group image or a figure from your work -->
-      <img src="images/fulls/02.jpg" alt="Network flows visualization" />
-      <figcaption style="opacity:0.7; font-size:0.9rem; margin-top:0.25rem;">Sample visualization of vascular flow network structure.</figcaption>
-    </figure>
   </section>
 
   <main class="wrap">
@@ -140,7 +142,7 @@
     <!-- Network Flow Simulation (image embed) -->
     <h3 style="margin-top:1.5rem;">Network Flow Simulation</h3>
     <div class="card">
-      <img src="images/Simulation.png" alt="Network flow simulation preview" style="width:100%; border-radius:8px;" />
+      <img src="images/simulation.png" alt="Network flow simulation preview" style="width:100%; border-radius:8px;" />
       <p style="margin-top:0.6rem; opacity:0.85;">(placeholder caption)</p>
     </div>
 
@@ -272,4 +274,3 @@
   </script>
 </body>
 </html>
-
