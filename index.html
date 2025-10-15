@@ -5,51 +5,71 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Biological Transport Networks — Flatiron Institute</title>
 
-  <!-- TODO: If you use a different center color scheme, swap ccb.css for e.g., cca.css, ccq.css, etc. -->
+  <!-- Flatiron / CCB theme (swap if desired) -->
   <link rel="stylesheet" href="assets/css/ccb.css" />
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
-  <!-- Font Awesome for icons -->
+  <!-- Optional icon/fonts if you add them later -->
   <link rel="stylesheet" href="assets/webfonts/fontawesome.min.css" />
   <link rel="stylesheet" href="assets/webfonts/brands.min.css" />
   <link rel="stylesheet" href="assets/webfonts/solid.min.css" />
 
   <!-- MathJax (optional) -->
-  <script>
-    // Remove MathJax if unused
-    window.MathJax = { tex: { inlineMath: [['$','$'],['\\(','\\)']] } };
-  </script>
+  <script>window.MathJax = { tex: { inlineMath: [['$','$'],['\\(','\\)']] } };</script>
   <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
 
   <style>
-    /* Light utility overrides to pair with the FI template CSS */
     :root { --maxw: 1100px; }
     body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; }
     .wrap { max-width: var(--maxw); margin: 0 auto; padding: 2rem 1rem; }
-    header.site { padding: 1.5rem 0; border-bottom: 1px solid rgba(0,0,0,0.07); }
+    header.site { padding: 1.5rem 0; border-bottom: 1px solid rgba(0,0,0,0.07); margin-bottom: 0; }
     header .brand { display:flex; gap: 1rem; align-items:center; }
     header .brand img { height: 52px; width:auto; border-radius: 6px; }
     nav a { margin-right: 1rem; font-weight: 600; text-decoration: none; }
-    .hero { padding: 3rem 0 2rem; display:grid; grid-template-columns: 1.1fr 0.9fr; gap: 2rem; align-items:center; }
-    .hero h1 { font-size: clamp(1.8rem, 3.2vw, 2.6rem); margin: 0 0 0.5rem; }
-    .hero p.lead { font-size: 1.1rem; line-height: 1.5; opacity: 0.9; }
-    .hero figure img { width: 100%; border-radius: 10px; }
+
+    /* ===== Hero banner with overlayed mission and fade-in image ===== */
+    .hero-banner { position: relative; }
+    .hero-banner img {
+      width: 100%; display: block;
+      opacity: 0; animation: heroFade 1.2s ease-out forwards;
+      border-radius: 12px;                   /* remove for full-bleed edges */
+    }
+    .hero-banner .overlay {
+      position: absolute; inset: 0;
+      background: linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.35));
+      border-radius: 12px;                   /* match image radius */
+    }
+    .hero-banner .mission {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      padding: clamp(1rem, 3vw, 2rem);
+    }
+    .hero-banner .mission-inner {
+      max-width: 900px; text-align: center; color: #fff;
+      text-shadow: 0 2px 10px rgba(0,0,0,.35);
+      padding: 0 1rem;
+    }
+    .hero-banner h1 { font-size: clamp(1.8rem, 3.2vw, 2.6rem); margin: 0 0 .5rem; }
+    .hero-banner p { font-size: clamp(1rem, 1.4vw, 1.15rem); margin: 0.25rem 0 0; }
+    .hero-banner .label { background: rgba(255,255,255,.22); color: #fff; }
+
+    @keyframes heroFade { from { opacity: 0 } to { opacity: 1 } }
+
+    /* Sections */
+    h2.section { margin: 2.5rem 0 1rem; font-size: 1.6rem; }
     .grid { display:grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
     .card { background: #fff; border-radius: 12px; padding: 1rem; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
-    h2.section { margin: 2.5rem 0 1rem; font-size: 1.6rem; }
     .people .person { display:flex; gap: 1rem; align-items:flex-start; }
     .people .person img { width: 96px; height: 96px; object-fit: cover; border-radius: 10px; }
     .people .meta { font-size: 0.95rem; }
-    .pub { margin: 0 0 0.75rem; }
-    .pub .title { font-weight: 600; }
     .label { display:inline-block; font-size: 0.75rem; padding: 0.15rem 0.45rem; border-radius: 999px; background: rgba(0,0,0,0.06); margin-left: 0.35rem; }
     .news li { margin: 0.4rem 0; }
     footer { margin-top: 3rem; padding: 2rem 0; border-top: 1px solid rgba(0,0,0,0.07); font-size: 0.95rem; }
-    @media (max-width: 900px){ .hero{ grid-template-columns: 1fr; } .grid{ grid-template-columns: 1fr 1fr; } }
+
+    @media (max-width: 900px){ .grid{ grid-template-columns: 1fr 1fr; } }
     @media (max-width: 600px){ .grid{ grid-template-columns: 1fr; } }
-      @media (min-width: 1000px){ .hero-intro h1{ font-size: 2.2rem; } }
   </style>
 </head>
 
@@ -58,7 +78,6 @@
   <header class="site">
     <div class="wrap">
       <div class="brand">
-        <!-- TODO: Replace with your group mark/logo (120x120-ish); keep accessible alt text -->
         <img src="images/avatar.jpg" alt="Biological Transport Networks logo" />
         <div>
           <div style="font-size:1rem; font-weight:800; letter-spacing:0.02em;">Biological Transport Networks</div>
@@ -77,93 +96,83 @@
     </div>
   </header>
 
-  <!-- ===== Hero (image first, like BPM) ===== -->
+  <!-- ===== Hero Banner with overlayed Mission ===== -->
   <section class="hero-banner">
-    <div class="wrap">
-      <figure style="margin:0;">
-        <img src="images/simulation.png" alt="Network flow simulation preview" style="width:100%; display:block; border-radius:12px;" />
-      </figure>
-    </div>
-  </section>
-
-  <!-- Intro text below banner -->
-  <section class="hero-intro wrap" style="padding-top:1.25rem;">
-    <div>
-      <h1>Flows, networks, and adaptation across biology</h1>
-      <p class="lead">
-        We study how living transport networks — from embryonic vasculature to fungal hyphae — form, adapt, and function under dynamic conditions. Our group develops physics-based theory, algorithms, and open-source tools to extract, analyze, and model network flows from images and time-series data.
-      </p>
-      <p>
-        <a class="label" href="#software">Code</a>
-        <a class="label" href="#publications">Papers</a>
-        <a class="label" href="#datasets">Datasets</a>
-      </p>
+    <!-- Use capital S to match your current file; change if you rename -->
+    <img src="images/Simulation.png" alt="Network flow simulation preview" />
+    <div class="overlay"></div>
+    <div class="mission" id="mission">
+      <div class="mission-inner">
+        <h1>Our Mission</h1>
+        <p>Placeholder mission statement. Describe your group’s focus in 1–3 concise sentences — the systems you study, the methods you build, and the impact you aim for.</p>
+        <p class="quicklinks" style="margin-top:.75rem;">
+          <a class="label" href="#software">Code</a>
+          <a class="label" href="#publications">Papers</a>
+          <a class="label" href="#datasets">Datasets</a>
+        </p>
+      </div>
     </div>
   </section>
 
   <main class="wrap">
-    <!-- ===== Mission ===== -->
-    <h2 id="mission" class="section">Mission</h2>
-    <div class="card">
-      <p><em>Placeholder mission statement:</em> We investigate the principles of biological transport networks across scales, integrating theory, computation, and experiment to understand how structure, flow, and adaptation co‑evolve. This paragraph is a placeholder — replace with 2–3 concise sentences about your group’s focus and values.</p>
-    </div>
-    <!-- ===== Research / Projects ===== -->
+    <!-- ===== Research ===== -->
     <h2 id="research" class="section">Research</h2>
     <div class="grid">
-      <!-- Area 1: Yolk Sac -->
+      <!-- Yolk Sac -->
       <article class="card">
-        <img src="images/research/yolk-sac.jpg" alt="Yolk sac research image placeholder" style="width:100%; border-radius:8px; margin-bottom:0.6rem;" />
+        <img src="images/research/yolk-sac.jpg" alt="Yolk sac research image" style="width:100%; border-radius:8px; margin-bottom:0.6rem;" />
         <h3>Yolk Sac</h3>
         <p></p>
       </article>
 
-      <!-- Area 2: Network Homogenization -->
+      <!-- Network Homogenization -->
       <article class="card">
-        <img src="images/research/network-homogenization.jpg" alt="Network homogenization research image placeholder" style="width:100%; border-radius:8px; margin-bottom:0.6rem;" />
+        <img src="images/research/network-homogenization.jpg" alt="Network homogenization research image" style="width:100%; border-radius:8px; margin-bottom:0.6rem;" />
         <h3>Network Homogenization</h3>
         <p></p>
       </article>
 
-      <!-- Area 3: Neuron -->
+      <!-- Neuron -->
       <article class="card">
-        <img src="images/research/neuron.jpg" alt="Neuron research image placeholder" style="width:100%; border-radius:8px; margin-bottom:0.6rem;" />
+        <img src="images/research/neuron.jpg" alt="Neuron research image" style="width:100%; border-radius:8px; margin-bottom:0.6rem;" />
         <h3>Neuron</h3>
         <p></p>
       </article>
 
-      <!-- Area 4: Placenta -->
+      <!-- Placenta -->
       <article class="card">
-        <img src="images/research/placenta.jpg" alt="Placenta research image placeholder" style="width:100%; border-radius:8px; margin-bottom:0.6rem;" />
+        <img src="images/research/placenta.jpg" alt="Placenta research image" style="width:100%; border-radius:8px; margin-bottom:0.6rem;" />
         <h3>Placenta</h3>
         <p></p>
       </article>
     </div>
 
-    <!-- Network Flow Simulation (image embed) -->
-    <h3 style="margin-top:1.5rem;">Network Flow Simulation</h3>
-    <div class="card">
-      <img src="images/simulation.png" alt="Network flow simulation preview" style="width:100%; border-radius:8px;" />
-      <p style="margin-top:0.6rem; opacity:0.85;">(placeholder caption)</p>
-    </div>
-
-    <h2 id="people" class="section">People</h2> class="section">People</h2>
+    <!-- ===== People ===== -->
+    <h2 id="people" class="section">People</h2>
     <div class="people grid">
-      <!-- TODO: Duplicate .card blocks below for each group member -->
       <div class="card person">
-        <img src="images/avatar.jpg" alt="Alex Mayer" />
+        <img src="images/people/Eleni.avif" alt="Eleni Katifori" />
+        <div class="meta">
+          <div style="font-weight:700;">Eleni Katifori</div>
+          <div>Senior Research Scientist</div>
+        </div>
+      </div>
+
+      <div class="card person">
+        <img src="images/people/AJM-Pic.avif" alt="Alex Mayer" />
         <div class="meta">
           <div style="font-weight:700;">Alex Mayer</div>
           <div>Flatiron Research Fellow</div>
           <div style="margin-top:0.35rem;">
-            <a href="mailto:amayer@flatironinstitute.org" title="Email" class="icon"><i class="fa-solid fa-envelope"></i></a>
-            <a href="https://scholar.google.com/" title="Google Scholar" class="icon" target="_blank" rel="noopener"><i class="fa-brands fa-google"></i></a>
-            <a href="https://github.com/" title="GitHub" class="icon" target="_blank" rel="noopener"><i class="fa-brands fa-github"></i></a>
+            <a href="mailto:amayer@flatironinstitute.org" class="icon">[email]</a>
+            <a href="https://scholar.google.com/" target="_blank" rel="noopener" class="icon">[scholar]</a>
+            <a href="https://github.com/" target="_blank" rel="noopener" class="icon">[github]</a>
           </div>
         </div>
       </div>
 
       <div class="card person">
-        <img src="images/avatar-placeholder.jpg" alt="Sidney Holden" />
+        <img src="images/people/Sid.avif" alt="Sidney Holden" />
         <div class="meta">
           <div style="font-weight:700;">Sidney Holden</div>
           <div>Flatiron Research Fellow</div>
@@ -177,32 +186,20 @@
           <div>Guest Researcher</div>
         </div>
       </div>
-
-      <div class="card person">
-        <img src="images/avatar-placeholder.jpg" alt="Eleni Katifori" />
-        <div class="meta">
-          <div style="font-weight:700;">Eleni Katifori</div>
-          <div>Senior Research Scientist</div>
-        </div>
-      </div>
-      </div>
-
-      <!-- Add more people as needed -->
     </div>
 
     <!-- ===== Publications ===== -->
     <h2 id="publications" class="section">Selected Publications</h2>
     <div class="card">
       <ol style="margin:0; padding-left:1.1rem;">
-        <!-- TODO: Replace with real entries; keep a consistent citation style -->
         <li class="pub">
-          <span class="title">Title of the paper</span> — Author A, Author B, <em>Journal</em>, (Year). 
+          <span class="title">Title of the paper</span> — Author A, Author B, <em>Journal</em>, (Year).
           <a href="pdfs/fakecv.pdf" class="label">PDF</a>
           <a href="#" class="label">Code</a>
           <a href="#" class="label">DOI</a>
         </li>
         <li class="pub">
-          <span class="title">Another relevant work</span> — Team, <em>Venue</em>, (Year). 
+          <span class="title">Another relevant work</span> — Team, <em>Venue</em>, (Year).
           <a href="#" class="label">Preprint</a>
         </li>
       </ol>
@@ -212,21 +209,10 @@
     <h2 id="software" class="section">Software & Data</h2>
     <div class="grid" id="datasets">
       <article class="card">
-        <h3>vaskymo</h3>
-        <p>Python tools for vascular network extraction, editing (Napari), and pulsatility analysis.</p>
-        <p>
-          <a href="#" class="label">GitHub</a>
-          <a href="#" class="label">Docs</a>
-          <a href="#" class="label">Example data</a>
-        </p>
+        <h3>Blank 1</h3>
       </article>
       <article class="card">
-        <h3>Quail yolk-sac dataset</h3>
-        <p>Registered image stacks, derived graphs, and per-vessel time series for 21–27 somites.</p>
-        <p>
-          <a href="#" class="label">Metadata</a>
-          <a href="#" class="label">Download</a>
-        </p>
+        <h3>Blank 2</h3>
       </article>
     </div>
 
@@ -234,9 +220,7 @@
     <h2 id="news" class="section">News</h2>
     <div class="card">
       <ul class="news">
-        <!-- TODO: Use newest first; 1–2 lines each -->
-        <li><strong>Oct 2025:</strong> Preprint on robust harmonic regression for flow pulsatility posted to arXiv.</li>
-        <li><strong>Sep 2025:</strong> Released v0.3 of <em>vaskymo</em> with Napari 3D editor updates.</li>
+        <li><strong>Oct 2025:</strong> Preprint on blank to arXiv.</li>
       </ul>
     </div>
 
@@ -249,7 +233,6 @@
       </p>
       <p>
         Email: <a href="mailto:ccb-webmaster@flatironinstitute.org">ccb-webmaster@flatironinstitute.org</a>
-        <!-- TODO: Replace with a group email or PI contact -->
       </p>
       <p>
         <a href="https://users.flatironinstitute.org/~bpm/" target="_blank" rel="noopener">See also: Biophysical Modeling (BPM)</a>
@@ -261,15 +244,14 @@
     <div class="wrap" style="display:flex; justify-content:space-between; align-items:center; gap:1rem; flex-wrap:wrap;">
       <div>&copy; <span id="year"></span> Biological Transport Networks · Flatiron Institute</div>
       <div>
-        <a href="#" class="icon" title="GitHub"><i class="fa-brands fa-github"></i></a>
-        <a href="#" class="icon" title="Twitter/X"><i class="fa-brands fa-x-twitter"></i></a>
-        <a href="#" class="icon" title="YouTube"><i class="fa-brands fa-youtube"></i></a>
+        <a href="#" class="icon" title="GitHub">[gh]</a>
+        <a href="#" class="icon" title="Twitter/X">[x]</a>
+        <a href="#" class="icon" title="YouTube">[yt]</a>
       </div>
     </div>
   </footer>
 
   <script>
-    // Update footer year
     document.getElementById('year').textContent = new Date().getFullYear();
   </script>
 </body>
