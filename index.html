@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
-  <!-- Optional icon/fonts (safe to keep) -->
+  <!-- Optional icon/fonts -->
   <link rel="stylesheet" href="assets/webfonts/fontawesome.min.css" />
   <link rel="stylesheet" href="assets/webfonts/brands.min.css" />
   <link rel="stylesheet" href="assets/webfonts/solid.min.css" />
@@ -25,14 +25,13 @@
     body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; }
     .wrap { max-width: var(--maxw); margin: 0 auto; padding: 2rem 1rem; }
 
-    /* ===== Sticky header & top nav ===== */
+    /* ===== Sticky header ===== */
     header.site {
       position: sticky; top: 0; z-index: 1000;
-      padding: 1.0rem 0;
+      padding: 1rem 0;
       background: rgba(255,255,255,0.85);
       backdrop-filter: saturate(180%) blur(8px);
       border-bottom: 1px solid rgba(0,0,0,0.07);
-      margin-bottom: 0;
     }
     .topnav a {
       margin-right: 1rem; font-weight: 600; text-decoration: none;
@@ -40,16 +39,16 @@
     }
     .topnav a:hover { text-decoration: underline; }
 
-    /* ===== Hero banner (cropped) with name overlay; mission lives below ===== */
+    /* ===== Hero banner (cropped) ===== */
     .hero-banner {
       position: relative;
-      height: clamp(320px, 48vw, 520px);   /* adjust middle value for “squareness” */
-      overflow: hidden;                    /* crops top/bottom */
-      border-radius: 12px;                 /* remove for square corners */
+      height: clamp(320px, 48vw, 520px);
+      overflow: hidden;
+      border-radius: 12px;
     }
     .hero-banner img {
       width: 100%; height: 100%; object-fit: cover;
-      object-position: 50% 45%;            /* tweak focus: 40%=more top, 60%=more bottom */
+      object-position: 50% 45%;
       display: block; opacity: 0; animation: heroFade 1.2s ease-out forwards;
     }
     .hero-banner .overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.30), rgba(0,0,0,.30)); }
@@ -63,41 +62,36 @@
       text-shadow: 0 2px 10px rgba(0,0,0,.35);
       padding: 0 1rem; max-width: 900px;
     }
-    .hero-banner .nameplate .kicker { font-weight: 600; letter-spacing: .02em; opacity: .9; margin-bottom: .25rem; }
+    .hero-banner .kicker { font-weight: 600; letter-spacing: .02em; opacity: .9; margin-bottom: .25rem; }
     .hero-banner h1 { font-size: clamp(1.8rem, 3.2vw, 2.6rem); margin: 0; }
-
     @keyframes heroFade { from { opacity: 0 } to { opacity: 1 } }
 
     /* ===== Sections & cards ===== */
     h2.section { margin: 2.5rem 0 1rem; font-size: 1.6rem; }
     .grid { display:grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
     .card { background: #fff; border-radius: 12px; padding: 1rem; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
-    .label { display:inline-block; font-size: 0.75rem; padding: 0.15rem 0.45rem; border-radius: 999px; background: rgba(0,0,0,0.06); margin-left: 0.35rem; }
 
-    /* ===== Expand/collapse + modal styles for Research ===== */
-    details { margin-top: .5rem; }
-    details > summary { cursor: pointer; font-weight: 600; }
-    details[open] summary { text-decoration: underline; }
-    .card a.card-link { color: inherit; text-decoration: none; display: block; }
-    .card a.card-link:hover h3 { text-decoration: underline; }
-    .card .open-modal { padding:.4rem .7rem; border-radius:8px; border:1px solid #ddd; background:#f6f6f6; cursor:pointer; }
-
-    dialog.video-modal { width:min(900px, 92vw); border:none; border-radius:12px; padding:0; }
-    dialog::backdrop { background: rgba(0,0,0,.45); backdrop-filter: blur(2px); }
-    .video-container { position:relative; }
-    .video-container video, .video-container img { width:100%; display:block; border-radius:12px 12px 0 0; }
-    .modal-bar { display:flex; justify-content:space-between; align-items:center; padding:.6rem .8rem; }
+    /* ===== Click-to-reveal video styles ===== */
+    .card .reveal,
+    .card .hide {
+      padding:.45rem .75rem;
+      border-radius:8px;
+      border:1px solid #ddd;
+      background:#f6f6f6;
+      cursor:pointer;
+    }
+    .card .cover { position:relative; }
+    .card .cover .reveal { position:relative; z-index:1; margin-top:.3rem; }
 
     /* People */
-    .people .person { display:flex; gap: 1rem; align-items:flex-start; }
-    .people .person img { width: 96px; height: 96px; object-fit: cover; border-radius: 10px; }
-    .people .meta { font-size: 0.95rem; }
+    .people .person { display:flex; gap:1rem; align-items:flex-start; }
+    .people .person img { width:96px; height:96px; object-fit:cover; border-radius:10px; }
+    .people .meta { font-size:0.95rem; }
 
-    .news li { margin: 0.4rem 0; }
-    footer { margin-top: 3rem; padding: 2rem 0; border-top: 1px solid rgba(0,0,0,0.07); font-size: 0.95rem; }
+    footer { margin-top:3rem; padding:2rem 0; border-top:1px solid rgba(0,0,0,0.07); font-size:0.95rem; }
 
-    @media (max-width: 900px){ .grid{ grid-template-columns: 1fr 1fr; } }
-    @media (max-width: 600px){ .grid{ grid-template-columns: 1fr; } }
+    @media (max-width:900px){ .grid{ grid-template-columns:1fr 1fr; } }
+    @media (max-width:600px){ .grid{ grid-template-columns:1fr; } }
   </style>
 </head>
 
@@ -118,9 +112,8 @@
     </div>
   </header>
 
-  <!-- ===== Hero banner with GROUP NAME overlay (mission lives below) ===== -->
+  <!-- ===== Hero banner ===== -->
   <section class="hero-banner">
-    <!-- Change this path if your filename differs (case-sensitive on GitHub Pages) -->
     <img src="images/yolksacsim.png" alt="Network flow simulation preview" />
     <div class="overlay"></div>
     <div class="nameplate">
@@ -138,68 +131,58 @@
       <p>Placeholder mission statement. Describe your group’s focus in 1–3 concise sentences — the systems you study, the methods you build, and the impact you aim for.</p>
     </div>
 
-    <!-- ===== Research (expandable cards with modal media) ===== -->
+    <!-- ===== Research ===== -->
     <h2 id="research" class="section">Research</h2>
     <div class="grid">
-      <!-- Yolk Sac -->
-      <article class="card">
-        <a class="card-link" href="#research-yolk-sac">
-          <img loading="lazy" src="images/research/yolk-sac.jpg" alt="Yolk sac research image" style="width:100%; border-radius:8px; margin-bottom:0.6rem;" />
-          <h3 id="research-yolk-sac">Yolk Sac</h3>
-          <p></p>
-        </a>
-    <!-- Inside the Yolk Sac card -->
-    <details>
-      <summary>View media & description</summary>
-      <p style="margin:.75rem 0 0">Placeholder description for Yolk Sac project.</p>
-      <!-- Update this line ONLY -->
-      <p><button class="open-modal"
-                data-src="images/videos/vid6_full_5s_51fps.mp4"
-                data-poster="images/research/yolk-sac.jpg">Play video</button></p>
-    </details>
 
+      <!-- Yolk Sac (click-to-reveal video) -->
+      <article class="card" id="card-yolk-sac">
+        <h3>Yolk Sac</h3>
+        <div class="cover" data-target="yolk-sac">
+          <img src="images/yolksacsim.png"
+               alt="Yolk sac preview"
+               style="width:100%; border-radius:8px; margin-bottom:0.6rem; pointer-events:none;">
+          <button class="reveal" data-target="yolk-sac" type="button">View media & description</button>
+        </div>
+        <div class="reveal-pane" id="pane-yolk-sac" hidden>
+          <video id="video-yolk-sac"
+                 src="images/videos/vid6_full_5s_51fps.mp4"
+                 autoplay
+                 muted
+                 loop
+                 playsinline
+                 controls
+                 style="width:100%; border-radius:8px;">
+          </video>
+          <p class="desc" style="margin-top:.6rem;">
+            Placeholder description for the Yolk Sac project. Add 1–3 sentences explaining what the video shows.
+          </p>
+          <button class="hide" data-target="yolk-sac" type="button" style="margin-top:.4rem;">Hide</button>
+        </div>
       </article>
 
       <!-- Network Homogenization -->
       <article class="card">
-        <a class="card-link" href="#research-network-homogenization">
-          <img loading="lazy" src="images/research/network-homogenization.jpg" alt="Network homogenization research image" style="width:100%; border-radius:8px; margin-bottom:0.6rem;" />
-          <h3 id="research-network-homogenization">Network Homogenization</h3>
-          <p></p>
-        </a>
-        <details>
-          <summary>View media & description</summary>
-          <p style="margin:.75rem 0 0">Placeholder description for Network Homogenization (lead: Sidney Holden).</p>
-          <p><button class="open-modal" data-src="videos/network-homogenization.mp4" data-poster="images/research/network-homogenization.jpg">Play video</button></p>
-        </details>
+        <img loading="lazy" src="images/research/network-homogenization.jpg" alt="Network homogenization research image"
+             style="width:100%; border-radius:8px; margin-bottom:0.6rem;" />
+        <h3>Network Homogenization</h3>
+        <p>Placeholder description for Network Homogenization (lead: Sidney Holden).</p>
       </article>
 
       <!-- Neuron -->
       <article class="card">
-        <a class="card-link" href="#research-neuron">
-          <img loading="lazy" src="images/research/neuron.jpg" alt="Neuron research image" style="width:100%; border-radius:8px; margin-bottom:0.6rem;" />
-          <h3 id="research-neuron">Neuron</h3>
-          <p></p>
-        </a>
-        <details>
-          <summary>View media & description</summary>
-          <p style="margin:.75rem 0 0">Placeholder description for Neuron project.</p>
-          <p><button class="open-modal" data-src="videos/neuron.mp4" data-poster="images/research/neuron.jpg">Play video</button></p>
-        </details>
+        <img loading="lazy" src="images/research/neuron.jpg" alt="Neuron research image"
+             style="width:100%; border-radius:8px; margin-bottom:0.6rem;" />
+        <h3>Neuron</h3>
+        <p>Placeholder description for Neuron project.</p>
       </article>
 
       <!-- Placenta -->
       <article class="card">
-        <a class="card-link" href="#research-placenta">
-          <img loading="lazy" src="images/research/placenta.jpg" alt="Placenta research image" style="width:100%; border-radius:8px; margin-bottom:0.6rem;" />
-          <h3 id="research-placenta">Placenta</h3>
-          <p></p>
-        </a>
-        <details>
-          <summary>View media & description</summary>
-          <p style="margin:.75rem 0 0">Placeholder description for Placenta project.</p>
-          <p><button class="open-modal" data-src="videos/placenta.mp4" data-poster="images/research/placenta.jpg">Play video</button></p>
-        </details>
+        <img loading="lazy" src="images/research/placenta.jpg" alt="Placenta research image"
+             style="width:100%; border-radius:8px; margin-bottom:0.6rem;" />
+        <h3>Placenta</h3>
+        <p>Placeholder description for Placenta project.</p>
       </article>
     </div>
 
@@ -213,7 +196,6 @@
           <div>Senior Research Scientist</div>
         </div>
       </div>
-
       <div class="card person">
         <img loading="lazy" src="images/people/AJM-Pic.avif" alt="Alex Mayer" />
         <div class="meta">
@@ -226,7 +208,6 @@
           </div>
         </div>
       </div>
-
       <div class="card person">
         <img loading="lazy" src="images/people/Sid.avif" alt="Sidney Holden" />
         <div class="meta">
@@ -234,7 +215,6 @@
           <div>Flatiron Research Fellow</div>
         </div>
       </div>
-
       <div class="card person">
         <img loading="lazy" src="images/avatar-placeholder.jpg" alt="Mia Morrell" />
         <div class="meta">
@@ -248,16 +228,8 @@
     <h2 id="publications" class="section">Selected Publications</h2>
     <div class="card">
       <ol style="margin:0; padding-left:1.1rem;">
-        <li class="pub">
-          <span class="title">Title of the paper</span> — Author A, Author B, <em>Journal</em>, (Year).
-          <a href="pdfs/fakecv.pdf" class="label">PDF</a>
-          <a href="#" class="label">Code</a>
-          <a href="#" class="label">DOI</a>
-        </li>
-        <li class="pub">
-          <span class="title">Another relevant work</span> — Team, <em>Venue</em>, (Year).
-          <a href="#" class="label">Preprint</a>
-        </li>
+        <li><span class="title">Title of the paper</span> — Author A, Author B, <em>Journal</em>, (Year).</li>
+        <li><span class="title">Another relevant work</span> — Team, <em>Venue</em>, (Year).</li>
       </ol>
     </div>
 
@@ -272,10 +244,8 @@
     <!-- ===== Contact ===== -->
     <h2 id="contact" class="section">Contact</h2>
     <div class="card">
-      <p>
-        Center for Computational Biology, Flatiron Institute<br/>
-        162 5th Ave, New York, NY 10010
-      </p>
+      <p>Center for Computational Biology, Flatiron Institute<br/>
+      162 5th Ave, New York, NY 10010</p>
       <p>Email: <a href="mailto:ccb-webmaster@flatironinstitute.org">ccb-webmaster@flatironinstitute.org</a></p>
     </div>
   </main>
@@ -291,59 +261,27 @@
     </div>
   </footer>
 
-  <!-- ===== Reusable video modal ===== -->
   <script>
-    // Footer year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // Create one dialog for all research videos
-    const modal = document.createElement('dialog');
-    modal.className = 'video-modal';
-    modal.innerHTML = `
-      <div class="video-container">
-        <video id="modalVideo" autoplay muted loop playsinline controls poster="">
-          <source id="modalSource" src="" type="video/mp4">
-        </video>
-        <img id="gifFallback" src="" alt="" style="display:none;" />
-      </div>
-      <div class="modal-bar">
-        <span>Press Esc or Close</span>
-        <button id="closeModal">Close</button>
-      </div>`;
-    document.body.appendChild(modal);
-
-    const v = modal.querySelector('#modalVideo');
-    const srcEl = modal.querySelector('#modalSource');
-    const gif = modal.querySelector('#gifFallback');
-    const closeBtn = modal.querySelector('#closeModal');
-
+    // reveal/hide logic for Yolk Sac video
     document.addEventListener('click', (e) => {
-      const btn = e.target.closest('.open-modal');
-      if (!btn) return;
-      const src = btn.dataset.src;
-      const poster = btn.dataset.poster || '';
-      if (!src) return;
-
-      // Reset state
-      gif.style.display = 'none';
-      v.style.display = '';
-      v.pause();
-
-      if (src.toLowerCase().endsWith('.gif')) {
-        v.style.display = 'none';
-        gif.src = src;
-        gif.style.display = '';
-      } else {
-        srcEl.type = 'video/mp4';
-        srcEl.src = src;
-        v.poster = poster;
-        v.load();
+      const openBtn = e.target.closest('.reveal');
+      const closeBtn = e.target.closest('.hide');
+      if (!openBtn && !closeBtn) return;
+      const id = (openBtn || closeBtn).dataset.target;
+      const pane = document.getElementById(`pane-${id}`);
+      const video = document.getElementById(`video-${id}`);
+      if (openBtn) {
+        pane.hidden = false;
+        if (video) { video.currentTime = 0; video.play().catch(() => {}); }
+        pane.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       }
-      modal.showModal();
+      if (closeBtn) {
+        if (video) video.pause();
+        pane.hidden = true;
+      }
     });
-
-    closeBtn.addEventListener('click', () => { v.pause(); modal.close(); });
-    modal.addEventListener('close', () => { v.pause(); });
   </script>
 </body>
 </html>
