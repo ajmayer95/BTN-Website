@@ -11,15 +11,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
-  <!-- Optional icon/fonts -->
-  <link rel="stylesheet" href="assets/webfonts/fontawesome.min.css" />
-  <link rel="stylesheet" href="assets/webfonts/brands.min.css" />
-  <link rel="stylesheet" href="assets/webfonts/solid.min.css" />
-
-  <!-- MathJax (optional) -->
-  <script>window.MathJax = { tex: { inlineMath: [['$','$'],['\\(','\\)']] } };</script>
-  <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
-
   <style>
     :root { --maxw: 1100px; }
     body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; }
@@ -39,7 +30,7 @@
     }
     .topnav a:hover { text-decoration: underline; }
 
-    /* ===== Hero banner (cropped) ===== */
+    /* ===== Hero banner ===== */
     .hero-banner {
       position: relative;
       height: clamp(320px, 48vw, 520px);
@@ -66,32 +57,67 @@
     .hero-banner h1 { font-size: clamp(1.8rem, 3.2vw, 2.6rem); margin: 0; }
     @keyframes heroFade { from { opacity: 0 } to { opacity: 1 } }
 
-    /* ===== Sections & cards ===== */
+    /* ===== Sections ===== */
     h2.section { margin: 2.5rem 0 1rem; font-size: 1.6rem; }
-    .grid { display:grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; }
     .card { background: #fff; border-radius: 12px; padding: 1rem; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
 
-    /* Make whole research cards clickable */
-    .card a.card-link { color: inherit; text-decoration: none; display: block; }
-    .card a.card-link:hover h3 { text-decoration: underline; }
+    /* ===== Carousel ===== */
+    .carousel {
+      position: relative;
+      margin-top: 1rem;
+    }
+    .carousel-track {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: minmax(260px, 1fr);
+      gap: 1rem;
+      overflow-x: auto;
+      padding: .25rem .25rem 1rem;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+    }
+    .carousel-track::-webkit-scrollbar { height: 10px; }
+    .carousel-track::-webkit-scrollbar-thumb { background: rgba(0,0,0,.15); border-radius: 999px; }
+    .carousel-card {
+      scroll-snap-align: start;
+      background: #fff; border-radius: 12px; padding: 1rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      width: 100%;
+    }
+    .carousel-card img, .carousel-card video {
+      width: 100%; display: block; border-radius: 8px; margin-bottom: .6rem;
+    }
+    .carousel-btn {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      border: 1px solid rgba(0,0,0,.12);
+      background: rgba(255,255,255,.85);
+      backdrop-filter: saturate(160%) blur(6px);
+      border-radius: 10px;
+      padding: .4rem .55rem;
+      cursor: pointer;
+      user-select: none;
+    }
+    .carousel-btn:hover { background: #fff; }
+    .carousel-btn[disabled] { opacity: .4; cursor: default; }
+    .carousel-btn.prev { left: -4px; }
+    .carousel-btn.next { right: -4px; }
+    @media (max-width:900px){ .carousel-track{ grid-auto-columns:80%; } }
+    @media (max-width:600px){ .carousel-track{ grid-auto-columns:88%; } }
 
-    /* People */
+    /* ===== People ===== */
     .people .person { display:flex; gap:1rem; align-items:flex-start; }
     .people .person img { width:96px; height:96px; object-fit:cover; border-radius:10px; }
     .people .meta { font-size:0.95rem; }
 
     footer { margin-top:3rem; padding:2rem 0; border-top:1px solid rgba(0,0,0,0.07); font-size:0.95rem; }
-
-    @media (max-width:900px){ .grid{ grid-template-columns:1fr 1fr; } }
-    @media (max-width:600px){ .grid{ grid-template-columns:1fr; } }
   </style>
 </head>
 
 <body>
-  <!-- ===== Header / Nav ===== -->
+  <!-- ===== Header ===== -->
   <header class="site">
     <div class="wrap">
-      <div style="font-size:1rem; font-weight:800; letter-spacing:0.02em;">Biological Transport Networks</div>
+      <div style="font-size:1rem; font-weight:800;">Biological Transport Networks</div>
       <div style="opacity:0.8;">Center for Computational Biology · Flatiron Institute</div>
       <nav class="topnav" style="margin-top: 0.5rem;">
         <a href="#mission">Mission</a>
@@ -104,7 +130,7 @@
     </div>
   </header>
 
-  <!-- ===== Hero banner ===== -->
+  <!-- ===== Hero ===== -->
   <section class="hero-banner">
     <img src="images/yolksacsim.png" alt="Network flow simulation preview" />
     <div class="overlay"></div>
@@ -123,66 +149,57 @@
       <p>Placeholder mission statement. Describe your group’s focus in 1–3 concise sentences — the systems you study, the methods you build, and the impact you aim for.</p>
     </div>
 
-    <!-- ===== Research (cards link to subpages) ===== -->
+    <!-- ===== Research (Carousel) ===== -->
     <h2 id="research" class="section">Research</h2>
-    <div class="grid">
-      <!-- Yolk Sac (video thumbnail) -->
-      <article class="card">
-        <a class="card-link" href="yolk-sac.html">
-          <video autoplay muted loop playsinline
-                 src="images/videos/vid6_full_5s_51fps.mp4"
-                 style="width:100%; border-radius:8px; margin-bottom:0.6rem;"></video>
-          <h3>Yolk Sac</h3>
-          <p>Short teaser sentence…</p>
-        </a>
-      </article>
+    <div class="carousel" data-carousel="research">
+      <button class="carousel-btn prev" aria-label="Scroll left">‹</button>
+      <div class="carousel-track">
 
-      <!-- Network Homogenization -->
-      <article class="card">
-        <a class="card-link" href="network-homogenization.html">
-          <img loading="lazy" src="images/research/network-homogenization.jpg"
-               alt="Network Homogenization"
-               style="width:100%; border-radius:8px; margin-bottom:0.6rem;">
-          <h3>Network Homogenization</h3>
-          <p>Short teaser sentence…</p>
-        </a>
-      </article>
+        <article class="carousel-card">
+          <a class="card-link" href="yolk-sac.html" style="color:inherit; text-decoration:none; display:block;">
+            <video autoplay muted loop playsinline src="images/videos/vid6_full_5s_51fps.mp4"></video>
+            <h3>Yolk Sac</h3>
+            <p>Short teaser sentence…</p>
+          </a>
+        </article>
 
-      <!-- Neuron -->
-      <article class="card">
-        <a class="card-link" href="neuron.html">
-          <img loading="lazy" src="images/research/neuron.jpg"
-               alt="Neuron"
-               style="width:100%; border-radius:8px; margin-bottom:0.6rem;">
-          <h3>Neuron</h3>
-          <p>Short teaser sentence…</p>
-        </a>
-      </article>
+        <article class="carousel-card">
+          <a class="card-link" href="network-homogenization.html" style="color:inherit; text-decoration:none; display:block;">
+            <img src="images/research/network-homogenization.jpg" alt="Network Homogenization">
+            <h3>Network Homogenization</h3>
+            <p>Short teaser sentence…</p>
+          </a>
+        </article>
 
-      <!-- Placenta -->
-      <article class="card">
-        <a class="card-link" href="placenta.html">
-          <img loading="lazy" src="images/research/placenta.jpg"
-               alt="Placenta"
-               style="width:100%; border-radius:8px; margin-bottom:0.6rem;">
-          <h3>Placenta</h3>
-          <p>Short teaser sentence…</p>
-        </a>
-      </article>
+        <article class="carousel-card">
+          <a class="card-link" href="neuron.html" style="color:inherit; text-decoration:none; display:block;">
+            <img src="images/research/neuron.jpg" alt="Neuron">
+            <h3>Neuron</h3>
+            <p>Short teaser sentence…</p>
+          </a>
+        </article>
+
+        <article class="carousel-card">
+          <a class="card-link" href="placenta.html" style="color:inherit; text-decoration:none; display:block;">
+            <img src="images/research/placenta.jpg" alt="Placenta">
+            <h3>Placenta</h3>
+            <p>Short teaser sentence…</p>
+          </a>
+        </article>
+
+      </div>
+      <button class="carousel-btn next" aria-label="Scroll right">›</button>
     </div>
 
     <!-- ===== People ===== -->
     <h2 id="people" class="section">People</h2>
     <div class="people grid">
       <div class="card person">
-        <img loading="lazy" src="images/people/Eleni.avif" alt="Eleni Katifori" />
-        <div class="meta">
-          <div style="font-weight:700;">Eleni Katifori</div>
-          <div>Senior Research Scientist</div>
-        </div>
+        <img src="images/people/Eleni.avif" alt="Eleni Katifori" />
+        <div class="meta"><div style="font-weight:700;">Eleni Katifori</div><div>Senior Research Scientist</div></div>
       </div>
       <div class="card person">
-        <img loading="lazy" src="images/people/AJM-Pic.avif" alt="Alex Mayer" />
+        <img src="images/people/AJM-Pic.avif" alt="Alex Mayer" />
         <div class="meta">
           <div style="font-weight:700;">Alex Mayer</div>
           <div>Flatiron Research Fellow</div>
@@ -194,18 +211,12 @@
         </div>
       </div>
       <div class="card person">
-        <img loading="lazy" src="images/people/Sid.avif" alt="Sidney Holden" />
-        <div class="meta">
-          <div style="font-weight:700;">Sidney Holden</div>
-          <div>Flatiron Research Fellow</div>
-        </div>
+        <img src="images/people/Sid.avif" alt="Sidney Holden" />
+        <div class="meta"><div style="font-weight:700;">Sidney Holden</div><div>Flatiron Research Fellow</div></div>
       </div>
       <div class="card person">
-        <img loading="lazy" src="images/avatar-placeholder.jpg" alt="Mia Morrell" />
-        <div class="meta">
-          <div style="font-weight:700;">Mia Morrell</div>
-          <div>Guest Researcher</div>
-        </div>
+        <img src="images/avatar-placeholder.jpg" alt="Mia Morrell" />
+        <div class="meta"><div style="font-weight:700;">Mia Morrell</div><div>Guest Researcher</div></div>
       </div>
     </div>
 
@@ -213,24 +224,18 @@
     <h2 id="publications" class="section">Selected Publications</h2>
     <div class="card">
       <ol style="margin:0; padding-left:1.1rem;">
-        <li><span class="title">Title of the paper</span> — Author A, Author B, <em>Journal</em>, (Year).</li>
-        <li><span class="title">Another relevant work</span> — Team, <em>Venue</em>, (Year).</li>
+        <li>Example paper — Author A, <em>Journal</em>, (Year).</li>
       </ol>
     </div>
 
     <!-- ===== News ===== -->
     <h2 id="news" class="section">News</h2>
-    <div class="card">
-      <ul class="news">
-        <li><strong>Oct 2025:</strong> Preprint on blank to arXiv.</li>
-      </ul>
-    </div>
+    <div class="card"><ul><li><strong>Oct 2025:</strong> Preprint on blank to arXiv.</li></ul></div>
 
     <!-- ===== Contact ===== -->
     <h2 id="contact" class="section">Contact</h2>
     <div class="card">
-      <p>Center for Computational Biology, Flatiron Institute<br/>
-      162 5th Ave, New York, NY 10010</p>
+      <p>Center for Computational Biology, Flatiron Institute<br>162 5th Ave, New York, NY 10010</p>
       <p>Email: <a href="mailto:ccb-webmaster@flatironinstitute.org">ccb-webmaster@flatironinstitute.org</a></p>
     </div>
   </main>
@@ -238,16 +243,30 @@
   <footer>
     <div class="wrap" style="display:flex; justify-content:space-between; align-items:center; gap:1rem; flex-wrap:wrap;">
       <div>&copy; <span id="year"></span> Biological Transport Networks · Flatiron Institute</div>
-      <div>
-        <a href="#" class="icon" title="GitHub">[gh]</a>
-        <a href="#" class="icon" title="Twitter/X">[x]</a>
-        <a href="#" class="icon" title="YouTube">[yt]</a>
-      </div>
     </div>
   </footer>
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+    document.querySelectorAll('.carousel').forEach((wrap) => {
+      const track = wrap.querySelector('.carousel-track');
+      const prev = wrap.querySelector('.carousel-btn.prev');
+      const next = wrap.querySelector('.carousel-btn.next');
+      const step = () => {
+        const card = track.querySelector('.carousel-card');
+        return card ? card.getBoundingClientRect().width + 16 : 320;
+      };
+      const update = () => {
+        const maxScroll = track.scrollWidth - track.clientWidth - 1;
+        prev.disabled = track.scrollLeft <= 0;
+        next.disabled = track.scrollLeft >= maxScroll;
+      };
+      prev.addEventListener('click', () => track.scrollBy({ left: -step(), behavior: 'smooth' }));
+      next.addEventListener('click', () => track.scrollBy({ left:  step(), behavior: 'smooth' }));
+      track.addEventListener('scroll', update, { passive: true });
+      window.addEventListener('resize', update);
+      update();
+    });
   </script>
 </body>
 </html>
