@@ -4,37 +4,158 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Yolk Sac — Biological Transport Networks</title>
+
+  <!-- Theme to match index -->
   <link rel="stylesheet" href="assets/css/ccb.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
   <style>
-    :root { --maxw: 900px; }
-    body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; }
+    :root { --maxw: 1000px; }
+    body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; color:#0e0e0e; }
     .wrap { max-width: var(--maxw); margin: 0 auto; padding: 2rem 1rem; }
-    .hero-media { border-radius: 12px; overflow: hidden; margin: .5rem 0 1rem; }
-    .hero-media img, .hero-media video { width: 100%; display: block; }
-    .lede { font-size: 1.05rem; line-height: 1.6; }
-    .breadcrumbs { font-weight: 600; margin-bottom: 1rem; }
-    .breadcrumbs a { text-decoration: none; }
+
+    /* Sticky header to match index */
+    header.site {
+      position: sticky; top: 0; z-index: 1000;
+      padding: 1rem 0;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: saturate(180%) blur(8px);
+      border-bottom: 1px solid rgba(0,0,0,0.07);
+    }
+    .topnav a { margin-right: 1rem; font-weight: 600; text-decoration: none; padding:.4rem .1rem; }
+    .topnav a:hover { text-decoration: underline; }
+
+    /* Hero with cropped image + overlay title */
+    .hero {
+      position: relative;
+      height: clamp(280px, 45vw, 420px);
+      overflow: hidden;
+    }
+    .hero img {
+      width: 100%; height: 100%;
+      object-fit: cover; object-position: 50% 45%;
+      display: block;
+      opacity: 0; animation: fadeIn 1s ease-out forwards;
+    }
+    .hero .overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.25)); }
+    .hero .title {
+      position: absolute; inset: 0; display:flex; align-items:center; justify-content:center; text-align:center;
+      padding: 1rem; color:#fff; text-shadow: 0 2px 12px rgba(0,0,0,.35);
+    }
+    .hero h1 { font-size: clamp(1.6rem, 3.2vw, 2.2rem); margin: 0; }
+    @keyframes fadeIn { from {opacity:0} to {opacity:1} }
+
+    /* Breadcrumbs */
+    .crumbs { font-weight: 600; margin: 1rem 0 0; }
+    .crumbs a { text-decoration: none; }
+    .crumbs a:hover { text-decoration: underline; }
+
+    /* Content layout */
+    .lede { font-size: 1.06rem; line-height: 1.65; margin: 1rem 0 1.5rem; }
+    .two-col { display:grid; grid-template-columns: 1.15fr 0.85fr; gap: 1.25rem; align-items:start; }
+    .card { background:#fff; border-radius:12px; padding:1rem; box-shadow:0 2px 12px rgba(0,0,0,.06); }
+    figure { margin:0; }
+    .media {
+      border-radius:12px; overflow:hidden; background:#000;
+    }
+    .media img, .media video { width:100%; height:auto; display:block; }
+    .caption { font-size:.92rem; opacity:.8; margin-top:.4rem; }
+
+    .section { margin-top: 2rem; }
+    .klist { margin: .3rem 0 0 1.2rem; }
+    .pill { display:inline-block; font-size:.8rem; padding:.18rem .55rem; border:1px solid rgba(0,0,0,.12); border-radius:999px; margin-right:.35rem; }
+
+    @media (max-width: 880px){ .two-col { grid-template-columns: 1fr; } }
   </style>
 </head>
 <body>
-  <main class="wrap">
-    <div class="breadcrumbs"><a href="index.html#research">← Research</a></div>
-    <h1>Yolk Sac</h1>
 
-    <!-- Use your banner image here -->
-    <div class="hero-media">
-      <img src="images/yolksacsim.png" alt="Yolk sac visualization">
+  <!-- Header (same vibe as index) -->
+  <header class="site">
+    <div class="wrap">
+      <div style="font-size:1rem; font-weight:800;">Biological Transport Networks</div>
+      <div style="opacity:.8;">Center for Computational Biology · Flatiron Institute</div>
+      <nav class="topnav" style="margin-top:.5rem;">
+        <a href="index.html#mission">Mission</a>
+        <a href="index.html#research">Research</a>
+        <a href="index.html#people">People</a>
+        <a href="index.html#publications">Publications</a>
+        <a href="index.html#news">News</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
     </div>
+  </header>
+
+  <!-- Hero -->
+  <section class="hero">
+    <img src="images/yolksacsim.png" alt="Yolk sac network visualization">
+    <div class="overlay"></div>
+    <div class="title"><h1>Yolk Sac</h1></div>
+  </section>
+
+  <main class="wrap">
+    <div class="crumbs"><a href="index.html#research">← Back to Research</a></div>
 
     <p class="lede">
-We study how embryonic vascular networks adapt their structure and flow dynamics in response to changing physiological demands. Using high-speed, wide-field imaging of quail yolk-sac vasculature, we extract complete flow networks and quantify their pulsatile dynamics across developmental stages. Our goal is to uncover the physical principles governing how whole-organ networks self-organize and redistribute flow—linking local vessel adaptation and rhythmic driving to global transport efficiency and stability. By combining image-based inference, network modeling, and theory, we aim to bridge the gap between microscopic regulation and emergent, organism-scale vascular behavior.    </p>
+      Placeholder overview: one short paragraph explaining the biological question, what’s being visualized,
+      and the main idea of your approach.
+    </p>
 
-    <!-- Optional: if you still want to show the heartbeat clip on this page too, uncomment:
-    <div class="hero-media">
-      <video src="images/videos/heartbeat.mp4" autoplay muted loop playsinline controls></video>
+    <!-- Media + Text -->
+    <div class="two-col">
+      <div>
+        <figure class="media">
+          <!-- You can swap this for a video if you want motion here; or keep image and put video below -->
+          <video src="images/videos/heartbeat.mp4" autoplay muted loop playsinline controls></video>
+        </figure>
+        <div class="caption">Heartbeat-driven flow dynamics in embryonic yolk sac vasculature (looped preview).</div>
+      </div>
+
+      <aside class="card">
+        <h3 style="margin-top:0;">Summary</h3>
+        <p>
+          Placeholder text for a slightly more detailed summary (2–5 sentences). Mention data source,
+          processing pipeline (extraction → graph → flow inference), and core findings you highlight here.
+        </p>
+        <div style="margin-top:.5rem;">
+          <span class="pill">vascular networks</span>
+          <span class="pill">flow inference</span>
+          <span class="pill">pulsatility</span>
+        </div>
+        <div style="margin-top:.8rem;">
+          <strong>Quick links:</strong><br/>
+          <!-- Replace with real links when ready -->
+          <a href="#" class="pill">Preprint</a>
+          <a href="#" class="pill">Code</a>
+          <a href="#" class="pill">Dataset</a>
+        </div>
+      </aside>
     </div>
-    -->
+
+    <!-- Optional deeper sections -->
+    <section class="section card">
+      <h3 style="margin-top:0;">Methods (placeholder)</h3>
+      <ul class="klist">
+        <li>Image registration and vessel centerline extraction (brief).</li>
+        <li>Graph construction with radii/length attributes.</li>
+        <li>Time-series flow inference and pulsatility metrics.</li>
+      </ul>
+    </section>
+
+    <section class="section card">
+      <h3 style="margin-top:0;">Team & Acknowledgments (placeholder)</h3>
+      <p>Names, collaborators, data providers, and funding acknowledgments as needed.</p>
+    </section>
   </main>
+
+  <footer>
+    <div class="wrap" style="display:flex; justify-content:space-between; align-items:center; gap:1rem; flex-wrap:wrap;">
+      <div>&copy; <span id="year"></span> Biological Transport Networks · Flatiron Institute</div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
