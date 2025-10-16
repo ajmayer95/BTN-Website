@@ -62,10 +62,7 @@
     .card { background: #fff; border-radius: 12px; padding: 1rem; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
 
     /* ===== Carousel ===== */
-    .carousel {
-      position: relative;
-      margin-top: 1rem;
-    }
+    .carousel { position: relative; margin-top: 1rem; }
     .carousel-track {
       display: grid;
       grid-auto-flow: column;
@@ -86,6 +83,8 @@
     }
     .carousel-card img, .carousel-card video {
       width: 100%; display: block; border-radius: 8px; margin-bottom: .6rem;
+      /* Optional: normalize aspect ratio
+      height: 180px; object-fit: cover; object-position: center; */
     }
     .carousel-btn {
       position: absolute; top: 50%; transform: translateY(-50%);
@@ -155,14 +154,14 @@
       <button class="carousel-btn prev" aria-label="Scroll left">‹</button>
       <div class="carousel-track">
 
+        <!-- Yolk Sac card now uses heartbeat.mp4 as the preview -->
         <article class="carousel-card">
           <a class="card-link" href="yolk-sac.html" style="color:inherit; text-decoration:none; display:block;">
-            <img src="images/yolksacsim.png" alt="Yolk Sac" />
+            <video autoplay muted loop playsinline src="images/videos/heartbeat.mp4"></video>
             <h3>Yolk Sac</h3>
             <p>Short teaser sentence…</p>
           </a>
         </article>
-
 
         <article class="carousel-card">
           <a class="card-link" href="network-homogenization.html" style="color:inherit; text-decoration:none; display:block;">
@@ -249,6 +248,8 @@
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Simple carousel controller
     document.querySelectorAll('.carousel').forEach((wrap) => {
       const track = wrap.querySelector('.carousel-track');
       const prev = wrap.querySelector('.carousel-btn.prev');
