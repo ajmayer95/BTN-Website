@@ -25,7 +25,7 @@
     .topnav a { margin-right: 1rem; font-weight: 600; text-decoration: none; padding:.4rem .1rem; }
     .topnav a:hover { text-decoration: underline; }
 
-    /* Simple page title */
+    /* Page title */
     .page-title { margin: 1.25rem 0 0.75rem; font-size: clamp(1.6rem, 3.2vw, 2.2rem); font-weight: 800; letter-spacing: .01em; }
     .subhead { margin-top: -0.35rem; opacity:.75; font-weight: 600; font-size: .98rem; }
 
@@ -35,7 +35,6 @@
     .crumbs a:hover { text-decoration: underline; }
 
     /* Content layout */
-    .lede { font-size: 1.06rem; line-height: 1.65; margin: 1rem 0 1.5rem; }
     .two-col { display:grid; grid-template-columns: 1.15fr 0.85fr; gap: 1.25rem; align-items:start; }
     .card { background:#fff; border-radius:12px; padding:1rem; box-shadow:0 2px 12px rgba(0,0,0,0.06); }
     figure { margin:0; }
@@ -73,15 +72,7 @@
     <div class="subhead">Embryonic vascular flows &amp; pulsatility</div>
     <div class="crumbs"><a href="index.html#research">← Back to Research</a></div>
 
-    <!-- SINGLE SUMMARY (≈4 sentences) -->
-    <p class="lede">
-      We study heartbeat-driven flow in the embryonic yolk sac and how pulsatile forcing shapes vascular development.
-      From time-lapse microscopy, we extract vessel centerlines, construct attributed graphs, and infer time-varying flow.
-      These measurements let us quantify pulsatility and heterogeneity across developmental stages and embryos.
-      The goal is to connect observed dynamics to physics-based models of network adaptation.
-    </p>
-
-    <!-- Media + Quick links -->
+    <!-- Media + Summary card -->
     <div class="two-col">
       <div>
         <figure class="media">
@@ -91,10 +82,17 @@
       </div>
 
       <aside class="card">
-        <!-- No "Summary" header per request -->
-        <div style="margin-top:.2rem;">
+        <!-- Summary text lives here (no header line) -->
+        <p style="margin-top:0;">
+          We study heartbeat-driven flow in the embryonic yolk sac and how pulsatile forcing shapes vascular development.
+          From time-lapse microscopy, we extract vessel centerlines, construct attributed graphs, and infer time-varying flow.
+          These measurements let us quantify pulsatility and heterogeneity across developmental stages and embryos.
+          The goal is to connect observed dynamics to physics-based models of network adaptation.
+        </p>
+
+        <!-- Optional quick links (keep or remove) -->
+        <div style="margin-top:.8rem;">
           <strong>Quick links:</strong><br/>
-          <!-- Replace with real links when ready -->
           <a href="#" class="pill">Preprint</a>
           <a href="#" class="pill">Code</a>
           <a href="#" class="pill">Dataset</a>
