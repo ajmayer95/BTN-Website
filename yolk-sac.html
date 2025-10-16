@@ -25,39 +25,31 @@
     .topnav a { margin-right: 1rem; font-weight: 600; text-decoration: none; padding:.4rem .1rem; }
     .topnav a:hover { text-decoration: underline; }
 
-    /* Hero with cropped image + overlay title */
-    .hero {
-      position: relative;
-      height: clamp(280px, 45vw, 420px);
-      overflow: hidden;
+    /* Simple page title (hero image removed) */
+    .page-title {
+      margin: 1.25rem 0 0.75rem;
+      font-size: clamp(1.6rem, 3.2vw, 2.2rem);
+      font-weight: 800;
+      letter-spacing: .01em;
     }
-    .hero img {
-      width: 100%; height: 100%;
-      object-fit: cover; object-position: 50% 45%;
-      display: block;
-      opacity: 0; animation: fadeIn 1s ease-out forwards;
+    .subhead {
+      margin-top: -0.35rem;
+      opacity:.75;
+      font-weight: 600;
+      font-size: .98rem;
     }
-    .hero .overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.35), rgba(0,0,0,.25)); }
-    .hero .title {
-      position: absolute; inset: 0; display:flex; align-items:center; justify-content:center; text-align:center;
-      padding: 1rem; color:#fff; text-shadow: 0 2px 12px rgba(0,0,0,.35);
-    }
-    .hero h1 { font-size: clamp(1.6rem, 3.2vw, 2.2rem); margin: 0; }
-    @keyframes fadeIn { from {opacity:0} to {opacity:1} }
 
     /* Breadcrumbs */
-    .crumbs { font-weight: 600; margin: 1rem 0 0; }
+    .crumbs { font-weight: 600; margin: 0.25rem 0 1rem; }
     .crumbs a { text-decoration: none; }
     .crumbs a:hover { text-decoration: underline; }
 
     /* Content layout */
     .lede { font-size: 1.06rem; line-height: 1.65; margin: 1rem 0 1.5rem; }
     .two-col { display:grid; grid-template-columns: 1.15fr 0.85fr; gap: 1.25rem; align-items:start; }
-    .card { background:#fff; border-radius:12px; padding:1rem; box-shadow:0 2px 12px rgba(0,0,0,.06); }
+    .card { background:#fff; border-radius:12px; padding:1rem; box-shadow:0 2px 12px rgba(0,0,0,0.06); }
     figure { margin:0; }
-    .media {
-      border-radius:12px; overflow:hidden; background:#000;
-    }
+    .media { border-radius:12px; overflow:hidden; background:#000; }
     .media img, .media video { width:100%; height:auto; display:block; }
     .caption { font-size:.92rem; opacity:.8; margin-top:.4rem; }
 
@@ -86,16 +78,12 @@
     </div>
   </header>
 
-  <!-- Hero -->
-  <section class="hero">
-    <img src="images/yolksacsim.png" alt="Yolk sac network visualization">
-    <div class="overlay"></div>
-    <div class="title"><h1>Yolk Sac</h1></div>
-  </section>
-
   <main class="wrap">
+    <h1 class="page-title">Yolk Sac</h1>
+    <div class="subhead">Embryonic vascular flows &amp; pulsatility</div>
     <div class="crumbs"><a href="index.html#research">← Back to Research</a></div>
 
+    <!-- Reinserted lead text (replace with your original wording if different) -->
     <p class="lede">
       Placeholder overview: one short paragraph explaining the biological question, what’s being visualized,
       and the main idea of your approach.
@@ -105,7 +93,6 @@
     <div class="two-col">
       <div>
         <figure class="media">
-          <!-- You can swap this for a video if you want motion here; or keep image and put video below -->
           <video src="images/videos/heartbeat_crop.mp4" autoplay muted loop playsinline controls></video>
         </figure>
         <div class="caption">Heartbeat-driven flow dynamics in embryonic yolk sac vasculature (looped preview).</div>
@@ -143,7 +130,7 @@
     </section>
 
     <section class="section card">
-      <h3 style="margin-top:0;">Team & Acknowledgments (placeholder)</h3>
+      <h3 style="margin-top:0;">Team &amp; Acknowledgments (placeholder)</h3>
       <p>Names, collaborators, data providers, and funding acknowledgments as needed.</p>
     </section>
   </main>
