@@ -25,19 +25,9 @@
     .topnav a { margin-right: 1rem; font-weight: 600; text-decoration: none; padding:.4rem .1rem; }
     .topnav a:hover { text-decoration: underline; }
 
-    /* Simple page title (hero image removed) */
-    .page-title {
-      margin: 1.25rem 0 0.75rem;
-      font-size: clamp(1.6rem, 3.2vw, 2.2rem);
-      font-weight: 800;
-      letter-spacing: .01em;
-    }
-    .subhead {
-      margin-top: -0.35rem;
-      opacity:.75;
-      font-weight: 600;
-      font-size: .98rem;
-    }
+    /* Simple page title */
+    .page-title { margin: 1.25rem 0 0.75rem; font-size: clamp(1.6rem, 3.2vw, 2.2rem); font-weight: 800; letter-spacing: .01em; }
+    .subhead { margin-top: -0.35rem; opacity:.75; font-weight: 600; font-size: .98rem; }
 
     /* Breadcrumbs */
     .crumbs { font-weight: 600; margin: 0.25rem 0 1rem; }
@@ -83,35 +73,28 @@
     <div class="subhead">Embryonic vascular flows &amp; pulsatility</div>
     <div class="crumbs"><a href="index.html#research">← Back to Research</a></div>
 
-    <!-- SUMMARY (reinserted) -->
-    <!-- TODO: If you have an exact earlier summary, paste it below to override. -->
+    <!-- SINGLE SUMMARY (≈4 sentences) -->
     <p class="lede">
-      We analyze heartbeat-driven flow in the embryonic yolk sac and how vascular networks adapt under
-      pulsatile conditions. From imaging data, we extract vessel centerlines, build attributed graphs, and
-      infer time-varying flow to quantify pulsatility and network remodeling across developmental stages.
+      We study heartbeat-driven flow in the embryonic yolk sac and how pulsatile forcing shapes vascular development.
+      From time-lapse microscopy, we extract vessel centerlines, construct attributed graphs, and infer time-varying flow.
+      These measurements let us quantify pulsatility and heterogeneity across developmental stages and embryos.
+      The goal is to connect observed dynamics to physics-based models of network adaptation.
     </p>
 
-    <!-- Media + Text -->
+    <!-- Media + Quick links -->
     <div class="two-col">
       <div>
         <figure class="media">
-          <!-- Use the cropped or original clip; update the filename if needed -->
           <video src="images/videos/heartbeat_crop.mp4" autoplay muted loop playsinline controls></video>
         </figure>
         <div class="caption">Heartbeat-driven flow dynamics in embryonic yolk sac vasculature (looped preview).</div>
       </div>
 
       <aside class="card">
-        <h3 style="margin-top:0;">Summary</h3>
-        <!-- This mirrors the lede; keep both or shorten one -->
-        <p>
-          We combine image-based network extraction with flow inference to study how pulsatility shapes
-          transport and adaptation in the yolk sac. The resulting graphs carry geometric and hemodynamic
-          attributes, enabling quantitative comparisons across time points and embryos.
-        </p>
-        <!-- Optional quick links; keep or remove -->
-        <div style="margin-top:.8rem;">
+        <!-- No "Summary" header per request -->
+        <div style="margin-top:.2rem;">
           <strong>Quick links:</strong><br/>
+          <!-- Replace with real links when ready -->
           <a href="#" class="pill">Preprint</a>
           <a href="#" class="pill">Code</a>
           <a href="#" class="pill">Dataset</a>
@@ -119,7 +102,7 @@
       </aside>
     </div>
 
-    <!-- OPTIONAL DEEPER SECTIONS (commented out by request) -->
+    <!-- OPTIONAL DEEPER SECTIONS (commented out) -->
     <!--
     <section class="section card">
       <h3 style="margin-top:0;">Methods</h3>
