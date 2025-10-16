@@ -11,7 +11,7 @@
     body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; }
     .wrap { max-width: var(--maxw); margin: 0 auto; padding: 2rem 1rem; }
     .hero-media { border-radius: 12px; overflow: hidden; margin: .5rem 0 1rem; }
-    .hero-media video, .hero-media img { width: 100%; display: block; }
+    .hero-media img, .hero-media video { width: 100%; display: block; }
     .lede { font-size: 1.05rem; line-height: 1.6; }
     .breadcrumbs { font-weight: 600; margin-bottom: 1rem; }
     .breadcrumbs a { text-decoration: none; }
@@ -21,15 +21,20 @@
   <main class="wrap">
     <div class="breadcrumbs"><a href="index.html#research">← Research</a></div>
     <h1>Yolk Sac</h1>
+
+    <!-- Use your banner image here -->
     <div class="hero-media">
-      <video src="images/videos/vid6_full_5s_51fps.mp4" autoplay muted loop playsinline controls></video>
+      <img src="images/yolksacsim.png" alt="Yolk sac visualization">
     </div>
+
     <p class="lede">
-      Placeholder paragraph describing the problem, method, and what the video shows.
+      Placeholder paragraph describing the problem, method, and what the image/video shows.
     </p>
-    <!-- Optional links
-    <p><a href="pdfs/yolk-sac-preprint.pdf" target="_blank" rel="noopener">PDF</a> ·
-       <a href="https://github.com/..." target="_blank" rel="noopener">Code</a></p>
+
+    <!-- Optional: if you still want to show the heartbeat clip on this page too, uncomment:
+    <div class="hero-media">
+      <video src="images/videos/heartbeat.mp4" autoplay muted loop playsinline controls></video>
+    </div>
     -->
   </main>
 </body>
