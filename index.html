@@ -3,18 +3,20 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Network Homogenization — Biological Transport Networks</title>
+  <title>Biological Transport Networks — Flatiron Institute</title>
 
-  <!-- Theme to match index -->
+  <!-- Flatiron / CCB theme -->
   <link rel="stylesheet" href="assets/css/ccb.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
   <style>
-    :root { --maxw: 1000px; }
-    body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; color:#0e0e0e; }
-    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 1.6rem 1rem 2rem; }
+    :root { --maxw: 1100px; --circle-size: 220px; }
+    body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; }
+    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 2rem 1rem; }
 
-    /* Sticky header to match index */
+    /* ===== Sticky header ===== */
     header.site {
       position: sticky; top: 0; z-index: 1000;
       padding: 1rem 0;
@@ -22,141 +24,286 @@
       backdrop-filter: saturate(180%) blur(8px);
       border-bottom: 1px solid rgba(0,0,0,0.07);
     }
-    .topnav a { margin-right: 1rem; font-weight: 600; text-decoration: none; padding:.4rem .1rem; }
+    .topnav a {
+      margin-right: 1rem; font-weight: 600; text-decoration: none;
+      padding: .4rem .1rem; display: inline-block;
+    }
     .topnav a:hover { text-decoration: underline; }
 
-    /* HERO: banner with overlaid title (PDF with fallback image) */
-    .hero { max-width: var(--maxw); margin: 1rem auto 0; padding: 0 1rem; position: relative; }
-    .hero-media { height: clamp(280px, 42vw, 420px); border-radius: 12px; overflow: hidden; position: relative; background:#000; }
-    .hero-media object, .hero-media iframe, .hero-media img { width: 100%; height: 100%; display: block; border: 0; object-fit: cover; }
-    .hero--overlay::after {
-      content: ""; position: absolute; left: 1rem; right: 1rem; bottom: 0; height: 55%;
-      border-bottom-left-radius: 12px; border-bottom-right-radius: 12px;
-      background: linear-gradient(0deg, rgba(0,0,0,.65), rgba(0,0,0,0));
-      pointer-events: none;
+    /* ===== Hero banner ===== */
+    .hero-banner {
+      position: relative;
+      height: clamp(320px, 48vw, 520px);
+      overflow: hidden;
+      border-radius: 12px;
     }
-    .hero-title {
-      position: absolute; inset: 0; display: flex; align-items: flex-end; justify-content: center;
-      padding: 0 2rem 1.25rem; text-align: center;
+    .hero-banner img {
+      width: 100%; height: 100%; object-fit: cover;
+      object-position: 50% 45%;
+      display: block; opacity: 0; animation: heroFade 1.2s ease-out forwards;
     }
-    .hero-title .inner {
-      display:inline-block; padding: .45rem .9rem; border-radius: 10px;
-      background: rgba(0,0,0,.35); backdrop-filter: blur(2px) saturate(120%);
-      box-shadow: 0 8px 24px rgba(0,0,0,.25);
+    .hero-banner .overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.30), rgba(0,0,0,.30)); }
+    .hero-banner .nameplate {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      padding: clamp(1rem, 3vw, 2rem);
     }
-    .hero-title h1 {
-      color: #fff; margin: 0; font-weight: 800; letter-spacing: .01em;
-      font-size: clamp(1.7rem, 3.6vw, 2.6rem);
-      text-shadow: 0 1px 0 rgba(0,0,0,.5), 0 2px 8px rgba(0,0,0,.45), 0 6px 22px rgba(0,0,0,.6);
+    .hero-banner .nameplate-inner {
+      text-align: center; color: #fff;
+      text-shadow: 0 2px 10px rgba(0,0,0,.35);
+      padding: 0 1rem; max-width: 900px;
     }
-    .hero-title .subhead {
-      color: rgba(255,255,255,.96); margin-top: .25rem; font-weight: 600;
-      text-shadow: 0 1px 0 rgba(0,0,0,.4), 0 2px 6px rgba(0,0,0,.4);
+    .hero-banner .kicker { font-weight: 600; letter-spacing: .02em; opacity: .9; margin-bottom: .25rem; }
+    .hero-banner h1 { font-size: clamp(1.8rem, 3.2vw, 2.6rem); margin: 0; }
+    @keyframes heroFade { from { opacity: 0 } to { opacity: 1 } }
+
+    /* ===== Sections ===== */
+    h2.section { margin: 2.5rem 0 1rem; font-size: 1.6rem; }
+    .card { background: #fff; border-radius: 12px; padding: 1rem; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+
+    /* ===== Carousel ===== */
+    .carousel { position: relative; margin-top: 1rem; }
+    .carousel-track {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: minmax(260px, 1fr);
+      gap: 1rem;
+      overflow-x: auto;
+      padding: .25rem .25rem 1rem;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+    }
+    .carousel-track::-webkit-scrollbar { height: 10px; }
+    .carousel-track::-webkit-scrollbar-thumb { background: rgba(0,0,0,.15); border-radius: 999px; }
+    .carousel-card {
+      scroll-snap-align: start;
+      background: #fff; border-radius: 12px; padding: 1rem;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+      width: 100%;
+    }
+    .carousel-card img, .carousel-card video {
+      width: 100%; display: block; border-radius: 8px; margin-bottom: .6rem;
+    }
+    .carousel-btn {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      border: 1px solid rgba(0,0,0,.12);
+      background: rgba(255,255,255,.85);
+      backdrop-filter: saturate(160%) blur(6px);
+      border-radius: 10px;
+      padding: .4rem .55rem;
+      cursor: pointer;
+      user-select: none;
+    }
+    .carousel-btn:hover { background: #fff; }
+    .carousel-btn[disabled] { opacity: .4; cursor: default; }
+    .carousel-btn.prev { left: -4px; }
+    .carousel-btn.next { right: -4px; }
+    @media (max-width:900px){ .carousel-track{ grid-auto-columns:80%; } }
+    @media (max-width:600px){ .carousel-track{ grid-auto-columns:88%; } }
+
+    /* ===== Circular research cards (override defaults for Research only) ===== */
+    .carousel-card.circle {
+      padding: 0;
+      background: transparent;
+      box-shadow: none;
+      display: grid;
+      place-items: center;
+      gap: 0.6rem;
+    }
+    .circle-thumb {
+      width: var(--circle-size);
+      height: var(--circle-size);
+      border-radius: 50%;
+      overflow: hidden;
+      background: #000;
+      box-shadow: 0 6px 18px rgba(0,0,0,.18);
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .circle-thumb img,
+    .circle-thumb video {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;      /* fills circle; crops overflow */
+      object-position: center;
+      display: block;
+    }
+    .carousel-card.circle:hover .circle-thumb {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 26px rgba(0,0,0,.22);
+    }
+    .circle-caption {
+      text-align: center;
+      width: var(--circle-size);
+    }
+    .circle-caption h3 {
+      margin: 0;
+      font-size: 1.05rem;
+    }
+    .circle-caption p {
+      margin: .25rem 0 0;
+      font-size: .95rem;
+      opacity: .85;
+    }
+    /* Make Research carousel columns sized to the circle */
+    .carousel[data-carousel="research"] .carousel-track {
+      grid-auto-columns: calc(var(--circle-size) + 40px);
+      justify-items: center;
     }
 
-    /* Breadcrumbs */
-    .crumbs { font-weight: 600; margin: .6rem 0 1.1rem; padding: 0 1rem; }
-    .crumbs a { text-decoration: none; }
-    .crumbs a:hover { text-decoration: underline; }
+    /* ===== People ===== */
+    .people .person { display:flex; gap:1rem; align-items:flex-start; }
+    .people .person img { width:96px; height:96px; object-fit:cover; border-radius:10px; }
+    .people .meta { font-size:0.95rem; }
 
-    /* Content layout */
-    .two-col { display:grid; grid-template-columns: 1.25fr 0.95fr; gap: 1.25rem; align-items: stretch; }
-    .card {
-      background:#fff; border-radius:12px; padding:1rem 1.1rem; box-shadow:0 2px 12px rgba(0,0,0,0.06);
-      height:100%; display:flex; flex-direction:column;
-    }
-    .card p { margin: 0.35rem 0; }
-
-    figure { margin:0; }
-    .media { border-radius:12px; overflow:hidden; background:#000; }
-    .media img, .media video { display:block; width:100%; height:auto; }
-    .caption { font-size:.92rem; opacity:.75; margin-top:.45rem; }
-
-    /* Pills / quick links */
-    .pill {
-      display:inline-block; font-size:.85rem; font-weight:600; text-decoration:none;
-      padding:.28rem .7rem; border:1px solid rgba(0,0,0,.12); border-radius:999px; margin:.25rem .35rem .25rem 0;
-      background:#f7f7f7;
-    }
-    .pill:hover { background:#fff; }
-
-    @media (max-width: 880px){
-      .two-col { grid-template-columns: 1fr; }
-      .card { height:auto; }
-    }
+    footer { margin-top:3rem; padding:2rem 0; border-top:1px solid rgba(0,0,0,0.07); font-size:0.95rem; }
   </style>
 </head>
-<body>
 
-  <!-- Header (same vibe as index) -->
+<body>
+  <!-- ===== Header ===== -->
   <header class="site">
     <div class="wrap">
       <div style="font-size:1rem; font-weight:800;">Biological Transport Networks</div>
-      <div style="opacity:.8;">Center for Computational Biology · Flatiron Institute</div>
-      <nav class="topnav" style="margin-top:.5rem;">
-        <a href="index.html#mission">Mission</a>
-        <a href="index.html#research">Research</a>
-        <a href="index.html#people">People</a>
-        <a href="index.html#publications">Publications</a>
-        <a href="index.html#news">News</a>
-        <a href="index.html#contact">Contact</a>
+      <div style="opacity:0.8;">Center for Computational Biology · Flatiron Institute</div>
+      <nav class="topnav" style="margin-top: 0.5rem;">
+        <a href="#mission">Mission</a>
+        <a href="#research">Research</a>
+        <a href="#people">People</a>
+        <a href="#publications">Publications</a>
+        <a href="#news">News</a>
+        <a href="#contact">Contact</a>
       </nav>
     </div>
   </header>
 
-  <!-- HERO: banner with overlaid title (PDF with fallback image) -->
-  <section class="hero hero--overlay">
-    <div class="hero-media">
-        <!-- Fallback if PDF can't render inline -->
-        <img src="images/non_constant_disc.png" alt="Network homogenization banner fallback">
-      </object>
-    </div>
-    <div class="hero-title">
-      <div class="inner">
-        <h1>Network Homogenization</h1>
-        <div class="subhead">Your subheader here</div>
+  <!-- ===== Hero ===== -->
+  <section class="hero-banner">
+    <img src="images/fig_sparse_flow.png" alt="Network flow simulation preview" />
+    <div class="overlay"></div>
+    <div class="nameplate">
+      <div class="nameplate-inner">
+        <div class="kicker">Center for Computational Biology · Flatiron Institute</div>
+        <h1>Biological Transport Networks</h1>
       </div>
     </div>
   </section>
 
-  <!-- Breadcrumbs -->
-  <div class="crumbs wrap"><a href="index.html#research">← Back to Research</a></div>
-
   <main class="wrap">
-    <!-- Media + Summary card -->
-    <div class="two-col">
-      <div>
-        <figure class="media">
-          <!-- Non-banner image here -->
-          <img src="images/non_constant_disc.png" alt="Representative network patterns (non-constant disc)">
-        </figure>
-        <div class="caption">Your caption here </div>
-      </div>
-
-      <aside class="card">
-        <p style="margin-top:0;">
-          Four sentence paragraph
-        </p>
-
-        <div style="margin-top:.8rem;">
-          <strong>Quick links:</strong><br/>
-          <a href="#" class="pill">Preprint</a>
-          <a href="#" class="pill">Code</a>
-          <a href="#" class="pill">Dataset</a>
-        </div>
-      </aside>
+    <!-- ===== Mission ===== -->
+    <h2 id="mission" class="section">Mission</h2>
+    <div class="card">
+      <p>The Biological Flow Networks Group combines theoretical and computational approaches to uncover the principles governing the development, organization, and function of biological transport systems. We investigate how the structure of vascular and other flow networks emerges under physical and developmental constraints, and how these architectures influence physiological performance. By integrating modeling with experimental data across scales, we aim to reveal unifying principles that connect microscopic dynamics to whole-organ and organism-level transport.</p>
     </div>
 
-    <!-- OPTIONAL sections (commented)
-    <section class="card" style="margin-top: 2rem;">
-      <h3 style="margin-top:0;">Methods</h3>
-      <ul>
-        <li>Graph-to-continuum mappings and averaging frameworks.</li>
-        <li>Validation against full-resolution simulations.</li>
-        <li>Sensitivity to microstructural statistics.</li>
-      </ul>
-    </section>
-    -->
+    <!-- ===== Research (Carousel) ===== -->
+    <h2 id="research" class="section">Research</h2>
+    <div class="carousel" data-carousel="research">
+      <button class="carousel-btn prev" aria-label="Scroll left">‹</button>
+      <div class="carousel-track">
+
+        <!-- Yolk Sac (video preview in a circle) -->
+        <article class="carousel-card circle">
+          <a class="card-link" href="yolk-sac.html" style="color:inherit; text-decoration:none; display:grid; place-items:center;">
+            <div class="circle-thumb">
+              <video autoplay muted loop playsinline src="images/videos/heartbeat_crop.mp4" poster="images/yolksacsim.png"></video>
+            </div>
+            <div class="circle-caption">
+              <h3>Vascular Flows in the Quail Yolk Sac</h3>
+              <p>Short teaser sentence…</p>
+            </div>
+          </a>
+        </article>
+
+        <!-- Network Homogenization (image) -->
+        <article class="carousel-card circle">
+          <a class="card-link" href="network-homogenization.html" style="color:inherit; text-decoration:none; display:grid; place-items:center;">
+            <div class="circle-thumb">
+              <img src="images/research/network-homogenization.jpg" alt="Network Homogenization">
+            </div>
+            <div class="circle-caption">
+              <h3>Network Homogenization</h3>
+              <p>Short teaser sentence…</p>
+            </div>
+          </a>
+        </article>
+
+        <!-- Neuron (image) -->
+        <article class="carousel-card circle">
+          <a class="card-link" href="neuron.html" style="color:inherit; text-decoration:none; display:grid; place-items:center;">
+            <div class="circle-thumb">
+              <img src="images/research/neuron.jpg" alt="Neuron">
+            </div>
+            <div class="circle-caption">
+              <h3>Neuron</h3>
+              <p>Short teaser sentence…</p>
+            </div>
+          </a>
+        </article>
+
+        <!-- Placenta (image) -->
+        <article class="carousel-card circle">
+          <a class="card-link" href="placenta.html" style="color:inherit; text-decoration:none; display:grid; place-items:center;">
+            <div class="circle-thumb">
+              <img src="images/research/placenta.jpg" alt="Placenta">
+            </div>
+            <div class="circle-caption">
+              <h3>Placenta</h3>
+              <p>Short teaser sentence…</p>
+            </div>
+          </a>
+        </article>
+
+      </div>
+      <button class="carousel-btn next" aria-label="Scroll right">›</button>
+    </div>
+
+    <!-- ===== People ===== -->
+    <h2 id="people" class="section">People</h2>
+    <div class="people grid">
+      <div class="card person">
+        <img src="images/people/Eleni.avif" alt="Eleni Katifori" />
+        <div class="meta"><div style="font-weight:700;">Eleni Katifori</div><div>Senior Research Scientist</div></div>
+      </div>
+      <div class="card person">
+        <img src="images/people/AJM-Pic.avif" alt="Alex Mayer" />
+        <div class="meta">
+          <div style="font-weight:700;">Alex Mayer</div>
+          <div>Flatiron Research Fellow</div>
+          <div style="margin-top:0.35rem;">
+            <a href="mailto:amayer@flatironinstitute.org" class="icon">[email]</a>
+            <a href="https://scholar.google.com/" target="_blank" rel="noopener" class="icon">[scholar]</a>
+            <a href="https://github.com/" target="_blank" rel="noopener" class="icon">[github]</a>
+          </div>
+        </div>
+      </div>
+      <div class="card person">
+        <img src="images/people/Sid.avif" alt="Sidney Holden" />
+        <div class="meta"><div style="font-weight:700;">Sidney Holden</div><div>Flatiron Research Fellow</div></div>
+      </div>
+      <div class="card person">
+        <img src="images/avatar-placeholder.jpg" alt="Mia Morrell" />
+        <div class="meta"><div style="font-weight:700;">Mia Morrell</div><div>Guest Researcher</div></div>
+      </div>
+    </div>
+
+    <!-- ===== Publications ===== -->
+    <h2 id="publications" class="section">Selected Publications</h2>
+    <div class="card">
+      <ol style="margin:0; padding-left:1.1rem;">
+        <li>Example paper — Author A, <em>Journal</em>, (Year).</li>
+      </ol>
+    </div>
+
+    <!-- ===== News ===== -->
+    <h2 id="news" class="section">News</h2>
+    <div class="card"><ul><li><strong>Oct 2025:</strong> Preprint on blank to arXiv.</li></ul></div>
+
+    <!-- ===== Contact ===== -->
+    <h2 id="contact" class="section">Contact</h2>
+    <div class="card">
+      <p>Center for Computational Biology, Flatiron Institute<br>162 5th Ave, New York, NY 10010</p>
+      <p>Email: <a href="mailto:ccb-webmaster@flatironinstitute.org">ccb-webmaster@flatironinstitute.org</a></p>
+    </div>
   </main>
 
   <footer>
@@ -167,6 +314,28 @@
 
   <script>
     document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Simple carousel controller
+    document.querySelectorAll('.carousel').forEach((wrap) => {
+      const track = wrap.querySelector('.carousel-track');
+      const prev = wrap.querySelector('.carousel-btn.prev');
+      const next = wrap.querySelector('.carousel-btn.next');
+      const step = () => {
+        const card = track.querySelector('.carousel-card');
+        return card ? card.getBoundingClientRect().width + 16 : 320;
+      };
+      const update = () => {
+        const maxScroll = track.scrollWidth - track.clientWidth - 1;
+        prev.disabled = track.scrollLeft <= 0;
+        next.disabled = track.scrollLeft >= maxScroll;
+      };
+      prev.addEventListener('click', () => track.scrollBy({ left: -step(), behavior: 'smooth' }));
+      next.addEventListener('click', () => track.scrollBy({ left:  step(), behavior: 'smooth' }));
+      track.addEventListener('scroll', update, { passive: true });
+      window.addEventListener('resize', update);
+      update();
+    });
   </script>
 </body>
 </html>
+have non_constant_disc.png be the card for Network Homogeneziation card
