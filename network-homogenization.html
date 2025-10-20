@@ -4,30 +4,189 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Network Homogenization — Biological Transport Networks</title>
+
+  <!-- Theme to match index -->
   <link rel="stylesheet" href="assets/css/ccb.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
   <style>
-    :root { --maxw: 900px; }
-    body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; }
-    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 2rem 1rem; }
-    .hero-media { border-radius: 12px; overflow: hidden; margin: .5rem 0 1rem; }
-    .hero-media video, .hero-media img { width: 100%; display: block; }
-    .lede { font-size: 1.05rem; line-height: 1.6; }
-    .breadcrumbs { font-weight: 600; margin-bottom: 1rem; }
-    .breadcrumbs a { text-decoration: none; }
+    :root { --maxw: 1000px; }
+    body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; color:#0e0e0e; }
+    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 1.6rem 1rem 2rem; }
+
+    /* Sticky header to match index */
+    header.site {
+      position: sticky; top: 0; z-index: 1000;
+      padding: 1rem 0;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: saturate(180%) blur(8px);
+      border-bottom: 1px solid rgba(0,0,0,0.07);
+    }
+    .topnav a { margin-right: 1rem; font-weight: 600; text-decoration: none; padding:.4rem .1rem; }
+    .topnav a:hover { text-decoration: underline; }
+
+    /* HERO: banner with overlaid title (supports PDF embed) */
+    .hero { max-width: var(--maxw); margin: 1rem auto 0; padding: 0 1rem; position: relative; }
+    .hero-media { height: clamp(280px, 42vw, 420px); border-radius: 12px; overflow: hidden; position: relative; background:#000; }
+    .hero-media object, .hero-media iframe, .hero-media img { width: 100%; height: 100%; display: block; border: 0; object-fit: cover; }
+    /* stronger gradient for text legibility */
+    .hero--overlay::after {
+      content: ""; position: absolute; left: 1rem; right: 1rem; bottom: 0; height: 55%;
+      border-bottom-left-radius: 12px; border-bottom-right-radius: 12px;
+      background: linear-gradient(0deg, rgba(0,0,0,.65), rgba(0,0,0,0));
+      pointer-events: none;
+    }
+    .hero-title {
+      position: absolute; inset: 0; display: flex; align-items: flex-end; justify-content: center;
+      padding: 0 2rem 1.25rem; text-align: center;
+    }
+    .hero-title .inner {
+      display:inline-block; padding: .45rem .9rem; border-radius: 10px;
+      background: rgba(0,0,0,.35); backdrop-filter: blur(2px) saturate(120%);
+      box-shadow: 0 8px 24px rgba(0,0,0,.25);
+    }
+    .hero-title h1 {
+      color: #fff; margin: 0; font-weight: 800; letter-spacing: .01em;
+      font-size: clamp(1.7rem, 3.6vw, 2.6rem);
+      text-shadow: 0 1px 0 rgba(0,0,0,.5), 0 2px 8px rgba(0,0,0,.45), 0 6px 22px rgba(0,0,0,.6);
+    }
+    .hero-title .subhead {
+      color: rgba(255,255,255,.96); margin-top: .25rem; font-weight: 600;
+      text-shadow: 0 1px 0 rgba(0,0,0,.4), 0 2px 6px rgba(0,0,0,.4);
+    }
+
+    /* Breadcrumbs */
+    .crumbs { font-weight: 600; margin: .6rem 0 1.1rem; padding: 0 1rem; }
+    .crumbs a { text-decoration: none; }
+    .crumbs a:hover { text-decoration: underline; }
+
+    /* Content layout */
+    .two-col { display:grid; grid-template-columns: 1.25fr 0.95fr; gap: 1.25rem; align-items: stretch; }
+    .card {
+      background:#fff; border-radius:12px; padding:1rem 1.1rem; box-shadow:0 2px 12px rgba(0,0,0,0.06);
+      height:100%; display:flex; flex-direction:column;
+    }
+    .card p { margin: 0.35rem 0; }
+
+    figure { margin:0; }
+    .media { border-radius:12px; overflow:hidden; background:#000; }
+    /* show video at natural aspect (no crop) */
+    .media video, .media img {
+      display:block; width:100%; height:auto;
+    }
+    .caption { font-size:.92rem; opacity:.75; margin-top:.45rem; }
+
+    /* Pills / quick links */
+    .pill {
+      display:inline-block; font-size:.85rem; font-weight:600; text-decoration:none;
+      padding:.28rem .7rem; border:1px solid rgba(0,0,0,.12); border-radius:999px; margin:.25rem .35rem .25rem 0;
+      background:#f7f7f7;
+    }
+    .pill:hover { background:#fff; }
+
+    @media (max-width: 880px){
+      .two-col { grid-template-columns: 1fr; }
+      .card { height:auto; }
+    }
   </style>
 </head>
 <body>
-  <main class="wrap">
-    <div class="breadcrumbs"><a href="index.html#research">← Research</a></div>
-    <h1>Network Homogenization</h1>
-    <div class="hero-media">
-      <!-- Swap to a video when ready -->
-      <img src="images/research/network-homogenization.jpg" alt="Network Homogenization">
+
+  <!-- Header (same vibe as index) -->
+  <header class="site">
+    <div class="wrap">
+      <div style="font-size:1rem; font-weight:800;">Biological Transport Networks</div>
+      <div style="opacity:.8;">Center for Computational Biology · Flatiron Institute</div>
+      <nav class="topnav" style="margin-top:.5rem;">
+        <a href="index.html#mission">Mission</a>
+        <a href="index.html#research">Research</a>
+        <a href="index.html#people">People</a>
+        <a href="index.html#publications">Publications</a>
+        <a href="index.html#news">News</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
     </div>
-    <p class="lede">
-      Placeholder paragraph describing the topic and results. Mention that this effort is led by Sidney Holden.
-    </p>
+  </header>
+
+  <!-- HERO: banner with overlaid title (PDF with fallback image) -->
+  <section class="hero hero--overlay">
+    <div class="hero-media">
+      <object data="images/different_graphs.pdf#view=fitH" type="application/pdf">
+        <!-- Fallback if PDF can't render inline -->
+        <img src="images/non_constant_disc.png" alt="Network homogenization banner fallback">
+      </object>
+    </div>
+    <div class="hero-title">
+      <div class="inner">
+        <h1>Network Homogenization</h1>
+        <div class="subhead">subheading</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Breadcrumbs -->
+  <div class="crumbs wrap"><a href="index.html#research">← Back to Research</a></div>
+
+  <main class="wrap">
+    <!-- Media + Summary card -->
+    <div class="two-col">
+      <div>
+        <figure class="media">
+          <video
+            src="images/videos/random_sphere.mp4"
+            autoplay
+            muted
+            loop
+            playsinline
+            controls
+            preload="metadata">
+          </video>
+        </figure>
+        <div class="caption">Your text here (looped preview).</div>
+      </div>
+
+      <aside class="card">
+        <!-- Summary text (4 sentences, adjust as you like) -->
+        <p style="margin-top:0;">
+           Your text here
+        </p>
+
+        <!-- Quick links (replace # with real URLs when ready) -->
+        <div style="margin-top:.8rem;">
+          <strong>Quick links:</strong><br/>
+          <a href="#" class="pill">Preprint</a>
+          <a href="#" class="pill">Code</a>
+          <a href="#" class="pill">Dataset</a>
+        </div>
+      </aside>
+    </div>
+
+    <!-- OPTIONAL deeper sections (commented out, keep for later) -->
+    <!--
+    <section class="card" style="margin-top: 2rem;">
+      <h3 style="margin-top:0;">Methods</h3>
+      <ul>
+        <li>Graph-to-continuum mappings and averaging frameworks.</li>
+        <li>Validation against full-resolution simulations.</li>
+        <li>Sensitivity to microstructural statistics.</li>
+      </ul>
+    </section>
+
+    <section class="card" style="margin-top: 2rem;">
+      <h3 style="margin-top:0;">Team &amp; Acknowledgments</h3>
+      <p>Collaborators, data sources, and funding acknowledgments.</p>
+    </section>
+    -->
   </main>
+
+  <footer>
+    <div class="wrap" style="display:flex; justify-content:space-between; align-items:center; gap:1rem; flex-wrap:wrap;">
+      <div>&copy; <span id="year"></span> Biological Transport Networks · Flatiron Institute</div>
+    </div>
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
