@@ -5,16 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Network Homogenization — Biological Transport Networks</title>
 
-  <!-- Theme to match index -->
+  <!-- Keep site theme to match index -->
   <link rel="stylesheet" href="assets/css/ccb.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
   <style>
-    :root { --maxw: 1000px; }
+    :root { --maxw: 1000px; --card: #fff; }
     body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; color:#0e0e0e; }
     .wrap { max-width: var(--maxw); margin: 0 auto; padding: 1.6rem 1rem 2rem; }
 
-    /* Sticky header to match index */
+    /* Sticky header (matches index) */
     header.site {
       position: sticky; top: 0; z-index: 1000;
       padding: 1rem 0;
@@ -25,11 +25,10 @@
     .topnav a { margin-right: 1rem; font-weight: 600; text-decoration: none; padding:.4rem .1rem; }
     .topnav a:hover { text-decoration: underline; }
 
-    /* HERO: banner with overlaid title (supports PDF embed) */
+    /* HERO */
     .hero { max-width: var(--maxw); margin: 1rem auto 0; padding: 0 1rem; position: relative; }
     .hero-media { height: clamp(280px, 42vw, 420px); border-radius: 12px; overflow: hidden; position: relative; background:#000; }
-    .hero-media object, .hero-media iframe, .hero-media img { width: 100%; height: 100%; display: block; border: 0; object-fit: cover; }
-    /* stronger gradient for text legibility */
+    .hero-media video, .hero-media img, .hero-media iframe, .hero-media object { width: 100%; height: 100%; display: block; object-fit: cover; }
     .hero--overlay::after {
       content: ""; position: absolute; left: 1rem; right: 1rem; bottom: 0; height: 55%;
       border-bottom-left-radius: 12px; border-bottom-right-radius: 12px;
@@ -50,31 +49,26 @@
       font-size: clamp(1.7rem, 3.6vw, 2.6rem);
       text-shadow: 0 1px 0 rgba(0,0,0,.5), 0 2px 8px rgba(0,0,0,.45), 0 6px 22px rgba(0,0,0,.6);
     }
-    .hero-title .subhead {
-      color: rgba(255,255,255,.96); margin-top: .25rem; font-weight: 600;
-      text-shadow: 0 1px 0 rgba(0,0,0,.4), 0 2px 6px rgba(0,0,0,.4);
-    }
+    .hero-title .subhead { color: rgba(255,255,255,.96); margin-top: .25rem; font-weight: 600; }
 
     /* Breadcrumbs */
     .crumbs { font-weight: 600; margin: .6rem 0 1.1rem; padding: 0 1rem; }
     .crumbs a { text-decoration: none; }
     .crumbs a:hover { text-decoration: underline; }
 
-    /* Content layout */
-    .two-col { display:grid; grid-template-columns: 1.25fr 0.95fr; gap: 1.25rem; align-items: stretch; }
-    .card {
-      background:#fff; border-radius:12px; padding:1rem 1.1rem; box-shadow:0 2px 12px rgba(0,0,0,0.06);
-      height:100%; display:flex; flex-direction:column;
-    }
-    .card p { margin: 0.35rem 0; }
+    /* Page-like sections */
+    .page { background: var(--card); border-radius: 12px; box-shadow: 0 2px 14px rgba(0,0,0,.06); padding: 1.1rem; margin: 1.4rem 0; }
+    .page h2 { margin: .2rem 0 1rem; font-size: 1.35rem; }
+    .two-col { display:grid; grid-template-columns: 1.25fr 0.95fr; gap: 1.25rem; align-items: start; }
+    .card { background:#fff; border-radius:12px; padding:1rem 1.1rem; box-shadow:0 2px 12px rgba(0,0,0,0.06); }
+    .card p { margin: .45rem 0; }
 
-    figure { margin:0; }
+    /* Figures & captions */
+    figure { margin: 0; }
     .media { border-radius:12px; overflow:hidden; background:#000; }
-    /* show video at natural aspect (no crop) */
-    .media video, .media img {
-      display:block; width:100%; height:auto;
-    }
-    .caption { font-size:.92rem; opacity:.75; margin-top:.45rem; }
+    .media img, .media video { width:100%; height:auto; display:block; }
+    figcaption { font-size:.92rem; opacity:.78; margin-top:.5rem; }
+    .full { grid-column: 1 / -1; }
 
     /* Pills / quick links */
     .pill {
@@ -86,13 +80,12 @@
 
     @media (max-width: 880px){
       .two-col { grid-template-columns: 1fr; }
-      .card { height:auto; }
     }
   </style>
 </head>
 <body>
 
-  <!-- Header (same vibe as index) -->
+  <!-- Header -->
   <header class="site">
     <div class="wrap">
       <div style="font-size:1rem; font-weight:800;">Biological Transport Networks</div>
@@ -108,16 +101,15 @@
     </div>
   </header>
 
-  <!-- HERO: banner with overlaid title (PDF with fallback image) -->
+  <!-- HERO: video banner -->
   <section class="hero hero--overlay">
     <div class="hero-media">
-        <img src="images/different_graphs.png" alt="Network homogenization banner fallback">
-      </object>
+      <video src="images/videos/random_sphere.mp4" autoplay muted loop playsinline></video>
     </div>
     <div class="hero-title">
       <div class="inner">
         <h1>Network Homogenization</h1>
-        <div class="subhead">subheading</div>
+        <div class="subhead">Discrete-to-continuum modeling of biological transport networks</div>
       </div>
     </div>
   </section>
@@ -125,46 +117,70 @@
   <!-- Breadcrumbs -->
   <div class="crumbs wrap"><a href="index.html#research">← Back to Research</a></div>
 
+  <!-- PAGE 1: intro with spiderweb + text, then graphs under it -->
   <main class="wrap">
-    <!-- Media + Summary card -->
-    <div class="two-col">
-      <div>
-        <figure class="media">
-        <img src="images/non_constant_disc.png" alt="Network homogenization banner fallback">
+    <section class="page">
+      <div class="two-col">
+        <figure>
+          <div class="media">
+            <img src="images/spiderweb.png" alt="Complex network pattern resembling spiderweb" />
+          </div>
+          <figcaption>
+            Representative network geometry. We analyze transport on graphs and relate it to continuum limits.
+          </figcaption>
         </figure>
-        <div class="caption">Your text here (looped preview).</div>
+
+        <aside class="card">
+          <h2 style="margin-top:0;">Summary</h2>
+          <p>
+            We present a homogenization framework that maps discrete network transport to an effective continuum description,
+            capturing macroscopic flow, anisotropy, and adaptation laws while accounting for microstructural variability.
+          </p>
+          <p>
+            The approach links graph Laplacians and constitutive relations to PDEs with effective coefficients, enabling
+            fast simulation, parameter inference, and comparison against high-resolution network dynamics.
+          </p>
+          <div style="margin-top:.8rem;">
+            <strong>Quick links:</strong><br/>
+            <a href="https://doi.org/10.48550/arXiv.2301.07086" class="pill">Preprint</a>
+            <!-- Add more as needed -->
+          </div>
+        </aside>
+
+        <!-- “Different graphs” figure full width below -->
+        <figure class="full" style="margin-top:.8rem;">
+          <div class="media">
+            <img src="images/different_graphs.png" alt="Network ensembles and statistics" />
+          </div>
+          <figcaption>
+            Ensembles of graphs used for averaging: varying connectivity, degree distributions, and spatial embedding.
+          </figcaption>
+        </figure>
       </div>
+    </section>
 
-      <aside class="card">
-        <!-- Summary text (4 sentences, adjust as you like) -->
-        <p style="margin-top:0;">
-           Your text here
-        </p>
-
-        <!-- Quick links (replace # with real URLs when ready) -->
-        <div style="margin-top:.8rem;">
-          <strong>Quick links:</strong><br/>
-          <a href="https://doi.org/10.48550/arXiv.2301.07086" class="pill">Preprint</a>
+    <!-- PAGE 2: discrete vs continuum comparison -->
+    <section class="page">
+      <h2 style="margin-top:0;">Discrete vs. Continuum Adaptation</h2>
+      <figure>
+        <div class="media">
+          <img src="images/discrete_vs_continuum_adaptation.png" alt="Side-by-side comparison of discrete network adaptation and continuum model" />
         </div>
-      </aside>
-    </div>
+        <figcaption>
+          Quantitative comparison of adaptation dynamics: the continuum model reproduces key statistics of the discrete network evolution.
+        </figcaption>
+      </figure>
 
-    <!-- OPTIONAL deeper sections (commented out, keep for later) -->
-    <!--
-    <section class="card" style="margin-top: 2rem;">
-      <h3 style="margin-top:0;">Methods</h3>
-      <ul>
-        <li>Graph-to-continuum mappings and averaging frameworks.</li>
-        <li>Validation against full-resolution simulations.</li>
-        <li>Sensitivity to microstructural statistics.</li>
-      </ul>
+      <!-- Bottom animation/video -->
+      <figure style="margin-top: 1rem;">
+        <div class="media" style="background:#000;">
+          <video src="images/videos/run0_C_animation.mp4" autoplay muted loop playsinline controls></video>
+        </div>
+        <figcaption>
+          Time-lapse of continuum concentration field corresponding to a discrete network adaptation experiment.
+        </figcaption>
+      </figure>
     </section>
-
-    <section class="card" style="margin-top: 2rem;">
-      <h3 style="margin-top:0;">Team &amp; Acknowledgments</h3>
-      <p>Collaborators, data sources, and funding acknowledgments.</p>
-    </section>
-    -->
   </main>
 
   <footer>
