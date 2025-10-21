@@ -174,7 +174,7 @@
       <!-- Bottom animation/video -->
       <figure style="margin-top: 1rem;">
         <div class="media" style="background:#000;">
-          <video src="images/videos/run0_C_animation.mp4" autoplay muted loop playsinline controls></video>
+          <video src="images/run0_C_animation.mp4" autoplay muted loop playsinline controls></video>
         </div>
         <figcaption>
           Time-lapse of continuum concentration field corresponding to a discrete network adaptation experiment.
