@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
   <style>
-    :root { --maxw: 1000px; --card: #fff; }
+    :root { --maxw: 1000px; --card: #fff; --fg-muted: rgba(0,0,0,.72); }
     body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; color:#0e0e0e; }
     .wrap { max-width: var(--maxw); margin: 0 auto; padding: 1.6rem 1rem 2rem; }
 
@@ -32,7 +32,7 @@
     .hero--overlay::after {
       content: ""; position: absolute; left: 1rem; right: 1rem; bottom: 0; height: 55%;
       border-bottom-left-radius: 12px; border-bottom-right-radius: 12px;
-      background: linear-gradient(0deg, rgba(0,0,0,.65), rgba(0,0,0,0));
+      background: linear-gradient(0deg, rgba(0,0,0,.70), rgba(0,0,0,0));
       pointer-events: none;
     }
     .hero-title {
@@ -57,8 +57,9 @@
     .crumbs a:hover { text-decoration: underline; }
 
     /* Page-like sections */
-    .page { background: var(--card); border-radius: 12px; box-shadow: 0 2px 14px rgba(0,0,0,.06); padding: 1.1rem; margin: 1.4rem 0; }
-    .page h2 { margin: .2rem 0 1rem; font-size: 1.35rem; }
+    h1, h2 { letter-spacing: .005em; }
+    .page { background: var(--card); border-radius: 12px; box-shadow: 0 2px 14px rgba(0,0,0,.06); padding: 1.1rem; margin: 1.6rem 0; }
+    .page h2 { margin: .1rem 0 .8rem; font-size: clamp(1.35rem, 1.8vw, 1.6rem); }
     .two-col { display:grid; grid-template-columns: 1.25fr 0.95fr; gap: 1.25rem; align-items: start; }
     .card { background:#fff; border-radius:12px; padding:1rem 1.1rem; box-shadow:0 2px 12px rgba(0,0,0,0.06); }
     .card p { margin: .45rem 0; }
@@ -67,8 +68,14 @@
     figure { margin: 0; }
     .media { border-radius:12px; overflow:hidden; background:#000; }
     .media img, .media video { width:100%; height:auto; display:block; }
-    figcaption { font-size:.92rem; opacity:.78; margin-top:.5rem; }
+    figcaption { font-size:.95rem; color: var(--fg-muted); margin-top:.6rem; }
     .full { grid-column: 1 / -1; }
+
+    /* Figure label badge */
+    .figure-label {
+      display: inline-block; font-size: .85rem; font-weight: 700;
+      padding: .15rem .5rem; border-radius: 6px; background: #f3f3f3; margin-bottom: .35rem;
+    }
 
     /* Pills / quick links */
     .pill {
@@ -78,8 +85,11 @@
     }
     .pill:hover { background:#fff; }
 
+    /* Mobile layout: text first, media second */
     @media (max-width: 880px){
       .two-col { grid-template-columns: 1fr; }
+      .two-col > figure { order: 2; }
+      .two-col > aside  { order: 1; }
     }
   </style>
 </head>
@@ -104,11 +114,13 @@
   <!-- HERO: video banner -->
   <section class="hero hero--overlay">
     <div class="hero-media">
-      <video src="images/continuum/random_sphere_crop_downsample.mp4" autoplay muted loop playsinline></video>
+      <video
+        src="images/continuum/random_sphere_crop_downsample.mp4"
+        autoplay muted loop playsinline preload="metadata"></video>
     </div>
     <div class="hero-title">
       <div class="inner">
-        <h1>Network Homogenization</h1>
+        <h1>Continuum Modeling</h1>
         <div class="subhead">Discrete-to-continuum modeling of biological transport networks</div>
       </div>
     </div>
@@ -122,49 +134,39 @@
     <section class="page">
       <div class="two-col">
         <figure>
+          <span class="figure-label">Fig. 1</span>
           <div class="media">
-            <img src="images/continuum/spiderweb.png" alt="Complex network pattern resembling spiderweb" />
+            <img loading="lazy" src="images/continuum/spiderweb.png"
+                 alt="Dense web-like network used to illustrate continuum limits">
           </div>
           <figcaption>
-            Continuum descriptions replace vessel-wise dynamics with macroscopic models defined over the continuous ambient
-space — think of vibrational modes in dense spiderwebs.
+            Continuum descriptions replace vessel-wise dynamics with macroscopic models defined over the ambient space.
           </figcaption>
         </figure>
 
         <aside class="card">
-          <h2 style="margin-top:0;">Summary</h2>
+          <h2 id="summary" style="margin-top:0;">Summary</h2>
           <p>
-            Biological transport networks — such as blood vessels, plant vasculature, or neuronal networks — can often be
-            modeled as metric graphs, where edges represent slender conduits that carry flow or diffusive signals, and the nodes
-            enforce Kirchhoff-type conservation laws. 
+            Biological transport networks—such as blood vessels, plant vasculature, or neuronal networks—are naturally modeled
+            as metric graphs where edges carry flow or diffusive signals and nodes enforce conservation laws.
           </p>
           <p>
-            While this discrete description captures the network’s topology, it becomes
-            unwieldy for dense, spatially embedded systems like embryonic vasculature or capillary beds. 
-          </p>
-          <p>
-            We have also investigated continuum
-              modeling of biological network formation and
-              adaptation. The Hu-Cai model of network
-              adaptation minimizes the pumping power
-              and material cost of a network with respect
-              to vessel conductivities.
-              A continuum model consists of replacing the
-              edgewise conductivities with a conductivity
-              field obeying the analogous adaptation
-              constraints.
+            While this discrete picture captures topology, it becomes unwieldy for dense, spatially embedded systems
+            (e.g., embryonic vasculature). We develop effective continuum descriptions that preserve the essential transport
+            physics while enabling faster simulation and principled coarse-graining.
           </p>
           <div style="margin-top:.8rem;">
             <strong>Quick links:</strong><br/>
             <a href="https://doi.org/10.48550/arXiv.2301.07086" class="pill">Preprint</a>
-            <!-- Add more as needed -->
           </div>
         </aside>
 
         <!-- “Different graphs” figure full width below -->
         <figure class="full" style="margin-top:.8rem;">
+          <span class="figure-label">Fig. 2</span>
           <div class="media">
-            <img src="images/continuum/different_graphs.png" alt="Network ensembles and statistics" />
+            <img loading="lazy" src="images/continuum/different_graphs.png"
+                 alt="Ensembles of graphs with different statistics for averaging and homogenization">
           </div>
           <figcaption>
             Ensembles of graphs used for averaging: varying connectivity, degree distributions, and spatial embedding.
@@ -175,23 +177,29 @@ space — think of vibrational modes in dense spiderwebs.
 
     <!-- PAGE 2: discrete vs continuum comparison -->
     <section class="page">
-      <h2 style="margin-top:0;">Discrete vs. Continuum Adaptation</h2>
+      <h2 id="discrete-vs-continuum" style="margin-top:0;">Discrete vs. Continuum Adaptation</h2>
       <figure>
+        <span class="figure-label">Fig. 3</span>
         <div class="media">
-          <img src="images/continuum/discrete_vs_continuum_adaptation.png" alt="Side-by-side comparison of discrete network adaptation and continuum model" />
+          <img loading="lazy" src="images/continuum/discrete_vs_continuum_adaptation.png"
+               alt="Quantitative comparison of discrete network adaptation and its continuum model analogue">
         </div>
         <figcaption>
-          We have also investigated continuum modeling of biological network formation and adaptation. The Hu-Cai model of network adaptation minimizes the pumping power and material cost of a network with respect to vessel conductivities. A continuum model consists of replacing the edgewise conductivities with a conductivity field obeying the analogous adaptation constraints.
+          The Hu–Cai adaptation model minimizes pumping power and material cost with respect to conductivities; the continuum
+          analogue replaces edgewise conductivities by a conductivity field obeying analogous constraints.
         </figcaption>
       </figure>
 
       <!-- Bottom animation/video -->
       <figure style="margin-top: 1rem;">
+        <span class="figure-label">Video 1</span>
         <div class="media" style="background:#000;">
-          <video src="images/continuum/run0_C_animation.mp4" autoplay muted loop playsinline controls></video>
+          <video controls autoplay muted loop playsinline preload="metadata">
+            <source src="images/continuum/run0_C_animation.mp4" type="video/mp4">
+          </video>
         </div>
         <figcaption>
-          Time-lapse of continuum concentration field corresponding to a discrete network adaptation experiment.
+          Time-lapse of a continuum concentration field corresponding to a discrete adaptation experiment.
         </figcaption>
       </figure>
     </section>
