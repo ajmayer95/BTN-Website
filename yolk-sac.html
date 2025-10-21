@@ -32,7 +32,6 @@
     .hero--overlay::after {
       content: ""; position: absolute; left: 1rem; right: 1rem; bottom: 0; height: 55%;
       border-bottom-left-radius: 12px; border-bottom-right-radius: 12px;
-      /* Stronger gradient to make title pop */
       background: linear-gradient(0deg, rgba(0,0,0,.65), rgba(0,0,0,0));
       pointer-events: none;
     }
@@ -51,7 +50,6 @@
     .hero-title h1 {
       color: #fff; margin: 0; font-weight: 800; letter-spacing: .01em;
       font-size: clamp(1.7rem, 3.6vw, 2.6rem);
-      /* layered glow + crisp edge */
       text-shadow:
         0 1px 0 rgba(0,0,0,.5),
         0 2px 8px rgba(0,0,0,.45),
@@ -69,7 +67,7 @@
 
     /* Content layout */
     .two-col {
-      display:grid; grid-template-columns: 1.25fr 0.95fr; gap: 1.25rem; align-items: stretch; /* stretch card to media height */
+      display:grid; grid-template-columns: 1.25fr 0.95fr; gap: 1.25rem; align-items: stretch;
     }
     .card {
       background:#fff; border-radius:12px; padding:1rem 1.1rem; box-shadow:0 2px 12px rgba(0,0,0,0.06);
@@ -78,16 +76,9 @@
     .card p { margin: 0.35rem 0; }
     figure { margin:0; }
     .media { border-radius:12px; overflow:hidden; background:#000; }
-    /* ——— UNCROPPED VIDEO ——— */
-    .media video, .media img {
-      display:block;
-      width:100%;
-      height:auto;           /* keep natural aspect ratio, no cropping */
-      /* no aspect-ratio, no object-fit */
-    }
+    .media video, .media img { display:block; width:100%; height:auto; }
     .caption { font-size:.92rem; opacity:.75; margin-top:.45rem; }
 
-    /* Pills / quick links */
     .pill {
       display:inline-block; font-size:.85rem; font-weight:600; text-decoration:none;
       padding:.28rem .7rem; border:1px solid rgba(0,0,0,.12); border-radius:999px; margin:.25rem .35rem .25rem 0;
@@ -122,7 +113,7 @@
   <!-- HERO: banner with overlaid title -->
   <section class="hero hero--overlay">
     <div class="hero-media">
-      <img src="images/Banner.png" alt="Embryonic yolk sac network visualization">
+      <img src="images/yolk-sac/Banner.png" alt="Embryonic yolk sac network visualization">
     </div>
     <div class="hero-title">
       <div class="inner">
@@ -141,21 +132,20 @@
       <div>
         <figure class="media">
           <video
-            src="images/videos/heartbeat_crop.mp4"
+            src="images/yolk-sac/heartbeat_crop.mp4"
             autoplay
             muted
             loop
             playsinline
             controls
             preload="metadata"
-            poster="images/Banner.png">
+            poster="images/yolk-sac/Banner.png">
           </video>
         </figure>
         <div class="caption">Heartbeat-driven flow dynamics in embryonic yolk sac vasculature (looped preview).</div>
       </div>
 
       <aside class="card">
-        <!-- Summary text lives here -->
         <p style="margin-top:0;">
           We study heartbeat-driven flow in the embryonic yolk sac and how pulsatile forcing shapes vascular development.
           From time-lapse microscopy, we extract vessel centerlines, construct attributed graphs, and infer time-varying flow.
@@ -163,7 +153,6 @@
           The goal is to connect observed dynamics to physics-based models of network adaptation.
         </p>
 
-        <!-- Quick links (replace # with real URLs when ready) -->
         <div style="margin-top:.8rem;">
           <strong>Quick links:</strong><br/>
           <a href="#" class="pill">Preprint</a>
@@ -172,23 +161,6 @@
         </div>
       </aside>
     </div>
-
-    <!-- OPTIONAL DEEPER SECTIONS (commented out) -->
-    <!--
-    <section class="card" style="margin-top: 2rem;">
-      <h3 style="margin-top:0;">Methods</h3>
-      <ul>
-        <li>Image registration and vessel centerline extraction.</li>
-        <li>Graph construction with radii/length attributes.</li>
-        <li>Time-series flow inference and pulsatility metrics.</li>
-      </ul>
-    </section>
-
-    <section class="card" style="margin-top: 2rem;">
-      <h3 style="margin-top:0;">Team &amp; Acknowledgments</h3>
-      <p>Names, collaborators, data providers, and funding acknowledgments as needed.</p>
-    </section>
-    -->
   </main>
 
   <footer>
