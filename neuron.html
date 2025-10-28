@@ -8,25 +8,48 @@
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
   <style>
     :root { --maxw: 900px; }
-    body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; }
+    body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; color:#0e0e0e; }
     .wrap { max-width: var(--maxw); margin: 0 auto; padding: 2rem 1rem; }
-    .hero-media { border-radius: 12px; overflow: hidden; margin: .5rem 0 1rem; }
-    .hero-media video, .hero-media img { width: 100%; display: block; }
-    .lede { font-size: 1.05rem; line-height: 1.6; }
     .breadcrumbs { font-weight: 600; margin-bottom: 1rem; }
     .breadcrumbs a { text-decoration: none; }
+    .hero-media { border-radius: 12px; overflow: hidden; margin: .5rem 0 1rem; background:#000; }
+    .hero-media img, .hero-media video { width: 100%; display: block; }
+    h1 { margin: 0 0 .25rem; }
+    .kicker { font-weight: 700; opacity: .85; margin-bottom: .25rem; }
+    .lede { font-size: 1.05rem; line-height: 1.6; }
+    .section { margin-top: 1.25rem; }
   </style>
 </head>
 <body>
   <main class="wrap">
     <div class="breadcrumbs"><a href="index.html#research">← Research</a></div>
-    <h1>Neuron</h1>
+
+    <div class="kicker">Neuronal Development</div>
+    <h1>Constructing and De-constructing Neurons</h1>
     <div class="hero-media">
-      <img src="images/research/neuron.jpg" alt="Neuron">
+      <img src="images/neuron/Neuron.png" alt="Neuron">
     </div>
+
     <p class="lede">
-      Placeholder paragraph describing the topic and what’s shown in the media.
+      Biological transport systems — such as neuronal and vascular networks — are remarkable in their ability to build themselves.
+      These systems grow and reshape through the relocation and consumption of mass, often relying on the very transport pathways
+      they are creating. However, this dependence of growth on the transport of building material is frequently overlooked in
+      self-organizing growth models.
     </p>
+
+    <div class="section">
+      <h2 style="margin:0 0 .5rem;">Modeling Self-Destructing Biological Transport Networks</h2>
+      <p>
+        Our project develops a one-dimensional transport network model that links material flow to network growth and retraction.
+        By modeling tip growth as dependent on local concentrations of transported material, we can simulate the dynamic feedback
+        between transport and structure.
+      </p>
+      <p>
+        Inspired by the active processes of neuronal development, our work explores how local material delivery and recycling shape
+        evolving networks. In collaboration with CCBx and CCB Scope, we are testing our theoretical predictions against the observed
+        growth trajectories of real neurons.
+      </p>
+    </div>
   </main>
 </body>
 </html>
