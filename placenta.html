@@ -4,19 +4,54 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Placenta — Biological Transport Networks</title>
+
+  <!-- Theme to match index -->
   <link rel="stylesheet" href="assets/css/ccb.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
   <style>
     :root { --maxw: 900px; }
-    body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; color:#0e0e0e; }
+    body { 
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; 
+      color:#0e0e0e; 
+      background:#fafafa;
+    }
     .wrap { max-width: var(--maxw); margin: 0 auto; padding: 2rem 1rem; }
-    .breadcrumbs { font-weight: 600; margin-bottom: 1rem; }
-    .breadcrumbs a { text-decoration: none; }
-    .hero-media { border-radius: 12px; overflow: hidden; margin: .5rem 0 1rem; background:#000; }
+    .breadcrumbs { font-weight: 600; margin-bottom: 1.2rem; }
+    .breadcrumbs a { text-decoration: none; color:#333; }
+    .breadcrumbs a:hover { text-decoration: underline; }
+
+    .hero-media { 
+      border-radius: 12px; 
+      overflow: hidden; 
+      margin: .5rem 0 1.5rem; 
+      background:#000; 
+      box-shadow: 0 4px 18px rgba(0,0,0,0.08);
+    }
     .hero-media img { width: 100%; display: block; }
-    h1 { margin: .3rem 0 0.8rem; }
-    .lede { font-size: 1.05rem; line-height: 1.65; }
-    .content p { margin: .75rem 0; line-height: 1.65; }
+
+    h1 { margin: .3rem 0 .8rem; font-weight: 800; font-size: 1.9rem; }
+    .lede { 
+      font-size: 1.1rem; 
+      line-height: 1.65; 
+      color:#222; 
+      font-weight: 400; 
+      margin-bottom: 1.4rem;
+    }
+
+    .content p { 
+      margin: .85rem 0; 
+      line-height: 1.68; 
+      font-size: 1.02rem; 
+      color:#222;
+    }
+
+    footer { 
+      margin-top: 3rem; 
+      font-size: .9rem; 
+      color:#666; 
+      text-align:center;
+    }
   </style>
 </head>
 <body>
@@ -25,27 +60,35 @@
     <h1>Placenta</h1>
 
     <div class="hero-media">
-      <img src="images/placenta/PlacentaFull.png" alt="Placenta chorionic plate vasculature">
+      <img src="images/placenta/PlacentaFull.png" alt="Placental chorionic plate vasculature">
     </div>
 
     <p class="lede">
-      The placenta is a transient organ, yet an indispensable one, as it is the primary interface between a mother and a developing fetus.
+      The placenta is a transient yet indispensable organ—the critical interface between a mother and her developing fetus.
+      Its vascular architecture governs nutrient exchange, waste removal, and oxygen delivery, linking maternal and fetal physiology.
     </p>
 
     <div class="content">
       <p>
-        Abnormal placental chorionic vasculature correlates with a variety of complications for both mother and child,
-        including preeclampsia, gestational diabetes, and predisposition to autism spectrum disorders in the developing child.
-        Thus far, placental chorionic vascular development has been studied mainly observationally,
-        preventing researchers from revealing the mechanisms behind correlations to disease.
+        Abnormal development of the placental chorionic vasculature is associated with a range of complications, including
+        preeclampsia, gestational diabetes, and fetal growth restriction. These conditions not only affect maternal health
+        but can also influence long-term outcomes for the child, such as metabolic and neurological disorders.
       </p>
       <p>
-        We frame the development of the placental chorionic plate vasculature in terms of a reduced-order parameter mechanistic model,
-        which depends primarily on the ratio of the placenta growth rate and the vessel growth rate. We use microCT scans of healthy
-        full-term placentas to constrain the model parameters and discuss what this mechanistic model means for disease conditions such
-        as fetal growth restriction.
+        We model the development of the placental chorionic plate vasculature using a reduced-order mechanistic framework that
+        relates growth dynamics to the balance between placental expansion and vessel formation. MicroCT scans of healthy,
+        full-term placentas provide quantitative constraints on model parameters, enabling comparison with pathological cases
+        and offering insight into how deviations from normal growth may underlie disease-linked morphologies.
       </p>
     </div>
+
+    <footer>
+      © <span id="year"></span> Biological Transport Networks · Flatiron Institute
+    </footer>
   </main>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
