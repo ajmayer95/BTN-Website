@@ -5,16 +5,16 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Placenta — Biological Transport Networks</title>
 
-  <!-- Theme to match site -->
+  <!-- Site theme -->
   <link rel="stylesheet" href="assets/css/ccb.css" />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
 
   <style>
-    :root { --maxw: 1000px; --card: #fff; }
+    :root { --maxw: 1000px; }
     body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; color:#0e0e0e; }
     .wrap { max-width: var(--maxw); margin: 0 auto; padding: 1.6rem 1rem 2rem; }
 
-    /* Sticky header (same as others) */
+    /* Sticky header (matches other pages) */
     header.site {
       position: sticky; top: 0; z-index: 1000;
       padding: 1rem 0;
@@ -25,53 +25,39 @@
     .topnav a { margin-right: 1rem; font-weight: 600; text-decoration: none; padding:.4rem .1rem; }
     .topnav a:hover { text-decoration: underline; }
 
-    /* HERO */
-    .hero { max-width: var(--maxw); margin: 1rem auto 0; padding: 0 1rem; position: relative; }
-    .hero-media { height: clamp(280px, 42vw, 420px); border-radius: 12px; overflow: hidden; position: relative; background:#000; }
-    .hero-media img, .hero-media video, .hero-media object, .hero-media iframe {
-      width: 100%; height: 100%; display: block; object-fit: cover; object-position: 50% 50%;
-    }
-    .hero--overlay::after {
-      content: ""; position: absolute; left: 1rem; right: 1rem; bottom: 0; height: 55%;
-      border-bottom-left-radius: 12px; border-bottom-right-radius: 12px;
-      background: linear-gradient(0deg, rgba(0,0,0,.65), rgba(0,0,0,0));
-      pointer-events: none;
-    }
-    .hero-title {
-      position: absolute; inset: 0; display: flex; align-items: flex-end; justify-content: center;
-      padding: 0 2rem 1.25rem; text-align: center;
-    }
-    .hero-title .inner {
-      display:inline-block; padding: .45rem .9rem; border-radius: 10px;
-      background: rgba(0,0,0,.35); backdrop-filter: blur(2px) saturate(120%);
-      box-shadow: 0 8px 24px rgba(0,0,0,.25);
-    }
-    .hero-title h1 {
-      color: #fff; margin: 0; font-weight: 800; letter-spacing: .01em;
-      font-size: clamp(1.7rem, 3.6vw, 2.6rem);
-      text-shadow: 0 1px 0 rgba(0,0,0,.5), 0 2px 8px rgba(0,0,0,.45), 0 6px 22px rgba(0,0,0,.6);
-    }
-    .hero-title .subhead { color: rgba(255,255,255,.96); margin-top: .25rem; font-weight: 600; }
-
     /* Breadcrumbs */
-    .crumbs { font-weight: 600; margin: .6rem 0 1.1rem; padding: 0 1rem; }
+    .crumbs { font-weight: 600; margin: .9rem 0 1.1rem; }
     .crumbs a { text-decoration: none; }
     .crumbs a:hover { text-decoration: underline; }
 
-    /* Page sections */
-    .page { background: var(--card); border-radius: 12px; box-shadow: 0 2px 14px rgba(0,0,0,.06); padding: 1.1rem; margin: 1.4rem 0; }
-    .page h2 { margin: .2rem 0 1rem; font-size: 1.35rem; }
+    /* Two-column section */
+    .two-col {
+      display: grid;
+      grid-template-columns: 1.05fr 0.95fr;
+      gap: 1.25rem;
+      align-items: center;          /* vertical centering for better alignment */
+    }
+    .card {
+      background:#fff;
+      border-radius:12px;
+      padding:1rem 1.1rem;
+      box-shadow:0 2px 12px rgba(0,0,0,0.06);
+    }
+    .card h1 { margin: .1rem 0 .6rem; font-size: clamp(1.6rem, 2.6vw, 2.1rem); }
+    .card p { margin: .55rem 0; line-height: 1.65; }
 
-    /* Two-column rhythm (matches other pages) */
-    .two-col { display:grid; grid-template-columns: 1.25fr 0.95fr; gap: 1.25rem; align-items: start; }
-    .card { background:#fff; border-radius:12px; padding:1rem 1.1rem; box-shadow:0 2px 12px rgba(0,0,0,0.06); }
-    .card p { margin: .45rem 0; }
-
-    /* Figures & captions */
+    /* Media */
     figure { margin: 0; }
-    .media { border-radius:12px; overflow:hidden; background:#000; }
-    .media img, .media video { width:100%; height:auto; display:block; }
-    figcaption { font-size:.92rem; opacity:.78; margin-top:.5rem; }
+    .media {
+      border-radius:12px;
+      overflow:hidden;
+      background:#000;
+    }
+    .media img {
+      display:block;
+      width:100%;
+      height:auto;                 /* keep natural aspect ratio (no cropping) */
+    }
 
     @media (max-width: 880px){
       .two-col { grid-template-columns: 1fr; }
@@ -94,56 +80,36 @@
     </div>
   </header>
 
-  <!-- HERO -->
-  <section class="hero hero--overlay">
-    <div class="hero-media">
-      <img src="images/placenta/PlacentaFull.png" alt="Placenta chorionic plate vasculature">
-    </div>
-    <div class="hero-title">
-      <div class="inner">
-        <h1>Placenta</h1>
-        <div class="subhead">Chorionic plate vasculature & development</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Breadcrumbs -->
-  <div class="crumbs wrap"><a href="index.html#research">← Back to Research</a></div>
-
-  <!-- CONTENT -->
   <main class="wrap">
-    <section class="page">
-      <div class="two-col">
-        <!-- Left: image + caption (kept for visual parity across pages) -->
-        <figure>
-          <div class="media">
-            <img src="images/placenta/PlacentaFull.png" alt="Placenta chorionic plate vasculature (full view)">
-          </div>
-          <figcaption>
-            Full-term placental chorionic plate vasculature.
-          </figcaption>
-        </figure>
+    <div class="crumbs"><a href="index.html#research">← Back to Research</a></div>
 
-        <!-- Right: summary text -->
-        <aside class="card">
-          <h2 style="margin-top:0;">Summary</h2>
-          <p>
-            The placenta is a transient organ, yet an indispensable one, as it is the primary interface between a mother and a developing fetus.
-          </p>
-          <p>
-            Abnormal placental chorionic vasculature correlates with a variety of complications for both mother and child,
-            including preeclampsia, gestational diabetes, and predisposition to autism spectrum disorders in the developing child.
-            Thus far, placental chorionic vascular development has been studied mainly observationally,
-            preventing researchers from revealing the mechanisms behind correlations to disease.
-          </p>
-          <p>
-            We frame the development of the placental chorionic plate vasculature in terms of a reduced-order parameter mechanistic model,
-            which depends primarily on the ratio of the placenta growth rate and the vessel growth rate. We use microCT scans of healthy
-            full-term placentas to constrain the model parameters and discuss what this mechanistic model means for disease conditions such
-            as fetal growth restriction.
-          </p>
-        </aside>
-      </div>
+    <section class="two-col">
+      <!-- Summary (left) -->
+      <aside class="card">
+        <h1>Placenta</h1>
+        <p>
+          The placenta is a transient organ, yet an indispensable one, as it is the primary interface between a mother and a developing fetus.
+        </p>
+        <p>
+          Abnormal placental chorionic vasculature correlates with a variety of complications for both mother and child,
+          including preeclampsia, gestational diabetes, and predisposition to autism spectrum disorders in the developing child.
+          Thus far, placental chorionic vascular development has been studied mainly observationally,
+          preventing researchers from revealing the mechanisms behind correlations to disease.
+        </p>
+        <p>
+          We frame the development of the placental chorionic plate vasculature in terms of a reduced-order parameter mechanistic model,
+          which depends primarily on the ratio of the placenta growth rate and the vessel growth rate. We use microCT scans of healthy
+          full-term placentas to constrain the model parameters and discuss what this mechanistic model means for disease conditions such
+          as fetal growth restriction.
+        </p>
+      </aside>
+
+      <!-- Image (right) -->
+      <figure>
+        <div class="media">
+          <img src="images/placenta/PlacentaFull.png" alt="Placenta chorionic plate vasculature">
+        </div>
+      </figure>
     </section>
   </main>
 
