@@ -30,22 +30,6 @@
     .crumbs a { text-decoration: none; }
     .crumbs a:hover { text-decoration: underline; }
 
-    /* Two-column section */
-    .two-col {
-      display: grid;
-      grid-template-columns: 1.05fr 0.95fr;
-      gap: 1.25rem;
-      align-items: center;          /* vertical centering for better alignment */
-    }
-    .card {
-      background:#fff;
-      border-radius:12px;
-      padding:1rem 1.1rem;
-      box-shadow:0 2px 12px rgba(0,0,0,0.06);
-    }
-    .card h1 { margin: .1rem 0 .6rem; font-size: clamp(1.6rem, 2.6vw, 2.1rem); }
-    .card p { margin: .55rem 0; line-height: 1.65; }
-
     /* Media */
     figure { margin: 0; }
     .media {
@@ -56,12 +40,20 @@
     .media img {
       display:block;
       width:100%;
-      height:auto;                 /* keep natural aspect ratio (no cropping) */
+      height:auto;           /* keep natural aspect ratio (no cropping) */
     }
+    figcaption { font-size:.92rem; opacity:.78; margin-top:.5rem; }
 
-    @media (max-width: 880px){
-      .two-col { grid-template-columns: 1fr; }
+    /* Summary card */
+    .card {
+      background:#fff;
+      border-radius:12px;
+      padding:1rem 1.1rem;
+      box-shadow:0 2px 12px rgba(0,0,0,0.06);
+      margin-top: 1.2rem;
     }
+    .card h1 { margin: .1rem 0 .6rem; font-size: clamp(1.6rem, 2.6vw, 2.1rem); }
+    .card p { margin: .55rem 0; line-height: 1.65; }
   </style>
 </head>
 <body>
@@ -83,33 +75,33 @@
   <main class="wrap">
     <div class="crumbs"><a href="index.html#research">← Back to Research</a></div>
 
-    <section class="two-col">
-      <!-- Summary (left) -->
-      <aside class="card">
-        <h1>Placenta</h1>
-        <p>
-          The placenta is a transient organ, yet an indispensable one, as it is the primary interface between a mother and a developing fetus.
-        </p>
-        <p>
-          Abnormal placental chorionic vasculature correlates with a variety of complications for both mother and child,
-          including preeclampsia, gestational diabetes, and predisposition to autism spectrum disorders in the developing child.
-          Thus far, placental chorionic vascular development has been studied mainly observationally,
-          preventing researchers from revealing the mechanisms behind correlations to disease.
-        </p>
-        <p>
-          We frame the development of the placental chorionic plate vasculature in terms of a reduced-order parameter mechanistic model,
-          which depends primarily on the ratio of the placenta growth rate and the vessel growth rate. We use microCT scans of healthy
-          full-term placentas to constrain the model parameters and discuss what this mechanistic model means for disease conditions such
-          as fetal growth restriction.
-        </p>
-      </aside>
+    <!-- Big image first -->
+    <figure>
+      <div class="media">
+        <img src="images/placenta/PlacentaFull.png" alt="Placenta chorionic plate vasculature">
+      </div>
+      <!-- Optional: add a caption or remove this line -->
+      <!-- <figcaption>Placental chorionic plate vasculature (microCT, full-term).</figcaption> -->
+    </figure>
 
-      <!-- Image (right) -->
-      <figure>
-        <div class="media">
-          <img src="images/placenta/PlacentaFull.png" alt="Placenta chorionic plate vasculature">
-        </div>
-      </figure>
+    <!-- Summary card beneath -->
+    <section class="card">
+      <h1>Summary</h1>
+      <p>
+        The placenta is a transient organ, yet an indispensable one, as it is the primary interface between a mother and a developing fetus.
+      </p>
+      <p>
+        Abnormal placental chorionic vasculature correlates with a variety of complications for both mother and child,
+        including preeclampsia, gestational diabetes, and predisposition to autism spectrum disorders in the developing child.
+        Thus far, placental chorionic vascular development has been studied mainly observationally,
+        preventing researchers from revealing the mechanisms behind correlations to disease.
+      </p>
+      <p>
+        We frame the development of the placental chorionic plate vasculature in terms of a reduced-order parameter mechanistic model,
+        which depends primarily on the ratio of the placenta growth rate and the vessel growth rate. We use microCT scans of healthy
+        full-term placentas to constrain the model parameters and discuss what this mechanistic model means for disease conditions such
+        as fetal growth restriction.
+      </p>
     </section>
   </main>
 
