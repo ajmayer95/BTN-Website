@@ -1,3 +1,4 @@
+
 <!doctype html>
 <html lang="en">
 <head>
@@ -25,25 +26,34 @@
     .topnav a { margin-right: 1rem; font-weight: 600; text-decoration: none; padding:.4rem .1rem; }
     .topnav a:hover { text-decoration: underline; }
 
-    /* HERO (no image): soft gradient background with overlay text */
+    /* HERO over full image (no cropping) */
     .hero { max-width: var(--maxw); margin: 1rem auto 0; padding: 0 1rem; }
-    .hero-slab {
-      height: clamp(220px, 36vw, 360px);
-      border-radius: 12px;
-      overflow: hidden;
+    .hero-media {
       position: relative;
-      background: linear-gradient(135deg, #0a2540 0%, #294c86 50%, #3d7bb4 100%);
+      border-radius: 12px;
+      overflow: hidden; /* rounds the image + gradient */
+      background: #000;
     }
-    .hero-slab::after {
-      content: ""; position: absolute; inset: 0;
-      background: linear-gradient(0deg, rgba(0,0,0,.35), rgba(0,0,0,0));
+    .hero-media img {
+      display: block;
+      width: 100%;
+      height: auto;   /* keep natural aspect ratio—no crop */
+    }
+    /* bottom gradient for legibility */
+    .hero-media::after {
+      content: "";
+      position: absolute; left: 0; right: 0; bottom: 0;
+      height: 48%;
+      background: linear-gradient(0deg, rgba(0,0,0,.58), rgba(0,0,0,0));
+      pointer-events: none;
     }
     .hero-title {
-      position: absolute; inset: 0; display: flex; align-items: flex-end; justify-content: center;
-      padding: 0 2rem 1.25rem; text-align: center;
+      position: absolute; inset: 0;
+      display: flex; align-items: flex-end; justify-content: center;
+      padding: 0 2rem 1.1rem; text-align: center;
     }
     .hero-title .inner {
-      display:inline-block; padding: .45rem .9rem; border-radius: 10px;
+      display:inline-block; padding: .42rem .85rem; border-radius: 10px;
       background: rgba(0,0,0,.28); backdrop-filter: blur(2px) saturate(120%);
       box-shadow: 0 8px 24px rgba(0,0,0,.25);
     }
@@ -62,11 +72,6 @@
     .crumbs { font-weight: 600; margin: .9rem 0 1.1rem; }
     .crumbs a { text-decoration: none; }
     .crumbs a:hover { text-decoration: underline; }
-
-    /* Media */
-    figure { margin: 0; }
-    .media { border-radius:12px; overflow:hidden; background:#000; }
-    .media img { display:block; width:100%; height:auto; }
 
     /* Summary card */
     .card {
@@ -93,9 +98,10 @@
     </div>
   </header>
 
-  <!-- HERO (no image) -->
+  <!-- HERO: title over uncropped image -->
   <section class="hero">
-    <div class="hero-slab">
+    <div class="hero-media">
+      <img src="images/placenta/PlacentaFull.png" alt="Placenta chorionic plate vasculature">
       <div class="hero-title">
         <div class="inner">
           <h1>Placental morphogenesis</h1>
@@ -109,13 +115,6 @@
   <div class="crumbs wrap"><a href="index.html#research">← Back to Research</a></div>
 
   <main class="wrap">
-    <!-- Big image -->
-    <figure>
-      <div class="media">
-        <img src="images/placenta/PlacentaFull.png" alt="Placenta chorionic plate vasculature">
-      </div>
-    </figure>
-
     <!-- Summary card -->
     <section class="card">
       <h2>Summary</h2>
