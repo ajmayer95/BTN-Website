@@ -71,12 +71,6 @@
     figcaption { font-size:.95rem; color: var(--fg-muted); margin-top:.6rem; }
     .full { grid-column: 1 / -1; }
 
-    /* Figure label badge */
-    .figure-label {
-      display: inline-block; font-size: .85rem; font-weight: 700;
-      padding: .15rem .5rem; border-radius: 6px; background: #f3f3f3; margin-bottom: .35rem;
-    }
-
     /* Pills / quick links */
     .pill {
       display:inline-block; font-size:.85rem; font-weight:600; text-decoration:none;
@@ -85,11 +79,9 @@
     }
     .pill:hover { background:#fff; }
 
-    /* Mobile layout: text first, media second */
+    /* Mobile layout */
     @media (max-width: 880px){
       .two-col { grid-template-columns: 1fr; }
-      .two-col > figure { order: 2; }
-      .two-col > aside  { order: 1; }
     }
   </style>
 </head>
@@ -129,9 +121,32 @@
   <!-- Breadcrumbs -->
   <div class="crumbs wrap"><a href="index.html#research">← Back to Research</a></div>
 
-  <!-- PAGE 1: intro with spiderweb + text, then graphs under it -->
   <main class="wrap">
-    <section class="page">
+
+    <!-- SUMMARY -->
+    <section class="page" id="summary-section" aria-labelledby="summary">
+      <aside class="card">
+        <h2 id="summary" style="margin-top:0;">Summary</h2>
+        <p>
+          Biological transport networks—such as blood vessels, plant vasculature, or neuronal networks—are naturally modeled
+          as metric graphs where edges carry flow or diffusive signals and nodes enforce conservation laws.
+        </p>
+        <p>
+          While this discrete picture captures topology, it becomes unwieldy for dense, spatially embedded systems
+          (e.g., embryonic vasculature). We develop continuum descriptions which explain the effective material and functional properties
+          while enabling faster simulation.
+        </p>
+        <div style="margin-top:.8rem;">
+          <strong>Quick links:</strong><br/>
+          <a href="https://doi.org/10.48550/arXiv.2301.07086" class="pill">Preprint</a>
+        </div>
+      </aside>
+    </section>
+
+    <!-- CONTINUUM LIMIT FOR METRIC GRAPHS -->
+    <section class="page" id="continuum-limit" aria-labelledby="cont-limit-title">
+      <h2 id="cont-limit-title" style="margin-top:0;">Continuum limit for metric graphs</h2>
+
       <div class="two-col">
         <figure>
           <div class="media">
@@ -143,24 +158,6 @@
           </figcaption>
         </figure>
 
-        <aside class="card">
-          <h2 id="summary" style="margin-top:0;">Summary</h2>
-          <p>
-            Biological transport networks—such as blood vessels, plant vasculature, or neuronal networks—are naturally modeled
-            as metric graphs where edges carry flow or diffusive signals and nodes enforce conservation laws.
-          </p>
-          <p>
-            While this discrete picture captures topology, it becomes unwieldy for dense, spatially embedded systems
-            (e.g., embryonic vasculature). We develop effective continuum descriptions that preserve the essential transport
-            physics while enabling faster simulation and principled coarse-graining.
-          </p>
-          <div style="margin-top:.8rem;">
-            <strong>Quick links:</strong><br/>
-            <a href="https://doi.org/10.48550/arXiv.2301.07086" class="pill">Preprint</a>
-          </div>
-        </aside>
-
-        <!-- “Different graphs” figure full width below -->
         <figure class="full" style="margin-top:.8rem;">
           <div class="media">
             <img loading="lazy" src="images/continuum/different_graphs.png"
@@ -173,9 +170,10 @@
       </div>
     </section>
 
-    <!-- PAGE 2: discrete vs continuum comparison -->
-    <section class="page">
-      <h2 id="discrete-vs-continuum" style="margin-top:0;">Discrete vs. Continuum Adaptation</h2>
+    <!-- NETWORK ADAPTATION -->
+    <section class="page" id="network-adaptation" aria-labelledby="network-adaptation-title">
+      <h2 id="network-adaptation-title" style="margin-top:0;">Network adaptation</h2>
+
       <figure>
         <div class="media">
           <img loading="lazy" src="images/continuum/discrete_vs_continuum_adaptation.png"
@@ -187,7 +185,6 @@
         </figcaption>
       </figure>
 
-      <!-- Bottom animation/video -->
       <figure style="margin-top: 1rem;">
         <div class="media" style="background:#000;">
           <video controls autoplay muted loop playsinline preload="metadata">
@@ -199,6 +196,7 @@
         </figcaption>
       </figure>
     </section>
+
   </main>
 
   <footer>
