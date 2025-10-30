@@ -28,7 +28,7 @@
     /* HERO */
     .hero { max-width: var(--maxw); margin: 1rem auto 0; padding: 0 1rem; position: relative; }
     .hero-media { height: clamp(280px, 42vw, 420px); border-radius: 12px; overflow: hidden; position: relative; background:#000; }
-    .hero-media video, .hero-media img, .hero-media iframe, .hero-media object { width: 100%; height: 100%; display: block; object-fit: cover; }
+    .hero-media video { width: 100%; height: 100%; display: block; object-fit: cover; }
     .hero--overlay::after {
       content: ""; position: absolute; left: 1rem; right: 1rem; bottom: 0; height: 55%;
       border-bottom-left-radius: 12px; border-bottom-right-radius: 12px;
@@ -56,20 +56,17 @@
     .crumbs a { text-decoration: none; }
     .crumbs a:hover { text-decoration: underline; }
 
-    /* Page-like sections */
+    /* Page styling */
     h1, h2 { letter-spacing: .005em; }
     .page { background: var(--card); border-radius: 12px; box-shadow: 0 2px 14px rgba(0,0,0,.06); padding: 1.1rem; margin: 1.6rem 0; }
     .page h2 { margin: .1rem 0 .8rem; font-size: clamp(1.35rem, 1.8vw, 1.6rem); }
-    .two-col { display:grid; grid-template-columns: 1.25fr 0.95fr; gap: 1.25rem; align-items: start; }
-    .card { background:#fff; border-radius:12px; padding:1rem 1.1rem; box-shadow:0 2px 12px rgba(0,0,0,0.06); }
     .card p { margin: .45rem 0; }
 
-    /* Figures & captions */
-    figure { margin: 0; }
+    /* Figures */
+    figure { margin: 1rem 0; }
     .media { border-radius:12px; overflow:hidden; background:#000; }
     .media img, .media video { width:100%; height:auto; display:block; }
     figcaption { font-size:.95rem; color: var(--fg-muted); margin-top:.6rem; }
-    .full { grid-column: 1 / -1; }
 
     /* Pills / quick links */
     .pill {
@@ -78,11 +75,6 @@
       background:#f7f7f7;
     }
     .pill:hover { background:#fff; }
-
-    /* Mobile layout */
-    @media (max-width: 880px){
-      .two-col { grid-template-columns: 1fr; }
-    }
   </style>
 </head>
 <body>
@@ -103,7 +95,7 @@
     </div>
   </header>
 
-  <!-- HERO: video banner -->
+  <!-- HERO -->
   <section class="hero hero--overlay">
     <div class="hero-media">
       <video
@@ -121,60 +113,28 @@
   <!-- Breadcrumbs -->
   <div class="crumbs wrap"><a href="index.html#research">← Back to Research</a></div>
 
+  <!-- MAIN CONTENT -->
   <main class="wrap">
+    <section class="page" id="summary-section">
+      <h2 id="summary" style="margin-top:0;">Summary</h2>
 
-    <!-- SUMMARY -->
-    <section class="page" id="summary-section" aria-labelledby="summary">
-      <aside class="card">
-        <h2 id="summary" style="margin-top:0;">Summary</h2>
-        <p>
-          Biological transport networks—such as blood vessels, plant vasculature, or neuronal networks—are naturally modeled
-          as metric graphs where edges carry flow or diffusive signals and nodes enforce conservation laws.
-        </p>
-        <p>
-          While this discrete picture captures topology, it becomes unwieldy for dense, spatially embedded systems
-          (e.g., embryonic vasculature). We develop continuum descriptions which explain the effective material and functional properties
-          while enabling faster simulation.
-        </p>
-        <div style="margin-top:.8rem;">
-          <strong>Quick links:</strong><br/>
-          <a href="https://doi.org/10.48550/arXiv.2301.07086" class="pill">Preprint</a>
-        </div>
-      </aside>
-    </section>
+      <p>
+        Biological transport networks—such as blood vessels, plant vasculature, or neuronal networks—are naturally modeled
+        as metric graphs where edges carry flow or diffusive signals and nodes enforce conservation laws.
+      </p>
+      <p>
+        While this discrete picture captures topology, it becomes unwieldy for dense, spatially embedded systems
+        (e.g., embryonic vasculature). We develop continuum descriptions which explain the effective material and functional properties
+        while enabling faster simulation.
+      </p>
 
-    <!-- CONTINUUM LIMIT FOR METRIC GRAPHS -->
-    <section class="page" id="continuum-limit" aria-labelledby="cont-limit-title">
-      <h2 id="cont-limit-title" style="margin-top:0;">Continuum limit for metric graphs</h2>
-
-      <div class="two-col">
-        <figure>
-          <div class="media">
-            <img loading="lazy" src="images/continuum/spiderweb.png"
-                 alt="Dense web-like network used to illustrate continuum limits">
-          </div>
-          <figcaption>
-            Continuum descriptions replace vessel-wise dynamics with macroscopic models defined over the ambient space.
-          </figcaption>
-        </figure>
-
-        <figure class="full" style="margin-top:.8rem;">
-          <div class="media">
-            <img loading="lazy" src="images/continuum/different_graphs.png"
-                 alt="Ensembles of graphs with different statistics for averaging and homogenization">
-          </div>
-          <figcaption>
-            Ensembles of graphs used for averaging: varying connectivity, degree distributions, and spatial embedding.
-          </figcaption>
-        </figure>
+      <div style="margin-top:.8rem;">
+        <strong>Quick links:</strong><br/>
+        <a href="https://doi.org/10.48550/arXiv.2301.07086" class="pill">Preprint</a>
       </div>
-    </section>
 
-    <!-- NETWORK ADAPTATION -->
-    <section class="page" id="network-adaptation" aria-labelledby="network-adaptation-title">
-      <h2 id="network-adaptation-title" style="margin-top:0;">Network adaptation</h2>
-
-      <figure>
+      <!-- FIGURE 1 -->
+      <figure style="margin-top: 1.5rem;">
         <div class="media">
           <img loading="lazy" src="images/continuum/discrete_vs_continuum_adaptation.png"
                alt="Quantitative comparison of discrete network adaptation and its continuum model analogue">
@@ -185,6 +145,7 @@
         </figcaption>
       </figure>
 
+      <!-- VIDEO -->
       <figure style="margin-top: 1rem;">
         <div class="media" style="background:#000;">
           <video controls autoplay muted loop playsinline preload="metadata">
@@ -196,9 +157,9 @@
         </figcaption>
       </figure>
     </section>
-
   </main>
 
+  <!-- FOOTER -->
   <footer>
     <div class="wrap" style="display:flex; justify-content:space-between; align-items:center; gap:1rem; flex-wrap:wrap;">
       <div>&copy; <span id="year"></span> Biological Transport Networks · Flatiron Institute</div>
