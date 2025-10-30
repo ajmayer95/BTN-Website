@@ -123,6 +123,18 @@
     .people .person img { width:96px; height:96px; object-fit:cover; border-radius:10px; }
     .people .meta { font-size:0.95rem; }
 
+    /* ===== Under construction cards ===== */
+    .construction {
+      display:flex; align-items:center; gap:.75rem;
+      border:1.5px dashed rgba(0,0,0,0.18);
+      background: #fffef5;
+    }
+    .construction .badge {
+      font-weight:800; font-size:.85rem;
+      background:#fff2b2; border:1px solid rgba(0,0,0,0.08);
+      border-radius:999px; padding:.25rem .6rem;
+    }
+
     /* ===== Careers-like Footer Section ===== */
     section.footer-banner {
       background:#f3f5f7;
@@ -131,9 +143,7 @@
       border-top:1px solid rgba(0,0,0,0.07);
       margin-top:4rem;
     }
-    section.footer-banner h2 {
-      font-size:1.6rem; margin-bottom:0.75rem;
-    }
+    section.footer-banner h2 { font-size:1.6rem; margin-bottom:0.75rem; }
     section.footer-banner p {
       font-size:1.05rem; color:#333; max-width:700px; margin:0.75rem auto 0;
       line-height:1.65;
@@ -160,6 +170,8 @@
         <a href="#mission">Mission</a>
         <a href="#research">Research</a>
         <a href="#people">People</a>
+        <a href="#papers">Papers</a>
+        <a href="#news">News</a>
         <a href="#contact">Contact</a>
       </nav>
     </div>
@@ -226,6 +238,20 @@
       <div class="card person"><img src="images/people/AJM-Pic.avif" alt="Alex Mayer"><div class="meta"><div style="font-weight:700;">Alex Mayer</div><div>Flatiron Research Fellow</div></div></div>
       <div class="card person"><img src="images/people/Sid.avif" alt="Sidney Holden"><div class="meta"><div style="font-weight:700;">Sidney Holden</div><div>Flatiron Research Fellow</div></div></div>
       <div class="card person"><img src="images/people/cropped_circle_image.png" alt="Mia Morrell"><div class="meta"><div style="font-weight:700;">Mia Morrell</div><div>Guest Researcher</div></div></div>
+    </div>
+
+    <!-- ===== Papers (under construction) ===== -->
+    <h2 id="papers" class="section">Papers</h2>
+    <div class="card construction">
+      <span class="badge">🚧 Under construction</span>
+      <div>We’re organizing selected publications and links. Check back soon.</div>
+    </div>
+
+    <!-- ===== News (under construction) ===== -->
+    <h2 id="news" class="section">News</h2>
+    <div class="card construction">
+      <span class="badge">🚧 Under construction</span>
+      <div>Group updates and announcements will appear here.</div>
     </div>
   </main>
 
