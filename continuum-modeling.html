@@ -11,7 +11,7 @@
 
   <style>
     figure.narrow {
-  width: 60%;
+  width: 75%;
   margin: 1.2rem auto;  /* centers it horizontally */
 }
     :root { --maxw: 1000px; --card: #fff; --fg-muted: rgba(0,0,0,.72); }
@@ -80,6 +80,13 @@
     .pill:hover { background:#fff; }
   </style>
 </head>
+<script>
+  window.MathJax = {
+    tex: {inlineMath: [['$', '$'], ['\\(', '\\)']]},
+    svg: {fontCache: 'global'}
+  };
+</script>
+<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
 <body>
 
   <!-- Header -->
@@ -125,11 +132,10 @@
       <p>
         Biological transport networks—such as blood vessels, plant vasculature, or neuronal networks—are naturally modeled
         as metric graphs where edges carry flow or diffusive signals and nodes enforce conservation laws.
-      </p>
-      <p>
-        While this discrete picture captures topology, it becomes unwieldy for dense, spatially embedded systems
-        (e.g., embryonic vasculature). We develop continuum descriptions which explain the effective material and functional properties
-        while enabling faster simulation.
+        These high-density networks encode effective material and functional properties. To investigate how these properties emerge, 
+        we develop a continuum-limit framework that replaces edgewise differential equations with a coarse-grained partial differential 
+        equation (PDE) defined on the continuous space occupied by the network. This framework captures how real-world, space-filling networks 
+        operate simultaneously across system-wide and local scales, using the continuum as a feature.
       </p>
 
       <div style="margin-top:.8rem;">
@@ -145,9 +151,11 @@
         </div>
       </figure>
       
-      <p style="margin:1rem auto; max-width:80%; text-align:center;">
-        These continuum models bridge discrete network representations and macroscopic field equations,
-        allowing us to average over many graph realizations and study effective transport behavior.
+      <p>
+        The derivation naturally introduces an edge-conductivity tensor, an edge-capacity function, and a vertex number density, 
+        which together describe how each microscopic patch of the graph contributes to macroscopic behavior. All macroscopic parameters are 
+        computed from first principles via a systematic discrete-to-continuous homogenization, revealing an anomalous effective embedding dimension 
+        arising from the homogenized diffusivity $d_{\text{eff}}$. 
       </p>
       
       <figure style="margin-top:.8rem;">
