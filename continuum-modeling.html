@@ -56,13 +56,12 @@
     .crumbs a { text-decoration: none; }
     .crumbs a:hover { text-decoration: underline; }
 
-    /* Page styling */
+    /* Page-like sections */
     h1, h2 { letter-spacing: .005em; }
     .page { background: var(--card); border-radius: 12px; box-shadow: 0 2px 14px rgba(0,0,0,.06); padding: 1.1rem; margin: 1.6rem 0; }
     .page h2 { margin: .1rem 0 .8rem; font-size: clamp(1.35rem, 1.8vw, 1.6rem); }
-    .card p { margin: .45rem 0; }
 
-    /* Figures */
+    /* Figures & captions */
     figure { margin: 1rem 0; }
     .media { border-radius:12px; overflow:hidden; background:#000; }
     .media img, .media video { width:100%; height:auto; display:block; }
@@ -113,8 +112,9 @@
   <!-- Breadcrumbs -->
   <div class="crumbs wrap"><a href="index.html#research">← Back to Research</a></div>
 
-  <!-- MAIN CONTENT -->
+  <!-- MAIN -->
   <main class="wrap">
+    <!-- SINGLE SECTION: Summary + Continuum-limit figures -->
     <section class="page" id="summary-section">
       <h2 id="summary" style="margin-top:0;">Summary</h2>
 
@@ -133,27 +133,24 @@
         <a href="https://doi.org/10.48550/arXiv.2301.07086" class="pill">Preprint</a>
       </div>
 
-      <!-- FIGURE 1 -->
-      <figure style="margin-top: 1.5rem;">
+      <!-- Continuum limit for metric graphs (moved here) -->
+      <figure style="margin-top:1.2rem;">
         <div class="media">
-          <img loading="lazy" src="images/continuum/discrete_vs_continuum_adaptation.png"
-               alt="Quantitative comparison of discrete network adaptation and its continuum model analogue">
+          <img loading="lazy" src="images/continuum/spiderweb.png"
+               alt="Dense web-like network used to illustrate continuum limits">
         </div>
         <figcaption>
-          The Hu–Cai adaptation model minimizes pumping power and material cost with respect to conductivities; the continuum
-          analogue replaces edgewise conductivities by a conductivity field obeying analogous constraints.
+          Continuum descriptions replace vessel-wise dynamics with macroscopic models defined over the ambient space.
         </figcaption>
       </figure>
 
-      <!-- VIDEO -->
-      <figure style="margin-top: 1rem;">
-        <div class="media" style="background:#000;">
-          <video controls autoplay muted loop playsinline preload="metadata">
-            <source src="images/continuum/run0_C_animation.mp4" type="video/mp4">
-          </video>
+      <figure style="margin-top:.8rem;">
+        <div class="media">
+          <img loading="lazy" src="images/continuum/different_graphs.png"
+               alt="Ensembles of graphs with different statistics for averaging and homogenization">
         </div>
         <figcaption>
-          Time-lapse of a continuum concentration field corresponding to a discrete adaptation experiment.
+          Ensembles of graphs used for averaging: varying connectivity, degree distributions, and spatial embedding.
         </figcaption>
       </figure>
     </section>
