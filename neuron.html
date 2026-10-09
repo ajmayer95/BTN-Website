@@ -71,7 +71,7 @@
 
     figure { margin: 0; }
     .media { border-radius:12px; overflow:hidden; background:#000; }
-    .media img { display:block; width:100%; height:auto; } /* uncropped */
+    .media img, .media video { display:block; width:100%; height:auto; } /* uncropped */
 
     .card {
       background:#fff; border-radius:12px; padding:1rem 1.1rem;
@@ -120,7 +120,10 @@
     <div class="two-col">
       <figure>
         <div class="media">
-          <img src="images/neuron/Neuron.png" alt="Neuron">
+          <video autoplay muted loop playsinline controls preload="metadata" aria-label="Neuronal development microscopy video">
+            <source src="images/neuron/neuron-development.mp4" type="video/mp4">
+            Your browser does not support embedded video. <a href="images/neuron/neuron-development.mp4">Download the video</a>.
+          </video>
         </div>
       </figure>
 
