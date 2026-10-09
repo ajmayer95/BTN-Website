@@ -70,6 +70,9 @@
     }
 
     figure { margin: 0; }
+    .tip-growth { margin-bottom:1.5rem; padding:1rem; border-radius:12px; background:#fff; box-shadow:0 2px 12px rgba(0,0,0,.06); }
+    .tip-growth img { display:block; width:100%; height:auto; }
+    .tip-growth figcaption { margin-top:.75rem; font-weight:600; color:#444; }
     .media { border-radius:12px; overflow:hidden; background:#000; }
     .media img, .media video { display:block; width:100%; height:auto; } /* uncropped */
 
@@ -117,10 +120,14 @@
   <div class="crumbs wrap"><a href="index.html#research">← Back to Research</a></div>
 
   <main class="wrap">
+    <figure class="tip-growth">
+      <img src="images/neuron/tip-growth.png" alt="Diagram comparing simple tip growth and compound tip growth, showing material sources and growing or retracting branches">
+      <figcaption>Tip growth</figcaption>
+    </figure>
     <div class="two-col">
       <figure>
         <div class="media">
-          <video autoplay muted loop playsinline controls preload="auto" aria-label="Neuronal development microscopy video">
+          <video poster="images/neuron/neuron-thumbnail.jpg" autoplay muted loop playsinline controls preload="auto" aria-label="Neuronal development microscopy video">
             <source src="images/neuron/neuron-development.mp4?v=2" type="video/mp4">
             Your browser does not support embedded video. <a href="images/neuron/neuron-development.mp4">Download the video</a>.
           </video>
