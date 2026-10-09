@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Other Projects — Biological Transport Networks</title>
+
+  <!-- Site theme -->
+  <link rel="stylesheet" href="assets/css/ccb.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root { --maxw: 1000px; }
+    body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; color:#0e0e0e; }
+    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 1.6rem 1rem 2rem; }
+
+    /* Sticky header (matches other pages) */
+    header.site {
+      position: sticky; top: 0; z-index: 1000;
+      padding: 1rem 0;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: saturate(180%) blur(8px);
+      border-bottom: 1px solid rgba(0,0,0,0.07);
+    }
+    .topnav a { margin-right: 1rem; font-weight: 600; text-decoration: none; padding:.4rem .1rem; }
+    .topnav a:hover { text-decoration: underline; }
+
+    /* HERO over full image (no cropping) */
+    .hero { max-width: var(--maxw); margin: 1rem auto 0; padding: 0 1rem; }
+    .hero-media {
+      position: relative;
+      border-radius: 12px;
+      overflow: hidden; /* rounds the image + gradient */
+      background: #000;
+    }
+    .hero-media img {
+      display: block;
+      width: 100%;
+      height: auto;   /* keep natural aspect ratio—no crop */
+    }
+    /* bottom gradient for legibility */
+    .hero-media::after {
+      content: "";
+      position: absolute; left: 0; right: 0; bottom: 0;
+      height: 48%;
+      background: linear-gradient(0deg, rgba(0,0,0,.58), rgba(0,0,0,0));
+      pointer-events: none;
+    }
+    .hero-title {
+      position: absolute; inset: 0;
+      display: flex; align-items: flex-end; justify-content: center;
+      padding: 0 2rem 1.1rem; text-align: center;
+    }
+    .hero-title .inner {
+      display:inline-block; padding: .42rem .85rem; border-radius: 10px;
+      background: rgba(0,0,0,.28); backdrop-filter: blur(2px) saturate(120%);
+      box-shadow: 0 8px 24px rgba(0,0,0,.25);
+    }
+    .hero-title h1 {
+      color: #fff; margin: 0; font-weight: 800; letter-spacing: .01em;
+      font-size: clamp(1.7rem, 3.2vw, 2.4rem);
+      text-shadow: 0 1px 0 rgba(0,0,0,.5), 0 2px 8px rgba(0,0,0,.45), 0 6px 22px rgba(0,0,0,.6);
+    }
+    .hero-title .subhead {
+      color: rgba(255,255,255,.96); margin-top: .25rem; font-weight: 600;
+      text-shadow: 0 1px 0 rgba(0,0,0,.4), 0 2px 6px rgba(0,0,0,.4);
+      font-size: clamp(0.98rem, 1.6vw, 1.05rem);
+    }
+
+    /* Breadcrumbs */
+    .crumbs { font-weight: 600; margin: .9rem 0 1.1rem; }
+    .crumbs a { text-decoration: none; }
+    .crumbs a:hover { text-decoration: underline; }
+
+    /* Summary card */
+    .card {
+      background:#fff; border-radius:12px; padding:1rem 1.1rem;
+      box-shadow:0 2px 12px rgba(0,0,0,0.06); margin-top: 1.2rem;
+    }
+    .card h2 { margin: .2rem 0 .6rem; font-size: clamp(1.35rem, 2.2vw, 1.6rem); }
+    .card p { margin: .55rem 0; line-height: 1.65; }
+    body { background:#fafafa; }
+    .project-image { display:block; width:100%; height:auto; border-radius:10px; margin:1rem 0; }
+    .project-nav { display:flex; flex-wrap:wrap; gap:1rem; margin:1rem 0 2rem; }
+    .project-nav a { font-weight:600; }
+    .project-subtitle { color:#555; }
+    .jellyfish-gallery { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1.25rem; margin-top:1.25rem; }
+    .jellyfish-gallery figure { margin:0; }
+    .jellyfish-gallery img { display:block; width:100%; height:auto; border-radius:10px; }
+    .jellyfish-gallery figcaption { margin-top:.6rem; font-weight:600; color:#444; }
+    @media (max-width:650px) { .jellyfish-gallery { grid-template-columns:1fr; } }
+    section[id] { scroll-margin-top:180px; }
+  </style>
+</head>
+<body>
+
+  <!-- Header -->
+  <header class="site">
+    <div class="wrap">
+      <div style="font-size:1rem; font-weight:800;">Biological Transport Networks</div>
+      <div style="opacity:.8;">Center for Computational Biology · Flatiron Institute</div>
+      <nav class="topnav" style="margin-top:.5rem;">
+        <a href="index.html#mission">Mission</a>
+        <a href="index.html#research">Research</a>
+        <a href="index.html#people">People</a>
+        <a href="index.html#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <div class="crumbs"><a href="index.html#research">← Back to Research</a></div>
+    <h1>Other Projects</h1>
+    <nav class="project-nav" aria-label="Projects on this page">
+      <a href="#placental-morphogenesis">Placental morphogenesis</a>
+      <a href="#jellyfish">Jellyfish</a>
+    </nav>
+    <section id="placental-morphogenesis" class="card" aria-labelledby="placenta-title">
+      <h2 id="placenta-title">Placental morphogenesis</h2>
+      <p class="project-subtitle">Chorionic plate vasculature &amp; transport modeling</p>
+      <img class="project-image" src="images/placenta/PlacentaFull.png" alt="Placenta chorionic plate vasculature" loading="lazy">
+      <p>
+        The placenta is a transient organ, yet an indispensable one, as it is the primary interface between a mother and a developing fetus.
+      </p>
+      <p>
+        Abnormal placental chorionic vasculature correlates with a variety of complications for both mother and child,
+        including preeclampsia, gestational diabetes, and predisposition to autism spectrum disorders in the developing child.
+        Thus far, placental chorionic vascular development has been studied mainly observationally,
+        preventing researchers from revealing the mechanisms behind correlations to disease.
+      </p>
+      <p>
+        We frame the development of the placental chorionic plate vasculature in terms of a reduced-order parameter mechanistic model,
+        which depends primarily on the ratio of the placenta growth rate and the vessel growth rate. We use microCT scans of healthy
+        full-term placentas to constrain the model parameters and discuss what this mechanistic model means for disease conditions such
+        as fetal growth restriction.
+      </p>
+    </section>
+    <section id="jellyfish" class="card" aria-labelledby="jellyfish-title">
+      <h2 id="jellyfish-title">Jellyfish</h2>
+      <!-- Replace this placeholder with the supplied title, description, and images. -->
+      <p>Project details coming soon.</p>
+      <div class="jellyfish-gallery">
+        <figure>
+          <img src="images/jellyfish/Canals.gif" alt="Jellyfish canals animation" loading="lazy">
+          <figcaption>Canals</figcaption>
+        </figure>
+        <figure>
+          <img src="images/jellyfish/Vectorization.gif" alt="Jellyfish vectorization animation" loading="lazy">
+          <figcaption>Vectorization</figcaption>
+        </figure>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap" style="display:flex; justify-content:space-between; align-items:center; gap:1rem; flex-wrap:wrap;">
+      <div>&copy; <span id="year"></span> Biological Transport Networks · Flatiron Institute</div>
+    </div>
+  </footer>
+
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
