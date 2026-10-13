@@ -1,0 +1,239 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Papers — Biological Transport Networks</title>
+
+  <!-- Flatiron / CCB theme -->
+  <link rel="stylesheet" href="assets/css/ccb.css" />
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root { --maxw: 1100px; --circle-size: 220px; }
+    body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; color:#0e0e0e; background:#fafafa; }
+    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 2rem 1rem; }
+
+    /* ===== Sticky header ===== */
+    header.site {
+      position: sticky; top: 0; z-index: 1000;
+      padding: 1rem 0;
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: saturate(180%) blur(8px);
+      border-bottom: 1px solid rgba(0,0,0,0.07);
+    }
+    .topnav a {
+      margin-right: 1rem; font-weight: 600; text-decoration: none;
+      padding: .4rem .1rem; display: inline-block;
+    }
+    .topnav a:hover { text-decoration: underline; }
+
+    /* ===== Hero banner ===== */
+    .hero-banner {
+      position: relative;
+      height: clamp(320px, 48vw, 520px);
+      overflow: hidden;
+      border-radius: 12px;
+    }
+    .hero-banner img {
+      width: 100%; height: 100%; object-fit: cover;
+      object-position: 50% 45%;
+      display: block; opacity: 0; animation: heroFade 1.2s ease-out forwards;
+    }
+    .hero-banner .overlay { position: absolute; inset: 0; background: linear-gradient(180deg, rgba(0,0,0,.30), rgba(0,0,0,.30)); }
+    .hero-banner .nameplate {
+      position: absolute; inset: 0;
+      display: flex; align-items: center; justify-content: center;
+      padding: clamp(1rem, 3vw, 2rem);
+    }
+    .hero-banner .nameplate-inner {
+      text-align: center; color: #fff;
+      text-shadow: 0 2px 10px rgba(0,0,0,.35);
+      padding: 0 1rem; max-width: 900px;
+    }
+    .hero-banner .kicker { font-weight: 600; letter-spacing: .02em; opacity: .9; margin-bottom: .25rem; }
+    .hero-banner h1 { font-size: clamp(1.8rem, 3.2vw, 2.6rem); margin: 0; }
+    @keyframes heroFade { from { opacity: 0 } to { opacity: 1 } }
+
+    /* ===== Sections ===== */
+    h2.section { margin: 2.5rem 0 1rem; font-size: 1.6rem; }
+    .card { background: #fff; border-radius: 12px; padding: 1rem; box-shadow: 0 2px 12px rgba(0,0,0,0.06); }
+
+    /* ===== Carousel ===== */
+    .carousel { position: relative; margin-top: 1rem; }
+    .carousel-track {
+      display: grid;
+      grid-auto-flow: column;
+      grid-auto-columns: minmax(260px, 1fr);
+      gap: 1rem;
+      overflow-x: auto;
+      padding: .25rem .25rem 1rem;
+      scroll-snap-type: x mandatory;
+      scroll-behavior: smooth;
+    }
+    .carousel-btn {
+      position: absolute; top: 50%; transform: translateY(-50%);
+      border: 1px solid rgba(0,0,0,.12);
+      background: rgba(255,255,255,.85);
+      backdrop-filter: saturate(160%) blur(6px);
+      border-radius: 10px;
+      padding: .4rem .55rem;
+      cursor: pointer;
+    }
+    .carousel-btn:hover { background: #fff; }
+    .carousel-btn[disabled] { opacity: .4; cursor: default; }
+    .carousel-btn.prev { left: -4px; }
+    .carousel-btn.next { right: -4px; }
+    @media (max-width:900px){ .carousel-track{ grid-auto-columns:80%; } }
+    @media (max-width:600px){ .carousel-track{ grid-auto-columns:88%; } }
+
+    /* ===== Circle cards ===== */
+    .carousel-card.circle {
+      padding: 0; background: transparent; box-shadow: none;
+      display: grid; place-items: center; gap: 0.6rem;
+    }
+    .circle-thumb {
+      width: var(--circle-size);
+      height: var(--circle-size);
+      border-radius: 50%;
+      overflow: hidden;
+      background: #000;
+      box-shadow: 0 6px 18px rgba(0,0,0,.18);
+      transition: transform .18s ease, box-shadow .18s ease;
+    }
+    .circle-thumb img, .circle-thumb video {
+      width: 100%; height: 100%; object-fit: cover; display: block;
+    }
+    .carousel-card.circle:hover .circle-thumb {
+      transform: translateY(-2px);
+      box-shadow: 0 10px 26px rgba(0,0,0,.22);
+    }
+    .circle-caption { text-align: center; width: var(--circle-size); }
+    .circle-caption h3 { margin: 0; font-size: 1.05rem; }
+    .circle-caption p { margin: .25rem 0 0; font-size: .95rem; opacity: .85; }
+    .carousel[data-carousel="research"] .carousel-track {
+      grid-auto-columns: calc(var(--circle-size) + 40px);
+      justify-items: center;
+    }
+
+    /* ===== People ===== */
+    .people .person { display:flex; gap:1rem; align-items:flex-start; margin-bottom:1rem; }
+    .people .person img { width:96px; height:96px; object-fit:cover; border-radius:10px; }
+    .people .meta { font-size:0.95rem; line-height:1.5; }
+    .people h3 { margin: 1.5rem 0 1rem; font-size:1.2rem; }
+    .people .person h4 { margin:0; font-size:1rem; }
+    .people .role { margin:.25rem 0 0; color:#444; }
+    .people .members-grid { display:grid; grid-template-columns:repeat(2, minmax(0, 1fr)); gap:1rem; }
+    .people .members-grid .person { margin:0; }
+    [id] { scroll-margin-top:180px; }
+    @media (max-width:650px) { .people .members-grid { grid-template-columns:1fr; } }
+
+    /* ===== Under construction cards ===== */
+    .construction {
+      display:flex; align-items:center; gap:.75rem;
+      border:1.5px dashed rgba(0,0,0,0.18);
+      background: #fffef5;
+    }
+    .construction .badge {
+      font-weight:800; font-size:.85rem;
+      background:#fff2b2; border:1px solid rgba(0,0,0,0.08);
+      border-radius:999px; padding:.25rem .6rem;
+    }
+
+    /* ===== Careers-like Footer Section ===== */
+    section.footer-banner {
+      background:#f3f5f7;
+      text-align:center;
+      padding:3rem 1rem 3.5rem;
+      border-top:1px solid rgba(0,0,0,0.07);
+      margin-top:4rem;
+    }
+    section.footer-banner h2 { font-size:1.6rem; margin-bottom:0.75rem; }
+    section.footer-banner p {
+      font-size:1.05rem; color:#333; max-width:700px; margin:0.75rem auto 0;
+      line-height:1.65;
+    }
+
+    /* ===== Bottom footer ===== */
+    footer.site {
+      background:#fff;
+      padding:1.5rem 1rem 2rem;
+      border-top:1px solid rgba(0,0,0,0.08);
+      text-align:center;
+      font-size:0.95rem;
+      color:#444;
+    }
+  </style>
+</head>
+
+<body>
+  <header class="site">
+    <div class="wrap">
+      <div style="font-size:1rem; font-weight:800;">Biological Transport Networks</div>
+      <div style="opacity:0.8;">Center for Computational Biology · Flatiron Institute</div>
+      <nav class="topnav" style="margin-top: 0.5rem;">
+        <a href="index.html#mission">Mission</a>
+        <a href="index.html#research">Research</a>
+        <a href="index.html#people">People</a>
+        <a href="papers.html">Papers</a>
+        <a href="news.html">News</a>
+        <a href="#contact">Contact</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero-banner">
+    <img src="images/yolk-sac/fig_sparse_flow.png" alt="Network flow simulation preview" />
+    <div class="overlay"></div>
+    <div class="nameplate">
+      <div class="nameplate-inner">
+        <div class="kicker">Center for Computational Biology · Flatiron Institute</div>
+        <h1>Biological Transport Networks</h1>
+      </div>
+    </div>
+  </section>
+
+  <main class="wrap">
+    <h2 id="papers" class="section">Papers</h2>
+    <div class="card construction">
+      <span class="badge">🚧 Under construction</span>
+      <div>We’re organizing selected publications and links. Check back soon.</div>
+    </div>
+
+  </main>
+  <section id="contact" class="footer-banner">
+    <h2>Contact</h2>
+    <p>
+      Center for Computational Biology, Flatiron Institute<br>
+      162 Fifth Avenue, New York, NY 10010<br><br>
+      Email: <a href="mailto:ccb-webmaster@flatironinstitute.org">ccb-webmaster@flatironinstitute.org</a>
+    </p>
+  </section>
+
+  <footer class="site">
+    © <span id="year"></span> Biological Transport Networks · Flatiron Institute
+  </footer>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+    document.querySelectorAll('.carousel').forEach((wrap) => {
+      const track = wrap.querySelector('.carousel-track');
+      const prev = wrap.querySelector('.carousel-btn.prev');
+      const next = wrap.querySelector('.carousel-btn.next');
+      const step = () => track.querySelector('.carousel-card')?.getBoundingClientRect().width + 16 || 320;
+      const update = () => {
+        const maxScroll = track.scrollWidth - track.clientWidth - 1;
+        prev.disabled = track.scrollLeft <= 0;
+        next.disabled = track.scrollLeft >= maxScroll;
+      };
+      prev.addEventListener('click', () => track.scrollBy({ left: -step(), behavior: 'smooth' }));
+      next.addEventListener('click', () => track.scrollBy({ left: step(), behavior: 'smooth' }));
+      track.addEventListener('scroll', update, { passive: true });
+      window.addEventListener('resize', update);
+      update();
+    });
+  </script>
+</body>
+</html>
