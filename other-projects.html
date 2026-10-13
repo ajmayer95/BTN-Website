@@ -84,11 +84,9 @@
     .project-nav { display:flex; flex-wrap:wrap; gap:1rem; margin:1rem 0 2rem; }
     .project-nav a { font-weight:600; }
     .project-subtitle { color:#555; }
-    .jellyfish-gallery { display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:1.25rem; margin-top:1.25rem; }
-    .jellyfish-gallery figure { margin:0; }
-    .jellyfish-gallery img { display:block; width:100%; height:auto; border-radius:10px; }
-    .jellyfish-gallery figcaption { margin-top:.6rem; font-weight:600; color:#444; }
-    @media (max-width:650px) { .jellyfish-gallery { grid-template-columns:1fr; } }
+    .jellyfish-media { margin:1.5rem auto; max-width:600px; }
+    .jellyfish-media img, .jellyfish-media video { display:block; width:100%; height:auto; border-radius:10px; }
+    .jellyfish-media figcaption { margin-top:.6rem; color:#555; text-align:center; }
     section[id] { scroll-margin-top:180px; }
   </style>
 </head>
@@ -137,17 +135,18 @@
     </section>
     <section id="jellyfish" class="card" aria-labelledby="jellyfish-title">
       <h2 id="jellyfish-title">Transport in jellyfish</h2>
+      <figure class="jellyfish-media">
+        <img src="images/jellyfish/Canals.gif" alt="Microscopy animation of flow in jellyfish canals" loading="lazy">
+        <figcaption>Flow in jellyfish canals</figcaption>
+      </figure>
       <p>We study how jellyfish move fluid and food particles through their internal canal networks. Combining imaging, particle tracking, and mathematical modeling, we investigate how body contractions and the beating of tiny cilia work together to drive these flows. This work explores how transport is coordinated across a living, moving organism.</p>
-      <div class="jellyfish-gallery">
-        <figure>
-          <img src="images/jellyfish/Canals.gif" alt="Jellyfish canals animation" loading="lazy">
-          <figcaption>Canals</figcaption>
-        </figure>
-        <figure>
-          <img src="images/jellyfish/Vectorization.gif" alt="Jellyfish vectorization animation" loading="lazy">
-          <figcaption>Vectorization</figcaption>
-        </figure>
-      </div>
+      <figure class="jellyfish-media">
+        <video autoplay muted loop playsinline controls preload="metadata" aria-label="Isolated jellyfish canal tracking video">
+          <source src="images/jellyfish/canal-tracking.mp4" type="video/mp4">
+          <a href="images/jellyfish/canal-tracking.mp4">Download the canal tracking video</a>.
+        </video>
+        <figcaption>Tracking an isolated canal</figcaption>
+      </figure>
     </section>
   </main>
 
