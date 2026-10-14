@@ -1,182 +1,207 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Continuum limits, pattern formation and numerical methods for transport networks at the Flatiron Institute.">
   <title>Continuum Modeling — Biological Transport Networks</title>
-
-  <!-- Keep site theme to match index -->
-  <link rel="stylesheet" href="assets/css/ccb.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    figure.narrow {
-  width: 75%;
-  margin: 1.2rem auto;  /* centers it horizontally */
-}
-    :root { --maxw: 1000px; --card: #fff; --fg-muted: rgba(0,0,0,.72); }
-    body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; color:#0e0e0e; }
-    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 1.6rem 1rem 2rem; }
-
-    /* Sticky header (matches index) */
-    header.site {
-      position: sticky; top: 0; z-index: 1000;
-      padding: 1rem 0;
-      background: rgba(255,255,255,0.85);
-      backdrop-filter: saturate(180%) blur(8px);
-      border-bottom: 1px solid rgba(0,0,0,0.07);
+    :root {
+      color-scheme: light;
+      --ink: #202326;
+      --muted: #5d6368;
+      --accent: #8d2455;
+      --rule: #dce0e2;
+      --max-width: 1060px;
     }
-    .topnav a { margin-right: 1rem; font-weight: 600; text-decoration: none; padding:.4rem .1rem; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: #fff;
+      font: 400 1rem/1.7 Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+    }
+    a { color: var(--accent); text-underline-offset: .2em; }
+    a:hover { text-decoration-thickness: 2px; }
+    a:focus-visible { outline: 3px solid var(--accent); outline-offset: 5px; }
+    .wrap { width: min(100% - 3rem, var(--max-width)); margin-inline: auto; }
+    .skip-link {
+      position: absolute;
+      top: -5rem;
+      left: 1rem;
+      padding: .6rem 1rem;
+      background: #fff;
+      z-index: 10;
+    }
+    .skip-link:focus { top: 1rem; }
+    .site-header { padding: 1.4rem 0 1.1rem; border-bottom: 1px solid var(--rule); }
+    .site-name { font-weight: 800; color: var(--ink); text-decoration: none; }
+    .affiliation { color: var(--muted); font-size: .88rem; }
+    .topnav { display: flex; flex-wrap: wrap; gap: .35rem 1.4rem; margin-top: .7rem; }
+    .topnav a { color: var(--ink); font-size: .9rem; font-weight: 600; text-decoration: none; padding: .2rem 0; }
     .topnav a:hover { text-decoration: underline; }
-
-    /* HERO */
-    .hero { max-width: var(--maxw); margin: 1rem auto 0; padding: 0 1rem; position: relative; }
-    .hero-media { height: clamp(280px, 42vw, 420px); border-radius: 12px; overflow: hidden; position: relative; background:#000; }
-    .hero-media video { width: 100%; height: 100%; display: block; object-fit: cover; }
-    .hero--overlay::after {
-      content: ""; position: absolute; left: 1rem; right: 1rem; bottom: 0; height: 55%;
-      border-bottom-left-radius: 12px; border-bottom-right-radius: 12px;
-      background: linear-gradient(0deg, rgba(0,0,0,.70), rgba(0,0,0,0));
-      pointer-events: none;
+    .intro { padding: 2.5rem 0 2.3rem; }
+    .back-link { font-size: .85rem; font-weight: 500; text-decoration: none; }
+    h1, h2, h3 { line-height: 1.2; }
+    h1 { font-size: clamp(1.68rem, 4vw, 2.56rem); font-weight: 700; letter-spacing: -.035em; margin: 1.4rem 0 .7rem; }
+    .intro-text { max-width: 78ch; margin: 0; }
+    .research-section { padding: 2.7rem 0 3rem; border-top: 1px solid var(--rule); scroll-margin-top: 1.5rem; }
+    h2 { font-size: clamp(1.55rem, 3vw, 2rem); font-weight: 600; letter-spacing: -.025em; margin: 0 0 1.5rem; }
+    figure { margin: 0 0 1.8rem; }
+    .figure-link { display: block; }
+    figure img { display: block; width: 100%; height: auto; }
+    .research-figure { width: 100%; max-width: var(--max-width); margin-inline: auto; }
+    .annulus-comparison { display: flex; align-items: center; justify-content: space-evenly; padding-block: 1rem; background: #000; }
+    .annulus-comparison svg { display: block; width: 39.5%; height: auto; }
+    figcaption { font-size: .85rem; line-height: 1.55; color: var(--muted); margin-top: .7rem; }
+    .research-copy { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 2rem; }
+    .research-copy p { margin: 0; }
+    .publication { border-left: 2px solid var(--accent); padding-left: 1.1rem; margin-top: 1.6rem; }
+    .publication h3 { font-size: .75rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin: 0 0 .5rem; }
+    .publication p { margin: .2rem 0 0; font-size: .88rem; color: var(--muted); }
+    .paper-title { font-size: .98rem; line-height: 1.5; font-weight: 600; }
+    .methods-layout { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 2.5rem; align-items: start; }
+    .methods-layout figure { margin-bottom: 0; }
+    .methods-copy > p { margin: 0 0 1.1rem; }
+    .site-footer { border-top: 1px solid var(--rule); padding: 1.5rem 0; color: var(--muted); font-size: .8rem; }
+    @media (max-width: 700px) {
+      .wrap { width: calc(100% - 2rem); }
+      .site-header { padding-top: 1rem; }
+      .topnav { gap: .3rem 1.1rem; }
+      .intro { padding-top: 1.7rem; }
+      .research-section { padding: 2rem 0; }
+      .research-copy, .methods-layout { grid-template-columns: minmax(0, 1fr); gap: 1.1rem; }
+      .methods-layout figure { max-width: 390px; margin: 0 auto .6rem; }
     }
-    .hero-title {
-      position: absolute; inset: 0; display: flex; align-items: flex-end; justify-content: center;
-      padding: 0 2rem 1.25rem; text-align: center;
-    }
-    .hero-title .inner {
-      display:inline-block; padding: .45rem .9rem; border-radius: 10px;
-      background: rgba(0,0,0,.35); backdrop-filter: blur(2px) saturate(120%);
-      box-shadow: 0 8px 24px rgba(0,0,0,.25);
-    }
-    .hero-title h1 {
-      color: #fff; margin: 0; font-weight: 800; letter-spacing: .01em;
-      font-size: clamp(1.7rem, 3.6vw, 2.6rem);
-      text-shadow: 0 1px 0 rgba(0,0,0,.5), 0 2px 8px rgba(0,0,0,.45), 0 6px 22px rgba(0,0,0,.6);
-    }
-    .hero-title .subhead { color: rgba(255,255,255,.96); margin-top: .25rem; font-weight: 600; }
-
-    /* Breadcrumbs */
-    .crumbs { font-weight: 600; margin: .6rem 0 1.1rem; padding: 0 1rem; }
-    .crumbs a { text-decoration: none; }
-    .crumbs a:hover { text-decoration: underline; }
-
-    /* Page-like sections */
-    h1, h2 { letter-spacing: .005em; }
-    .page { background: var(--card); border-radius: 12px; box-shadow: 0 2px 14px rgba(0,0,0,.06); padding: 1.1rem; margin: 1.6rem 0; }
-    .page h2 { margin: .1rem 0 .8rem; font-size: clamp(1.35rem, 1.8vw, 1.6rem); }
-
-    /* Figures & captions */
-    figure { margin: 1rem 0; }
-    .media { border-radius:12px; overflow:hidden; background:#000; }
-    .media img, .media video { width:100%; height:auto; display:block; }
-    figcaption { font-size:.95rem; color: var(--fg-muted); margin-top:.6rem; }
-
-    /* Pills / quick links */
-    .pill {
-      display:inline-block; font-size:.85rem; font-weight:600; text-decoration:none;
-      padding:.28rem .7rem; border:1px solid rgba(0,0,0,.12); border-radius:999px; margin:.25rem .35rem .25rem 0;
-      background:#f7f7f7;
-    }
-    .pill:hover { background:#fff; }
   </style>
 </head>
-<script>
-  window.MathJax = {
-    tex: {inlineMath: [['$', '$'], ['\\(', '\\)']]},
-    svg: {fontCache: 'global'}
-  };
-</script>
-<script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js" async></script>
 <body>
-
-  <!-- Header -->
-  <header class="site">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
     <div class="wrap">
-      <div style="font-size:1rem; font-weight:800;">Biological Transport Networks</div>
-      <div style="opacity:.8;">Center for Computational Biology · Flatiron Institute</div>
-      <nav class="topnav" style="margin-top:.5rem;">
+      <a class="site-name" href="index.html">Biological Transport Networks</a>
+      <div class="affiliation">Center for Computational Biology · Flatiron Institute</div>
+      <nav class="topnav" aria-label="Main navigation">
         <a href="index.html#mission">Mission</a>
         <a href="index.html#research">Research</a>
         <a href="index.html#people">People</a>
-        <a href="index.html#publications">Publications</a>
-        <a href="index.html#news">News</a>
+        <a href="papers.html">Papers</a>
+        <a href="news.html">News</a>
         <a href="index.html#contact">Contact</a>
       </nav>
     </div>
   </header>
 
-  <!-- HERO -->
-  <section class="hero hero--overlay">
-    <div class="hero-media">
-      <video
-        src="images/continuum/random_sphere_crop_downsample.mp4"
-        autoplay muted loop playsinline preload="metadata"></video>
-    </div>
-    <div class="hero-title">
-      <div class="inner">
-        <h1>Continuum Modeling</h1>
-        <div class="subhead">Discrete-to-continuum modeling of biological transport networks</div>
-      </div>
-    </div>
-  </section>
-
-  <!-- Breadcrumbs -->
-  <div class="crumbs wrap"><a href="index.html#research">← Back to Research</a></div>
-
-  <!-- MAIN -->
-  <main class="wrap">
-    <!-- SINGLE SECTION: Summary + Continuum-limit figures -->
-    <section class="page" id="summary-section">
-      <h2 id="summary" style="margin-top:0;">Summary</h2>
-
-      <p>
-        Biological transport networks—such as blood vessels, plant vasculature, or neuronal networks—are naturally modeled
-        as metric graphs where edges carry flow or diffusive signals and nodes enforce conservation laws.
-        These high-density networks encode effective material and functional properties. To investigate how these properties emerge, 
-        we develop a continuum-limit framework in the dense vertex limit as edge lengths $\ell$ shrink to 0. 
-        This replaces edgewise differential equations with a coarse-grained partial differential 
-        equation (PDE) defined on the continuous space occupied by the network. This framework captures how real-world, space-filling networks 
-        operate simultaneously across system-wide and local scales, using the continuum as a feature.
+  <main class="wrap" id="main">
+    <div class="intro">
+      <a class="back-link" href="index.html#research">← Back to research</a>
+      <h1>Continuum Modeling</h1>
+      <p class="intro-text">
+        How does the structure of a network shape transport, and how does transport reshape the network?
+        We develop mathematical models and computational tools to investigate these questions.
       </p>
+    </div>
 
-      <!-- Continuum limit for metric graphs (inside Summary section) -->
-      <figure class="narrow" style="margin-top:1.2rem;">
-        <div class="media">
-          <img loading="lazy" src="images/continuum/spiderweb.png"
-               alt="Dense web-like network used to illustrate continuum limits">
+    <section class="research-section" id="continuum-limits" aria-labelledby="continuum-heading">
+      <h2 id="continuum-heading">From discrete networks to continuum models</h2>
+      <figure class="research-figure">
+        <div class="annulus-comparison">
+          <svg viewBox="118 1714 2293 2295" width="2293" height="2295" role="img" aria-labelledby="annulus-network-title">
+            <title id="annulus-network-title">Eigenmode on the annular network</title>
+            <image href="images/continuum/annulus-paper-modes.png" width="4958" height="4051" />
+            <rect x="0" y="1690" width="235" height="200" fill="#000" />
+          </svg>
+          <svg viewBox="2536 1718 2308 2293" width="2308" height="2293" role="img" aria-labelledby="annulus-continuum-title">
+            <title id="annulus-continuum-title">Corresponding continuum eigenmode on the annulus</title>
+            <image href="images/continuum/annulus-paper-modes.png" width="4958" height="4051" />
+          </svg>
         </div>
+        <figcaption>An eigenmode on a spatially varying annular network (left) and its continuum approximation (right).</figcaption>
       </figure>
-      
-      <p>
-        The derivation naturally introduces an edge-conductivity tensor, an edge-capacity function, and a vertex number density, 
-        which together describe how each microscopic patch of the graph contributes to macroscopic behavior. All macroscopic parameters are 
-        computed from first principles via a systematic discrete-to-continuous homogenization, revealing an anomalous effective embedding dimension 
-        arising from the homogenized diffusivity $d_{\text{eff}}$. 
-      </p>
-
-      <div style="margin-top:.8rem;">
-        <strong>Quick links:</strong><br/>
-        <a href="https://doi.org/10.48550/arXiv.2301.07086" class="pill">Preprint</a>
+      <div class="research-copy">
+        <p>
+          Dense networks can contain far more individual connections than are practical to model one by one.
+          We develop a continuum-limit framework that replaces equations along the edges of a network
+          with a partial differential equation on the space it occupies.
+        </p>
+        <p>
+          The effective conductivity, capacity and vertex density follow from the network's geometry
+          and microscopic properties. This links local structure to large-scale diffusion and wave
+          propagation, allowing networks with different architectures to be studied within a common description.
+        </p>
       </div>
-      
-      <figure style="margin-top:.8rem;">
-        <div class="media">
-          <img loading="lazy" src="images/continuum/different_graphs.png"
-               alt="Ensembles of graphs with different statistics for averaging and homogenization">
-        </div>
+      <div class="publication">
+        <h3>Related preprint</h3>
+        <a class="paper-title" href="https://arxiv.org/abs/2301.07086">A continuum limit for dense spatial networks</a>
+        <p>Sidney Holden and Geoffrey Vasil</p>
+        <p>arXiv:2301.07086 · Revised 2025</p>
+      </div>
+    </section>
+
+    <section class="research-section" id="network-formation" aria-labelledby="formation-heading">
+      <h2 id="formation-heading">How transport networks form and adapt</h2>
+      <figure class="research-figure">
+        <a class="figure-link" href="images/instability/vertical-current.svg" aria-label="View the vertical-current figure at full size">
+          <img src="images/instability/vertical-current.svg" width="1230" height="286" loading="lazy" decoding="async"
+               alt="A central detail of a simulated flow field with narrow channels. The color scale is labeled vertical current; darker blue indicates stronger current.">
+        </a>
+        <figcaption>Flow concentrates into channels in a simulation of an adaptive transport medium (central detail). Color shows vertical current.</figcaption>
       </figure>
+      <div class="research-copy">
+        <p>
+          In adaptive transport systems, flow changes the material carrying it, and those changes redirect
+          the flow. We study this feedback using a continuum model in which conductivity evolves as a
+          tensor field, describing how easily fluid moves in different directions.
+        </p>
+        <p>
+          A finite-wavelength instability selects a preferred length scale at onset. Analysis and simulations
+          show how conducting structures emerge from a homogeneous base state, and how channel structure
+          and conductivity scale with the control parameter (analogous to a Rayleigh number in thermal convection).
+        </p>
+      </div>
+      <div class="publication">
+        <h3>Related preprint</h3>
+        <a class="paper-title" href="https://arxiv.org/abs/2605.16130">Length-scale selection in adaptive transport networks</a>
+        <p>Sidney Holden, Mia C. Morrell, Geoffrey Vasil and Eleni Katifori</p>
+        <p>arXiv:2605.16130 · 2026</p>
+      </div>
+    </section>
+
+    <section class="research-section" id="numerical-methods" aria-labelledby="methods-heading">
+      <h2 id="methods-heading">Computing dynamics on networks</h2>
+      <div class="methods-layout">
+        <figure>
+          <a class="figure-link" href="images/methods/network-nls.png" aria-label="View the nonlinear-wave figure at full size">
+            <img src="images/methods/network-nls.png" width="1620" height="1835" loading="lazy" decoding="async"
+                 alt="Nonlinear Schrödinger dynamics on a network embedded in a disc, with edges colored by the squared wave amplitude.">
+          </a>
+          <figcaption>A snapshot of nonlinear wave evolution on a 753-edge network. Color shows the squared amplitude.</figcaption>
+        </figure>
+        <div class="methods-copy">
+          <p>
+            Transport and wave processes on networks require equations along each connection together
+            with conditions at junctions. We are developing a distributed spectral framework, built on
+            <a href="https://dedalus-project.org/">Dedalus</a>, for formulating and solving these coupled problems.
+          </p>
+          <p>
+            The framework combines high-order discretization on individual edges with parallel solvers
+            on subgraphs. Applications include heterogeneous diffusion, dynamic storage
+            at junctions, network eigenmodes and nonlinear wave propagation. These examples connect
+            mathematical models to simulations on complex networks.
+          </p>
+          <div class="publication">
+            <h3>Related manuscript</h3>
+            <div class="paper-title">A distributed spectral framework for partial differential equations on networks</div>
+            <p>Manuscript in preparation</p>
+          </div>
+        </div>
+      </div>
     </section>
   </main>
 
-  <!-- FOOTER -->
-  <footer>
-    <div class="wrap" style="display:flex; justify-content:space-between; align-items:center; gap:1rem; flex-wrap:wrap;">
-      <div>&copy; <span id="year"></span> Biological Transport Networks · Flatiron Institute</div>
-    </div>
+  <footer class="site-footer">
+    <div class="wrap">Biological Transport Networks · Center for Computational Biology · Flatiron Institute</div>
   </footer>
-
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
 </body>
 </html>
