@@ -86,6 +86,11 @@
     }
     .pill:hover { background:#fff; }
 
+    /* phones: show the whole banner (letterboxed) rather than cropping the stage panels */
+    @media (max-width: 700px){
+      .hero-media { background: #000; }
+      .hero-media img { object-fit: contain; }
+    }
     @media (max-width: 880px){
       .two-col { grid-template-columns: 1fr; }
       .card { height:auto; }
@@ -113,7 +118,7 @@
   <!-- HERO: banner with overlaid title -->
   <section class="hero hero--overlay">
     <div class="hero-media">
-      <img src="images/yolk-sac/Banner.png" alt="Embryonic yolk sac network visualization">
+      <img src="images/yolk-sac/banner-flow-hierarchy-3stages.jpg" alt="Simulated blood flow through yolk-sac vascular networks at 15, 21 and 27 somites">
     </div>
     <div class="hero-title">
       <div class="inner">
@@ -132,17 +137,17 @@
       <div>
         <figure class="media">
           <video
-            src="images/yolk-sac/heartbeat_crop.mp4"
+            src="images/yolk-sac/measurement-flow.mp4"
             autoplay
             muted
             loop
             playsinline
             controls
             preload="metadata"
-            poster="images/yolk-sac/Banner.png">
+            poster="images/yolk-sac/measurement-flow-poster.jpg">
           </video>
         </figure>
-        <div class="caption">Heartbeat-driven flow dynamics in embryonic yolk sac vasculature (looped preview).</div>
+        <div class="caption">High-speed video of the yolk-sac capillary network (slowed) with the reconstructed vessel graph. For the highlighted vessel, the fitted velocity profile at each cross-section and the volumetric flow rate over time. Imaging: Siavash Ghaffari, Elizabeth A. V. Jones lab.</div>
       </div>
 
       <aside class="card">
