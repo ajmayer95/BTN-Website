@@ -1,173 +1,187 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Blood flow and pulse transmission in the developing avian yolk-sac vasculature, reconstructed from high-speed imaging at the Flatiron Institute.">
   <title>Yolk Sac — Biological Transport Networks</title>
-
-  <!-- Theme to match index -->
-  <link rel="stylesheet" href="assets/css/ccb.css" />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
   <style>
-    :root { --maxw: 1000px; }
-    body { font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; color:#0e0e0e; }
-    .wrap { max-width: var(--maxw); margin: 0 auto; padding: 1.6rem 1rem 2rem; }
-
-    /* Sticky header to match index */
-    header.site {
-      position: sticky; top: 0; z-index: 1000;
-      padding: 1rem 0;
-      background: rgba(255,255,255,0.85);
-      backdrop-filter: saturate(180%) blur(8px);
-      border-bottom: 1px solid rgba(0,0,0,0.07);
+    :root {
+      color-scheme: light;
+      --ink: #202326;
+      --muted: #5d6368;
+      --accent: #8d2455;
+      --rule: #dce0e2;
+      --max-width: 1060px;
     }
-    .topnav a { margin-right: 1rem; font-weight: 600; text-decoration: none; padding:.4rem .1rem; }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      color: var(--ink);
+      background: #fff;
+      font: 400 1rem/1.7 Inter, system-ui, -apple-system, "Segoe UI", sans-serif;
+    }
+    a { color: var(--accent); text-underline-offset: .2em; }
+    a:hover { text-decoration-thickness: 2px; }
+    a:focus-visible { outline: 3px solid var(--accent); outline-offset: 5px; }
+    .wrap { width: min(100% - 3rem, var(--max-width)); margin-inline: auto; }
+    .skip-link {
+      position: absolute;
+      top: -5rem;
+      left: 1rem;
+      padding: .6rem 1rem;
+      background: #fff;
+      z-index: 10;
+    }
+    .skip-link:focus { top: 1rem; }
+    .site-header { padding: 1.4rem 0 1.1rem; border-bottom: 1px solid var(--rule); }
+    .site-name { font-weight: 800; color: var(--ink); text-decoration: none; }
+    .affiliation { color: var(--muted); font-size: .88rem; }
+    .topnav { display: flex; flex-wrap: wrap; gap: .35rem 1.4rem; margin-top: .7rem; }
+    .topnav a { color: var(--ink); font-size: .9rem; font-weight: 600; text-decoration: none; padding: .2rem 0; }
     .topnav a:hover { text-decoration: underline; }
-
-    /* HERO: banner with overlaid title */
-    .hero { max-width: var(--maxw); margin: 1rem auto 0; padding: 0 1rem; position: relative; }
-    .hero-media { height: clamp(280px, 42vw, 420px); border-radius: 12px; overflow: hidden; position: relative; }
-    .hero-media img { width: 100%; height: 100%; object-fit: cover; object-position: 50% 50%; display: block; }
-    .hero--overlay::after {
-      content: ""; position: absolute; left: 1rem; right: 1rem; bottom: 0; height: 55%;
-      border-bottom-left-radius: 12px; border-bottom-right-radius: 12px;
-      background: linear-gradient(0deg, rgba(0,0,0,.65), rgba(0,0,0,0));
-      pointer-events: none;
-    }
-    .hero-title {
-      position: absolute; inset: 0; display: flex; align-items: flex-end; justify-content: center;
-      padding: 0 2rem 1.25rem; text-align: center;
-    }
-    .hero-title .inner {
-      display:inline-block;
-      padding: .45rem .9rem;
-      border-radius: 10px;
-      background: rgba(0,0,0,.35);
-      backdrop-filter: blur(2px) saturate(120%);
-      box-shadow: 0 8px 24px rgba(0,0,0,.25);
-    }
-    .hero-title h1 {
-      color: #fff; margin: 0; font-weight: 800; letter-spacing: .01em;
-      font-size: clamp(1.7rem, 3.6vw, 2.6rem);
-      text-shadow:
-        0 1px 0 rgba(0,0,0,.5),
-        0 2px 8px rgba(0,0,0,.45),
-        0 6px 22px rgba(0,0,0,.6);
-    }
-    .hero-title .subhead {
-      color: rgba(255,255,255,.96); margin-top: .25rem; font-weight: 600;
-      text-shadow: 0 1px 0 rgba(0,0,0,.4), 0 2px 6px rgba(0,0,0,.4);
-    }
-
-    /* Breadcrumbs */
-    .crumbs { font-weight: 600; margin: .6rem 0 1.1rem; padding: 0 1rem; }
-    .crumbs a { text-decoration: none; }
-    .crumbs a:hover { text-decoration: underline; }
-
-    /* Content layout */
-    .two-col {
-      display:grid; grid-template-columns: 1.25fr 0.95fr; gap: 1.25rem; align-items: stretch;
-    }
-    .card {
-      background:#fff; border-radius:12px; padding:1rem 1.1rem; box-shadow:0 2px 12px rgba(0,0,0,0.06);
-      height:100%; display:flex; flex-direction:column;
-    }
-    .card p { margin: 0.35rem 0; }
-    figure { margin:0; }
-    .media { border-radius:12px; overflow:hidden; background:#000; }
-    .media video, .media img { display:block; width:100%; height:auto; }
-    .caption { font-size:.92rem; opacity:.75; margin-top:.45rem; }
-
-    .pill {
-      display:inline-block; font-size:.85rem; font-weight:600; text-decoration:none;
-      padding:.28rem .7rem; border:1px solid rgba(0,0,0,.12); border-radius:999px; margin:.25rem .35rem .25rem 0;
-      background:#f7f7f7;
-    }
-    .pill:hover { background:#fff; }
-
-    @media (max-width: 880px){
-      .two-col { grid-template-columns: 1fr; }
-      .card { height:auto; }
+    .intro { padding: 2.5rem 0 2.3rem; }
+    .back-link { font-size: .85rem; font-weight: 500; text-decoration: none; }
+    h1, h2, h3 { line-height: 1.2; }
+    h1 { font-size: clamp(1.68rem, 4vw, 2.56rem); font-weight: 700; letter-spacing: -.035em; margin: 1.4rem 0 .7rem; }
+    .intro-text { max-width: 78ch; margin: 0; }
+    .research-section { padding: 2.7rem 0 3rem; border-top: 1px solid var(--rule); scroll-margin-top: 1.5rem; }
+    h2 { font-size: clamp(1.55rem, 3vw, 2rem); font-weight: 600; letter-spacing: -.025em; margin: 0 0 1.5rem; }
+    figure { margin: 0 0 1.8rem; }
+    .figure-link { display: block; }
+    figure img { display: block; width: 100%; height: auto; }
+    .research-figure { width: 100%; max-width: var(--max-width); margin-inline: auto; }
+    .annulus-comparison { display: flex; align-items: center; justify-content: space-evenly; padding-block: 1rem; background: #000; }
+    .annulus-comparison svg { display: block; width: 39.5%; height: auto; }
+    figcaption { font-size: .85rem; line-height: 1.55; color: var(--muted); margin-top: .7rem; }
+    .research-copy { max-width: 78ch; }
+    .research-copy p { margin: 0 0 1rem; }
+    .publication { border-left: 2px solid var(--accent); padding-left: 1.1rem; margin-top: 1.6rem; }
+    .publication h3 { font-size: .75rem; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); font-weight: 600; margin: 0 0 .5rem; }
+    .publication p { margin: .2rem 0 0; font-size: .88rem; color: var(--muted); }
+    .paper-title { font-size: .98rem; line-height: 1.5; font-weight: 600; }
+    .methods-layout { display: grid; grid-template-columns: minmax(0, .8fr) minmax(0, 1.2fr); gap: 2.5rem; align-items: start; }
+    .methods-layout figure { margin-bottom: 0; }
+    .methods-copy > p { margin: 0 0 1.1rem; }
+    .research-figure video { display: block; width: 100%; height: auto; background: #000; }
+    .site-footer { border-top: 1px solid var(--rule); padding: 1.5rem 0; color: var(--muted); font-size: .8rem; }
+    @media (max-width: 700px) {
+      .wrap { width: calc(100% - 2rem); }
+      .site-header { padding-top: 1rem; }
+      .topnav { gap: .3rem 1.1rem; }
+      .intro { padding-top: 1.7rem; }
+      .research-section { padding: 2rem 0; }
+      .research-copy, .methods-layout { grid-template-columns: minmax(0, 1fr); gap: 1.1rem; }
+      .methods-layout figure { max-width: 390px; margin: 0 auto .6rem; }
     }
   </style>
 </head>
 <body>
-
-  <!-- Header (same vibe as index) -->
-  <header class="site">
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
     <div class="wrap">
-      <div style="font-size:1rem; font-weight:800;">Biological Transport Networks</div>
-      <div style="opacity:.8;">Center for Computational Biology · Flatiron Institute</div>
-      <nav class="topnav" style="margin-top:.5rem;">
+      <a class="site-name" href="index.html">Biological Transport Networks</a>
+      <div class="affiliation">Center for Computational Biology · Flatiron Institute</div>
+      <nav class="topnav" aria-label="Main navigation">
         <a href="index.html#mission">Mission</a>
         <a href="index.html#research">Research</a>
         <a href="index.html#people">People</a>
-        <a href="index.html#publications">Publications</a>
-        <a href="index.html#news">News</a>
-        <a href="index.html#contact">Contact</a>
+        <a href="papers.html">Papers</a>
       </nav>
     </div>
   </header>
 
-  <!-- HERO: banner with overlaid title -->
-  <section class="hero hero--overlay">
-    <div class="hero-media">
-      <img src="images/yolk-sac/Banner.png" alt="Embryonic yolk sac network visualization">
+  <main class="wrap" id="main">
+    <div class="intro">
+      <a class="back-link" href="index.html#research">← Back to research</a>
+      <h1>Vascular Flows in the Yolk Sac</h1>
+      <p class="intro-text">
+        The heart begins beating while the yolk sac's vascular network is still a dense, immature plexus.
+        How does blood move through this network, and how does each heartbeat travel through it?
+        We reconstruct both, across the whole yolk sac, in three different avian embryos at successive stages of
+        development. Each is staged by its number of somites, the paired blocks of tissue that form one after another
+        along the embryo's body axis, so the count serves as a developmental clock (a new pair forms roughly every 90 minutes).
+      </p>
     </div>
-    <div class="hero-title">
-      <div class="inner">
-        <h1>Yolk Sac</h1>
-        <div class="subhead">Embryonic vascular flows &amp; pulsatility</div>
-      </div>
-    </div>
-  </section>
 
-  <!-- Breadcrumbs -->
-  <div class="crumbs wrap"><a href="index.html#research">← Back to Research</a></div>
-
-  <main class="wrap">
-    <!-- Media + Summary card -->
-    <div class="two-col">
-      <div>
-        <figure class="media">
-          <video
-            src="images/yolk-sac/heartbeat_crop.mp4"
-            autoplay
-            muted
-            loop
-            playsinline
-            controls
-            preload="metadata"
-            poster="images/yolk-sac/Banner.png">
-          </video>
-        </figure>
-        <div class="caption">Heartbeat-driven flow dynamics in embryonic yolk sac vasculature (looped preview).</div>
-      </div>
-
-      <aside class="card">
-        <p style="margin-top:0;">
-The embryonic yolk sac provides a unique window into the emergence of blood flow and the early development of vascular networks. Using high-speed time-lapse microscopy, we extract vessel centerlines, construct attributed graphs, and infer time-resolved flow fields across developmental stages. These measurements reveal how pulsatile forcing and local hemodynamic variability shape the remodeling of the vascular plexus. By linking experimental data with physics-based models of network adaptation, we aim to uncover how mechanical and geometric cues drive coordinated vascular growth.
+    <section class="research-section" id="imaging" aria-labelledby="imaging-heading">
+      <h2 id="imaging-heading">Imaging and measuring flow</h2>
+      <figure class="research-figure">
+        <video src="images/yolk-sac/measurement-flow.mp4" poster="images/yolk-sac/measurement-flow-poster.jpg"
+               autoplay muted loop playsinline controls preload="metadata"
+               aria-label="High-speed video of the yolk-sac capillary network with the reconstructed vessel graph, a fitted velocity profile and the flow rate over time"></video>
+        <figcaption>High-speed video of the capillary network of a 21-somite yolk sac (slowed), with the reconstructed vessel graph; the inset shows where this field of view lies in the embryo. For the highlighted vessel: the fitted velocity profile at each cross-section, and its volumetric flow rate over time. Imaging: Siavash Ghaffari, Elizabeth A. V. Jones lab.</figcaption>
+      </figure>
+      <div class="research-copy">
+        <p>
+          Imaging such an organ is a challenge in itself: high-speed microscopy (250 frames per second) can only
+          record it one field of view at a time, while the network continues to develop. We stitch these recordings
+          into whole-organ networks of thousands of vessels.
         </p>
+        <p>
+          In each vessel, the motion of red blood cells gives the velocity profile across the vessel, and from it
+          the volumetric flow rate through every heartbeat: both its mean and its pulsatile part.
+        </p>
+      </div>
+    </section>
 
-        <div style="margin-top:.8rem;">
-          <strong>Quick links:</strong><br/>
-          <a href="#" class="pill">Preprint</a>
-          <a href="#" class="pill">Code</a>
-          <a href="#" class="pill">Dataset</a>
-        </div>
-      </aside>
-    </div>
+    <section class="research-section" id="flow-field" aria-labelledby="flow-heading">
+      <h2 id="flow-heading">An organ-scale flow field</h2>
+      <figure class="research-figure">
+        <video src="images/yolk-sac/boundary-flow-tile14.mp4" poster="images/yolk-sac/boundary-flow-tile14-poster.jpg"
+               autoplay muted loop playsinline controls preload="metadata"
+               aria-label="High-speed video of the field of view containing the dorsal-aorta inflow and venous return vessels, with their flow over time"></video>
+        <figcaption>The one field of view (inset) that records both boundaries of the network at once: the two dorsal-aorta stubs carrying blood in (red) and the two venous stubs carrying it back out (blue), with each one's flow relative to its mean over time (right; smoothed for display). The arterial and venous pulses are in phase. Imaging: Siavash Ghaffari, Elizabeth A. V. Jones lab.</figcaption>
+      </figure>
+      <div class="research-copy">
+        <p>
+          Combining the recordings gives a picture of blood flow across the entire yolk sac: where blood enters from the
+          dorsal aorta, how it spreads through the plexus, and where it drains back into the veins. The video shows the
+          one region where both meet: blood arrives through the two branches of the dorsal aorta and returns through the
+          veins alongside, pulsing in step with the same heartbeat.
+        </p>
+      </div>
+      <figure class="research-figure">
+        <img src="images/yolk-sac/banner-flow-hierarchy-3stages.jpg" width="2800" height="1166" loading="lazy" decoding="async"
+             alt="Simulated blood flow through yolk-sac vascular networks at 15, 21 and 27 somites">
+        <figcaption>Simulated blood flow through the yolk-sac networks of three embryos at 15, 21 and 27 somites (SS), based on the measured vessel diameters. Brighter, thicker vessels carry more flow (separate scale for each embryo). Imaging: Siavash Ghaffari, Elizabeth A. V. Jones lab.</figcaption>
+      </figure>
+      <div class="research-copy">
+        <p>
+          Driving a simple model of passive flow through the measured vessel diameters reproduces much of this field,
+          suggesting that the network's geometry largely sets where the blood goes. Across the three embryos a hierarchy
+          emerges: at 15 somites flow spreads through a fairly uniform mesh, while by 27 somites a few large arteries and
+          the encircling marginal vein carry most of it.
+        </p>
+      </div>
+    </section>
+
+    <section class="research-section" id="pulse" aria-labelledby="pulse-heading">
+      <h2 id="pulse-heading">What the pulse reveals</h2>
+      <figure class="research-figure">
+        <img src="images/yolk-sac/pulse-spectra-21somite.jpg" width="1950" height="990" loading="lazy" decoding="async"
+             alt="Measured flow waveforms and harmonic spectra of four vessels at increasing distance from the arterial inlets">
+        <figcaption>Pulsatility across a 21-somite yolk sac, simulated with the compliant-vessel model fitted to the measurements (left); vessels with almost no mean flow are shown faint. For four measured vessels at increasing distance from the arterial inlets: the measured flow over two heartbeats relative to its mean (top right) and its harmonic content (bottom right). Away from the inlets the pulse weakens and its higher harmonics fade fastest. Imaging: Siavash Ghaffari, Elizabeth A. V. Jones lab.</figcaption>
+      </figure>
+      <div class="research-copy">
+        <p>
+          Each heartbeat sends a pulse through the plexus. Close to where blood enters, flow surges sharply with every
+          beat; towards the edge of the yolk sac the pulse is weaker and smoother. Its sharpest features, the higher
+          harmonics, fade first: the network acts as a low-pass filter.
+        </p>
+        <p>
+          That filtering comes from the elasticity of the vessel walls, which briefly stretch to store blood during each
+          beat. A model of the network as elastic, compliant vessels, fitted to how the pulse is delayed and damped from
+          vessel to vessel, gives an estimate of how stiff these young vessel walls are. It also shows the limits of
+          inferring an organ's physics from measurements made one region at a time.
+        </p>
+      </div>
+    </section>
   </main>
 
-  <footer>
-    <div class="wrap" style="display:flex; justify-content:space-between; align-items:center; gap:1rem; flex-wrap:wrap;">
-      <div>&copy; <span id="year"></span> Biological Transport Networks · Flatiron Institute</div>
-    </div>
+  <footer class="site-footer">
+    <div class="wrap">Biological Transport Networks · Center for Computational Biology · Flatiron Institute</div>
   </footer>
-
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
 </body>
 </html>
